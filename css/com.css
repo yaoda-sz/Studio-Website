@@ -388,7 +388,7 @@ footer .bottom p {
     text-align: center;
     position: fixed;
 
-    right: 20px;
+    right: 10px;
     bottom: 20px;
     z-index: 10;
     cursor: pointer;
