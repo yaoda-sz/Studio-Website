@@ -16,15 +16,14 @@
     <link rel="icon" href="favicon-32x32.png" sizes="32x32">
     <link rel="icon" href="favicon-192x192.png" sizes="192x192">
     <link rel="apple-touch-icon" href="apple-icon-180x180.png"> <!-- 支持Apple设备 -->
-    
+
     <link rel="stylesheet" href="./css/com.css">
     <link rel="stylesheet" href="./css/section.css">
-    <link rel="stylesheet" href="./css/home.css">  
+    <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="./css/cases.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/music.css">
-
 
 </head>
 
@@ -46,26 +45,16 @@
                     <li><a href="#cases">客户案例</a></li>
                     <li><a href="#works">项目作品</a></li>
                     <li><a href="#contact">联系我们</a></li>
-                </ul>
-            </nav>
-            <div class="nav-main">☰</div>
+                </ul </nav>
+                <div class="mobile-menu">
+                    <div class="top-line"></div>
+                    <div class="middle-line"></div>
+                    <div class="bottom-line"></div>
+                </div>
         </div>
-        <div class="nav-links-bottom">
-            <nav>
-                <ul class="nav-links-box">
-                    <li><a href="#home" class="active">首页</a></li>
-                    <li><a href="#services">服务范围</a></li>
-                    <li><a href="#about">关于我们</a></li>
-                    <li><a href="#cases">客户案例</a></li>
-                    <li><a href="#works">项目作品</a></li>
-                    <li><a href="#contact">联系我们</a></li>
-                </ul>
-            </nav>
-        </div>
-
     </header>
     <!-- banner广告 -->
-    <section class="banner" id="home">
+    <div class="banner" id="home">
         <div class="container img-b">
             <div class="tip-r">
                 <section class="right-sm">
@@ -78,10 +67,10 @@
         <div class="down">
             <img src="./img/icon_rj.webp" alt="Spine动画制作工具图标">
         </div>
-    </section>
+    </div>
     <!-- banner下面内容主题内容！ -->
     <section>
-        <!-- 以下为白色块区域内容 -->
+        <!-- 以下为居中白色块区域内容 -->
         <div id="main">
             <!-- 大佬图 -->
             <div class="box-big">
@@ -108,7 +97,7 @@
                         </div>
                         <h3>游戏动作</h3>
                         <p>创作一段炫酷的动作，不仅需要专业的软件工具,更需要衔接工作流程,为您创建惊艳的动作,并将其整合到游戏当中，实现您最想要的效果。</p>
-                        
+
                         <a href="#" class="more">了解更多 more >></a>
                     </div>
                     <div class="box-s">
@@ -184,7 +173,7 @@
                 <h2>我们做什么</h2>
                 <!-- 能做啥小标题 -->
                 <div class="title-box">
-                    <h4 id="title-what">如果您的项目有任何动效制作需求，请随时联系我们，无论您的项目是大是小，我们乐于接受任何机会：D</h4>
+                    <h4>如果您的项目有任何动效制作需求，请随时联系我们，无论您的项目是大是小，我们乐于接受任何机会：D</h4>
                 </div>
                 <!-- 能做啥大弹性盒子 -->
                 <ul>
@@ -207,7 +196,7 @@
                     <li>
                         <div class="icon-img icon-pm" aria-label="平面设计"></div>
                         <h3 class="service-item__title">平面设计</h3>
-                        <p class="service-item__description">书籍、传单、小册子等平面美术设计，我们全都可以做。</p>
+                        <p class="service-item__description">网页设计、传单、小册子广告等平面美术设计，我们全都可以做。</p>
                     </li>
                     <li>
                         <div class="icon-img icon-yc" aria-label="远程协作"></div>
@@ -236,8 +225,8 @@
                     <!-- 右侧盒子介绍内容包含三个子盒子 -->
                     <div class="right-me">
                         <div class="about-title">
-                            <h2 class="big-text">咬哒叔</h2>
-                            <h3>您的开发合作伙伴</h3>
+                            <h3 class="big-text">咬哒叔</h3>
+                            <h4>您的开发合作伙伴</h4>
                         </div>
                         <div class="card">
                             <ul>
@@ -413,6 +402,8 @@
             }
         </script>
     </footer>
+    <!-- 回到顶部按钮 -->
+    <div id="backTop">回到<br>顶部</div>
 
     <!-- 音乐播放控制 -->
     <audio id="backgroundMusic" loop>
@@ -424,8 +415,9 @@
 
     <!-- javascript首页基本脚本  -->
     <script src="./js/com.js" defer></script>
+    <!-- <script src="./js/test.js" defer></script> -->
     <script src="./js/video.js" defer></script>
-    <!-- javascript音乐播放 -->
+    javascript音乐播放
     <script src="./js/music.js" defer></script>
 </body>
 
