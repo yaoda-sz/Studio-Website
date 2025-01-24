@@ -10,11 +10,12 @@
     align-items: center;
     justify-content: center;
 }
+
 .img-dalao {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
     text-align: center;
     color: white;
     /* margin: 40px auto; */
@@ -167,9 +168,11 @@ li .box-icon .icon-4 {
     flex-direction: column;
     justify-content: center;
 }
-.what h2{
+
+.what h2 {
     font-size: 2.2rem;
 }
+
 .what .title-box {
     width: 100%;
     border-radius: 6px;
@@ -181,11 +184,10 @@ li .box-icon .icon-4 {
     align-items: center;
 }
 
-.what .title-box h4 {
+.what .title-box>h4 {
     max-width: 760px;
-    font-size: 1.4rem;
-    font-weight: 400;
-    line-height: 2.2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
     text-align: center;
     margin: 10px 0;
 }
@@ -212,33 +214,33 @@ li .box-icon .icon-4 {
     flex: 1;
 }
 
-.what ul li .icon-img {
+.icon-img {
     width: 146px;
     height: 146px;
     background-image: url(../img/icon_gan.webp);
 }
 
-.what ul li .icon-mf {
-    background-position: -582px;
+.icon-mf {
+    background-position: -576px;
 }
 
-.what ul li .icon-sz {
+.icon-sz {
     background-position: 0px;
 }
 
-.what ul li .icon-an {
+.icon-an {
     background-position: -141px;
 }
 
-.what ul li .icon-pm {
-    background-position: -288px;
+.icon-pm {
+    background-position: -284px;
 }
 
-.what ul li .icon-yc {
-    background-position: -434px;
+.icon-yc {
+    background-position: -430px;
 }
 
-.what ul li .icon-pz {
+.icon-pz {
     background-position: -730px;
 }
 
