@@ -1,7 +1,7 @@
 /* 音乐播放器按钮 */
 #playButton {
     position: fixed;
-    top: 90%;
+    top: 80%;
     right: 20px;
     width: 30px;
     height: 30px;
@@ -15,17 +15,17 @@
     cursor: pointer;
     transition: all 0.3s;
     line-height: 50px;
-    z-index: 5;    
+    z-index: 5;
 }
 
 #playButton.paused::before {
     content: '🎵';
-    font-size: 14px;          
+    font-size: 14px;
     color: #000000;
 }
 
 #playButton.playing::before {
     content: '⏸';
-    font-size: 14px;          
+    font-size: 14px;
     color: rgb(163, 0, 0);
 }
