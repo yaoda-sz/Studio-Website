@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 @media (min-width: 901px) and (max-width: 1200px) {
 
   .container,
@@ -6,7 +10,7 @@
   }
 
   header>.container {
-    padding: 10px 20px;
+    padding: 0px 20px;
   }
 
   #main .yaoda .box-me .left-me .photo {
@@ -16,89 +20,80 @@
 
 }
 
-/* 当页面窗口屏幕尺寸适配小于768px-900px情况下执行样式 */
+/* 当页面窗口屏幕尺寸适配小于900px情况下执行样式 */
 @media (max-width: 900px) {
-  header .container nav {
-    display: none;
+  header {
+    box-shadow: none;
   }
 
-  .container,
-  #main {
-    max-width: 900px;
-    width: 100vw;
-  }
-
-  header>.container {
-    padding: 10px 20px;
-  }
-
-  .box-s {
-    max-width: 43%;
-    min-width: 250px;
-  }
-
-  #main .yaoda .box-me {
-    display: flex;
-    padding: 0;
-  }
-
-
-  #main .yaoda .box-me .left-me .photo {
-    border-radius: 20px;
-    width: 180px;
-    aspect-ratio: 3/4;
-  }
-
-  #main .contact-item-left {
-    padding: 0;
-  }
-
-  .nav-links-bottom {
-    display: none;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 8;
-  }
-
-  .nav-links-bottom.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    /* 设置元素高度为视口高度减去 76 像素 */
-    height: calc(100vh - 76px);
-  }
-
-  .nav-links-bottom li {
-    padding: 10px;
-    margin: 10px 0;
-  }
-
-  .nav-main {
-    display: block;
-    cursor: pointer;
-    font-size: 2rem;
-    color: white;
-  }
-
-  .nav-links-box a:hover,
-  .nav-links-box a.active {
-    color: white;
-  }
-
-  .nav-main.close {
-    content: "×";
-    font-size: 1.6rem;
-  }
-
-
-
-  footer .contact-info {
+  .container {
     padding: 0 20px;
   }
+
+  .nav-links {
+    padding-top: 1vh;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(100vh - 76px);
+    background-color: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    transform: translateX(100%);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
+  .nav-links li {
+    padding: 0;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 1vh;
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  .nav-links li a {
+    font-size: 1.4rem;
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .mobile-menu.active div {
+    transition: 0.3s ease-in-out 0.1s;
+
+  }
+
+  .mobile-menu.active .top-line {
+    transform: rotate(-45deg) translate(-7px, 8px);
+  }
+
+  .mobile-menu.active .middle-line {
+    opacity: 0;
+    transform: translateX(50%);
+    transition: 0.3s ease-in-out;
+  }
+
+  .mobile-menu.active .bottom-line {
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
 }
+
 
 /* 当页面窗口屏幕尺寸适配小于576px-767px 情况下执行样式 */
 @media (max-width: 767px) {
@@ -146,16 +141,10 @@
   }
 
   #main .yaoda .box-me .left-me .photo {
-    transform: scale(1);
+    transform: scale(0.8);
     position: absolute;
-    top: -8px;
-    right: -10px;
-  }
-
-  #main .yaoda .box-me .right-me .about-title {
-    transform: scale(0.9);
-    top: -35px;
-    right: -20px;
+    top: -40px;
+    right: -40px;
   }
 
   .yaoda .box-me .card {
@@ -195,10 +184,11 @@
     max-width: 100%;
 
   }
+
   .box-s>.card-v {
     max-width: 70%;
     margin: 0 auto;
-}
+  }
 
   .box-w .box-img {
     width: 80vw;
@@ -226,8 +216,35 @@
     padding: 10px 36px;
   }
 
-  #main {
-    width: 100vw;
+  .icon-img {
+    width: 100px;
+    height: 100px;
+    background-image: url(../img/icon_gan.webp);
+    background-size: 600%;
+  }
+
+  .icon-mf {
+    background-position: 206px;
+  }
+
+  .icon-sz {
+    background-position: 0px;
+  }
+
+  .icon-an {
+    background-position: -96px;
+  }
+
+  .icon-pm {
+    background-position: -194px;
+  }
+
+  .icon-yc {
+    background-position: -294px;
+  }
+
+  .icon-pz {
+    background-position: 106px;
   }
 
   #main .yaoda .box-me {
@@ -252,14 +269,21 @@
     gap: 20px;
   }
 
-  .yaoda .about-title>h2 {
-    font-size: 2rem;
-    margin-bottom: 8px;
+  .about-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
   }
 
-  .yaoda .about-title>h3 {
+  .yaoda h3 {
+    font-size: 2rem;
+    margin-bottom: 0px;
+  }
+
+  .yaoda .h4 {
     font-size: 1.2rem;
-    color: #dadada;
+    color: #cccccc;
   }
 
   footer .contact-info {
@@ -273,5 +297,17 @@
 
   .bottom p {
     font-size: 1rem;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

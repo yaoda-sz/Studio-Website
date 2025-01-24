@@ -12,6 +12,10 @@
     width: 100%;
 }
 
+.banner .container {
+    max-width: 1200px;
+}
+
 .banner .img-b {
     width: 100%;
     max-height: 465px;
@@ -114,20 +118,23 @@
 /* 深色背景盒子 */
 .why,
 .yaoda,
-.anli{
+.anli {
     background-color: rgb(51, 51, 51);
 
 }
+
 /* 查看更多 */
-.end{
+.end {
     margin: 0;
     display: flex;
     justify-content: center;
     text-align: center;
 }
-.end .more{
+
+.end .more {
     padding: 20px;
 }
-.end .more a{
+
+.end .more a {
     margin-bottom: 20px;
 }

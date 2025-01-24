@@ -15,30 +15,37 @@
     margin: 0;
     padding: 0;
 }
+
 /* 弹框时禁止滚屏 */
 .no-scroll {
     overflow: hidden;
 }
 
-body{
-    width: 100vw;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
     overflow-x: hidden;
 }
+
 body,
 html {
+    min-height: 100%;
+    width: 100%;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Arial','微软雅黑', sans-serif;
+    font-family: 'Arial', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans SC', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC', 'WenQuanYi Micro Hei', 'Microsoft JhengHei', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--primary-color);
     background-color: var(--background-color);
-
-    scroll-padding-top: 73px;
+    scroll-padding-top: 76px;
+    scroll-behavior: smooth;
 }
 
 .container {
-    margin: 0 auto;
     max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* 激活链接样式 */
@@ -49,6 +56,7 @@ h2 {
     text-align: center;
     color: #333;
 }
+
 h3 {
     font-size: 1.8rem;
     font-weight: 400;
@@ -56,7 +64,7 @@ h3 {
 
 p {
     font-size: 1.1rem;
-    line-height: 1.6rem;
+    line-height: 1.5em;
     margin: 0;
 }
 
@@ -68,18 +76,19 @@ a {
 
 header {
     position: fixed;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.98);
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
     color: white;
     box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
     z-index: 10;
 }
 
-header .container {
+header>.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:0;
+
 }
 
 /* 头部logo整体盒子 */
@@ -87,6 +96,7 @@ header .container {
     display: flex;
     align-items: center;
     min-width: 300px;
+    padding: 10px 0;
 }
 
 .logo>a {
@@ -110,21 +120,11 @@ h1 {
 }
 
 /* 导航链接 */
-header .container nav .nav-links {
+.nav-links {
     display: flex;
     list-style: none;
     gap: 30px;
-    padding: 8px 0;
     margin: 0;
-}
-
-.nav-links a,
-.nav-links-bottom a {
-    /* display: inline-block; */
-    text-decoration: none;
-    font-size: 1rem;
-    color: rgb(182, 182, 182);
-    transition: all 0.3s;
 }
 
 .nav-links li {
@@ -134,6 +134,10 @@ header .container nav .nav-links {
 .nav-links a {
     position: relative;
     padding-bottom: 10px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: rgb(182, 182, 182);
+    transition: all 0.3s;
 }
 
 .nav-links a::after {
@@ -148,57 +152,30 @@ header .container nav .nav-links {
     transition: all 0.3s ease-in-out;
 }
 
-.nav-links-bottom {
-    /* 默认情况下不显示 */
-    display: none;
-    top: 100%;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 8;
-}
-
-.nav-links-bottom ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-links-bottom li {
-    list-style: none;
-    margin: 10px 0;
-}
-
-.nav-links-bottom a {
-    /* 页签颜色白色 */
-    color: rgb(182, 182, 182);
-    font-size: 1.6rem;
-    /* 给链接一些内边距 */
-    padding: 10px 20px;
-}
-
 /* 鼠标滑过状态加初始激活链接状态 */
-header .nav-links a:hover,
-header .nav-links a.active {
+/* header .nav-links a:hover, */
+.nav-links a.active {
     color: #ffffff;
 }
 
-header .nav-links a:hover::after,
-header .nav-links a.active::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
     width: 100%;
     left: 0;
 }
 
-.nav-main {
+.mobile-menu {
     display: none;
-    /* cursor: pointer;
-    font-size: 2rem;
-    color: white; */
 }
+
+.mobile-menu div {
+    background-color: #ffffff;
+    width: 33px;
+    height: 3px;
+    margin: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
 
 
 /* 页面主体样式 */
@@ -246,8 +223,10 @@ section {
 }
 
 #modal-video {
-    width: 100%;/* 确保视频宽度占满容器 */
-    height: auto;/* 保持宽高比 */
+    width: 100%;
+    /* 确保视频宽度占满容器 */
+    height: auto;
+    /* 保持宽高比 */
     max-width: 100%;
     max-height: 100%;
 }
@@ -300,7 +279,7 @@ footer .container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-
+    max-width: 1200px;
 }
 
 /* 联系方式弹性容器 */
@@ -396,4 +375,27 @@ footer .bottom {
 footer .bottom p {
     color: #dbdbdb;
     margin: 0 20px;
+}
+
+#backTop {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 1rem;
+    color: #1d5ab6;
+    background-color: #ffffff;
+    border-radius: 10%;
+    text-align: center;
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+    z-index: 10;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+#backTop:hover {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
