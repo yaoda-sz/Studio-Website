@@ -10,6 +10,10 @@
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self';">
     <title>雨文白告游戏动漫工作室 - 专业、实惠！</title>
+    <!-- header和。banner 使用内联样式 -->
+    <style>
+
+    </style>
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -39,13 +43,13 @@
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#home" class="active">首页</a></li>
-                    <li><a href="#services">服务范围</a></li>
-                    <li><a href="#about">关于我们</a></li>
-                    <li><a href="#cases">案例作品</a></li>
+                    <li><a href="#home" date-name="home" class="active">首页</a></li>
+                    <li><a href="#services" date-name="service">服务范围</a></li>
+                    <li><a href="#about" date-name="about">关于我们</a></li>
+                    <li><a href="#cases" date-name="cases">案例作品</a></li>
                     <!-- <li><a href="#works">项目作品</a></li> -->
-                    <li><a href="#contact">联系我们</a></li>
-                </ul </nav>
+                    <li><a href="#contact" date-name="contact">联系我们</a></li>
+                </ul>
                 <div class="mobile-menu">
                     <div class="top-line"></div>
                     <div class="middle-line"></div>
@@ -53,8 +57,8 @@
                 </div>
         </div>
     </header>
-    <!-- banner广告 -->
-    <div class="banner" id="home">
+    <!-- 首页banner广告 -->
+    <section class="banner" id="home">
         <div class="container img-b">
             <div class="tip-r">
                 <section class="right-sm">
@@ -67,26 +71,26 @@
         <div class="down">
             <img src="./img/icon_rj.webp" alt="Spine动画制作工具图标">
         </div>
-    </div>
+    </section>
     <!-- banner下面内容主题内容！ -->
     <section>
         <!-- 以下为居中白色块区域内容 -->
         <div id="main">
             <!-- 大佬图 -->
-            <div class="box-big">
+            <section class="box-big">
                 <div class="box-dalao">
                     <div class="img-dalao">
                         <h3>让我们为您作品增添活力</h3>
                         <p>小游戏、独立游戏开发团队、媒体动画等客户合作最佳选择</p>
-                        <a href="#about">了解更多！</a>
+                        <a href="cases.html">了解更多</a>
                     </div>
                 </div>
-            </div>
+            </section>
             <!-- 最新更新 -->
-            <div class="box-big new">
+            <div class="box-big">
                 <h2>最近更新</h2>
                 <!-- 纵列弹性容器 -->
-                <div class="box-w">
+                <div class="box-n">
                     <!-- 纵列3个弹性盒子 -->
                     <div class="box-s">
                         <div class="card-v" data-src="./gif/npc_01.webm">
@@ -127,7 +131,7 @@
             <!-- 选择我们why -->
             <div class="box-big why">
 
-                <h2>为什么选择我们！</h2>
+                <h2>为什么选择我们</h2>
                 <!-- 子集弹性容器 -->
 
                 <ul class="box-w">
@@ -274,13 +278,14 @@
                 </p>
             </div>
             <!-- 神魔诀案例区块 -->
-            <div class="box-big anli">
-                <h2>“神魔诀之江湖行”</h2>
-                <p>一款由个人独立制作的侠客风战旗角色扮演游戏，已在steam平台上线。</p>
+            <div class="box-big dog">
+                <h2>“ 神魔诀之江湖行 ”</h2>
+                <p>一款由个人独立制作的侠客风战旗角色扮演游戏，已在steam平台上线。<a href="https://store.steampowered.com/app/2838940/_/"
+                        target="_blank" style="color: rgb(0, 162, 255);">了解更多>></a></p>
                 <!-- 大视频video -->
                 <div class="video-container">
                     <video id="Video-smj" controls>
-                        <source src="./video/khal01.mp4" type="video/webm">
+                        <source src="./video/dog_smj.mp4" type="video/webm">
                         您的浏览器不支持视频标记。
                         <br>
                         Your browser does not support the video tag.
@@ -288,113 +293,63 @@
                     <!-- <div class="play-icon" id="playIcon"></div> -->
                 </div>
                 <!-- 小动图组 -->
-                <div class="card-items">
-                    <ul class="card-list list-dog">
+                <div class="mov-items">
+                    <ul class="mov-list list-dog">
                         <!-- Video items -->
-                        <li class="card-v" data-src="./video/dog_hero_00.webm">
+                        <li class="mov-v" data-src="./video/dog_hero_00.webm">
                             <video autoplay loop muted loading="lazy">
                                 <source src="./video/dog_hero_00.webm" type="video/webm">
                                 您的浏览器不支持 video 标签。
                             </video>
                         </li>
-                        <li class="card-v" data-src="./video/dog_hero_01.webm">
+                        <li class="mov-v" data-src="./video/dog_hero_01.webm">
                             <video autoplay loop muted loading="lazy">
                                 <source src="./video/dog_hero_01.webm" type="video/webm">
                                 您的浏览器不支持 video 标签。
                             </video>
                         </li>
-                        <li class="card-v" data-src="./video/dog_hero_02.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_02.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="card-v" data-src="./video/dog_hero_03.webm">
+
+                        <li class="mov-v" data-src="./video/dog_hero_03.webm">
                             <video autoplay loop muted loading="lazy">
                                 <source src="./video/dog_hero_03.webm" type="video/webm">
                                 您的浏览器不支持 video 标签。
                             </video>
                         </li>
-                        <li class="card-v" data-src="./video/dog_hero_04.webm">
+                        <li class="mov-v" data-src="./video/dog_hero_04.webm">
                             <video autoplay loop muted loading="lazy">
                                 <source src="./video/dog_hero_04.webm" type="video/webm">
                                 您的浏览器不支持 video 标签。
                             </video>
                         </li>
                     </ul>
-                    <ul class="card-list list-dog">
-                        <!-- Video items -->
-                        <li class="card-v" data-src="./video/dog_hero_11.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_11.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="card-v" data-src="./video/dog_hero_08.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_08.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="card-v" data-src="./video/dog_hero_15.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_15.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="card-v" data-src="./video/dog_hero_12.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_12.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="card-v" data-src="./video/dog_hero_09.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_09.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                    </ul>
-                    <ul class="card-list list-dog">
-                        <!-- Video items -->
-                        <li class="card-v" data-src="./video/dog_hero_19.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_19.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="card-v" data-src="./video/dog_hero_16.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_16.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="card-v" data-src="./video/dog_hero_06.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_06.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="card-v" data-src="./video/dog_hero_17.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_17.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="card-v" data-src="./video/dog_hero_13.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog_hero_13.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                    </ul>
+
                 </div>
+            </div>
+            <!-- 大鸟案例区块 -->
+            <div class="box-big bird">
+                <h2>《魔法玩具树屋》</h2>
+                <p>“很不错的一部教培系列动画片,讲述小朋友们面对困境时如何变得勇敢的故事，已在腾讯视频上线” <a
+                        href="https://v.qq.com/x/cover/mzc00200dr3j8vo/x0045j4bukx.html?url_from=share" target="_blank"
+                        style="color: rgb(0, 119, 255);"> 看看去>></a></p>
+                <!-- 大视频video -->
+                <div class="video-container">
+                    <video id="Video-smj" controls>
+                        <source src="./video/zsl_bird.mp4" type="video/webm">
+                        您的浏览器不支持视频标记。
+                        <br>
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <!-- <div class="play-icon" id="playIcon"></div> -->
+                </div>
+                <!-- 小动图组 -->
+
             </div>
 
             <!-- end链接 -->
             <div class="box-big end">
                 <div class="more">
-                    <a href="#" target="_blank" aria-label="查看我们过往完成的案例项目">更多示例项目→</a>
+                    <a href="cases.html" target="_blank" aria-label="查看我们过往完成的案例项目">更多示例项目→</a>
                 </div>
             </div>
 
@@ -483,8 +438,9 @@
     <script src="./js/com.js" defer></script>
     <!-- <script src="./js/test.js" defer></script> -->
     <script src="./js/video.js" defer></script>
-    javascript音乐播放
+    <!-- javascript音乐播放 -->
     <script src="./js/music.js" defer></script>
+
 </body>
 
 </html>

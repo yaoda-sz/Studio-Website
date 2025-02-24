@@ -21,10 +21,6 @@
     overflow: hidden;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     overflow-x: hidden;
 }
@@ -36,15 +32,12 @@ html {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+    font-family: 'Arial', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans SC', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC', 'Source Han Sans TC', 'Noto Sans CJK TC', 'WenQuanYi Micro Hei', 'Microsoft JhengHei', sans-serif;
     color: var(--primary-color);
     background-color: var(--background-color);
-    scroll-padding-top: 76px;
-    scroll-behavior: smooth;
 }
 
 .container {
-    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -55,7 +48,6 @@ h2 {
     margin: 10px 0;
     text-align: center;
     color: #333;
-    letter-spacing: 0.1rem;
 }
 
 h3 {
@@ -79,17 +71,17 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgba(0, 0, 0, 0.98);
     color: white;
     box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
     z-index: 10;
 }
 
-header>.container {
+header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    max-width: 1200px;
 }
 
 /* 头部logo整体盒子 */
@@ -121,11 +113,19 @@ h1 {
 }
 
 /* 导航链接 */
-.nav-links {
+header .container nav .nav-links {
     display: flex;
     list-style: none;
     gap: 30px;
     margin: 0;
+}
+
+.nav-links a,
+.nav-links-bottom a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: rgb(182, 182, 182);
+    transition: all 0.3s;
 }
 
 .nav-links li {
@@ -135,10 +135,6 @@ h1 {
 .nav-links a {
     position: relative;
     padding-bottom: 10px;
-    text-decoration: none;
-    font-size: 1rem;
-    color: rgb(182, 182, 182);
-    transition: all 0.3s;
 }
 
 .nav-links a::after {
@@ -153,28 +149,30 @@ h1 {
     transition: all 0.3s ease-in-out;
 }
 
+
+
 /* 鼠标滑过状态加初始激活链接状态 */
-/* header .nav-links a:hover, */
-.nav-links a.active {
+header .nav-links a:hover,
+header .nav-links a.active {
     color: #ffffff;
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
+header .nav-links a:hover::after,
+header .nav-links a.active::after {
     width: 100%;
     left: 0;
 }
 
-.mobile-menu {
+
+.nav-main {
     display: none;
 }
 
-.mobile-menu div {
+.nav-main div {
     background-color: #ffffff;
-    width: 33px;
-    height: 3px;
+    width: 30px;
+    height: 4px;
     margin: 8px;
-    transition: all 0.3s ease-in-out;
 }
 
 
@@ -280,7 +278,7 @@ footer .container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    max-width: 1200px;
+
 }
 
 /* 联系方式弹性容器 */
@@ -376,30 +374,4 @@ footer .bottom {
 footer .bottom p {
     color: #dbdbdb;
     margin: 0 20px;
-}
-
-#backTop {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    font-size: 1rem;
-    color: #1d5ab6;
-    background-color: #ffffff;
-    border-radius: 10%;
-    text-align: center;
-    position: fixed;
-
-    right: 10px;
-    bottom: -60px;
-    z-index: 5;
-    cursor: pointer;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-
-}
-
-#backTop:hover {
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }

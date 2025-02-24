@@ -1,95 +1,90 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const navMain = document.querySelector('.nav-main');
-    const navLinksBottom = document.querySelector('.nav-links-bottom');
-    const navLinksBottomItems = navLinksBottom.querySelectorAll('a');
-    const navLinksItems = document.querySelectorAll('.nav-links a');
-    const logoLink = document.querySelector('.logo a'); // 获取Logo链接
-    const allNavLinks = [...navLinksItems, ...navLinksBottomItems]; // 合并导航项，避免重复查找
+(function () {
+    // 等待DOM加载完成
+    document.addEventListener('DOMContentLoaded', init);
 
-    // 切换导航菜单显示状态
-    navMain.addEventListener('click', function () {
-        this.textContent = this.textContent === '☰' ? '×' : '☰';
-        navLinksBottom.classList.toggle('active');
-    });
+    function init() {
+        // 定义变量
+        const navLinks = document.querySelector('.nav-links');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navMenuItems = document.querySelectorAll('.nav-links li');
+        const backTop = document.querySelector('#backTop');
+        const newDiv = document.querySelector('.new');
+        const sections = document.querySelectorAll('.box-big');
 
-    // 处理导航链接点击事件
-    function handleNavItemClick(event, link) {
-        event.preventDefault(); // 阻止默认行为
-        const targetId = link.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
+        // 添加导航点击事件
+        document.querySelectorAll('nav a').forEach(item => {
+            item.addEventListener('click', onNavigation);
+        });
 
-        if (targetElement) {
-            // 关闭底部导航（仅在小屏幕）
-            if (window.innerWidth <= 900) {
-                navLinksBottom.classList.remove('active');
-                navMain.textContent = '☰'; // 恢复为打开图标
+        // 导航点击处理
+        function onNavigation(ev) {
+            ev.preventDefault();
+            const allLinks = document.querySelectorAll('nav a');
+            allLinks.forEach(item => item.classList.remove('active'));
+            ev.target.classList.add('active');
+
+            const targetId = ev.target.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
-            // 更新激活状态
-            updateActiveLink(link);
-
-            // 使用原生方法实现平滑滚动
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    // 更新激活状态
-    function updateActiveLink(activeLink) {
-        allNavLinks.forEach(item => item.classList.remove('active'));
-        activeLink.classList.add('active');
-    }
-
-    // 初始化激活状态（基于当前URL片段）
-    function initializeActiveLink() {
-        const currentPath = window.location.hash || '#home';
-        const currentLink = allNavLinks.find(link => link.getAttribute('href') === currentPath);
-        if (currentLink) {
-            updateActiveLink(currentLink);
-        }
-    }
-
-    // 点击底部导航链接时的处理
-    navLinksBottomItems.forEach(item => {
-        item.addEventListener('click', function (event) {
-            handleNavItemClick(event, this);
-        });
-    });
-
-    // 点击主导航链接时的处理（仅在大屏幕）
-    navLinksItems.forEach(item => {
-        item.addEventListener('click', function (event) {
-            if (window.innerWidth > 900) {
-                handleNavItemClick(event, this);
+            // 关闭移动端菜单
+            if (mobileMenu && navLinks) {
+                mobileMenu.classList.remove('active');
+                navLinks.classList.remove('open');
+                navMenuItems.forEach(item => item.style.animation = '');
             }
+        }
+
+        // 移动端菜单切换
+        if (mobileMenu && navLinks) {
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                navLinks.classList.toggle('open');
+                navMenuItems.forEach((item, index) => {
+                    item.style.animation = item.style.animation
+                        ? ''
+                        : `0.5s ease-in-out slideIn forwards ${index * 0.1 + 0.1}s`;
+                });
+            });
+        }
+
+        // 回到顶部按钮
+        if (backTop) {
+            backTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = document.documentElement.scrollTop;
+                if (newDiv) {
+                    backTop.style.bottom = scrollTop >= newDiv.offsetTop ? '10px' : '-60px';
+                    backTop.style.opacity = scrollTop >= newDiv.offsetTop ? 1 : 0;
+                }
+            });
+        }
+
+        // 滚动高亮导航
+        const io = new IntersectionObserver((entries) => {
+            const mostVisible = entries.reduce((max, curr) =>
+                curr.intersectionRatio > max.intersectionRatio ? curr : max
+            );
+            if (mostVisible.intersectionRatio > 0) {
+                const id = mostVisible.target.getAttribute('id');
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.6 // 当60%区域可见时触发
         });
-    });
 
-    // 点击Logo时的处理
-    logoLink.addEventListener('click', function (event) {
-        event.preventDefault(); // 阻止默认行为
-        const homeLink = document.querySelector('.nav-links a[href="#home"]');
-        updateActiveLink(homeLink);
-
-        // 使用原生方法实现平滑滚动到首页
-        const homeSection = document.querySelector('#home');
-        if (homeSection) {
-            homeSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-
-    // 当窗口大小改变时检查是否需要关闭导航菜单
-    window.addEventListener('resize', function () {
-        if (window.innerWidth > 900 && navLinksBottom.classList.contains('active')) {
-            navLinksBottom.classList.remove('active');
-            navMain.textContent = '☰'; // 恢复为打开图标
-        }
-    });
-
-    // 页面加载时初始化激活状态
-    initializeActiveLink();
-
-    // 监听hashchange事件来更新激活状态
-    window.addEventListener('hashchange', function () {
-        initializeActiveLink();
-    });
-});
+        sections.forEach(section => io.observe(section));
+    }
+})();

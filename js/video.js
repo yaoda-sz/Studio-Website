@@ -1,5 +1,5 @@
 // 获取所有可点击的视频元素
-const videoItems = Array.from(document.querySelectorAll('.card-v'));
+const videoItems = Array.from(document.querySelectorAll('.mov-v'));
 const modal = document.getElementById('myModal');
 const modalVideoContainer = document.getElementById('draggable-video-container');
 const dragOverlay = modalVideoContainer.querySelector('.drag-overlay'); // 拖拽覆盖层

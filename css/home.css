@@ -46,30 +46,37 @@
 
 .img-dalao a:hover {
     background-color: rgb(24, 182, 255);
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* 最新更新纵列弹性容器 */
-.box-s {
+.box-n {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    max-width: 100%;
+}
+
+.box-n .box-s {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
     padding: 30px 0 50px;
-    max-width: 31%;
-    min-width: 250px;
+    max-width: 100%;
+    min-width: 150px;
 }
 
-.box-s>.card-v {
+.box-n .box-s>.card-v {
     position: relative;
     overflow: hidden;
+    width: 80%;
     aspect-ratio: 3/4;
     border-radius: 20px;
 }
 
-.new h3 {
-    margin: 24px 0 20px;
-    text-align: center;
-}
 
 .box-s>.card-v video {
     position: absolute;
@@ -107,7 +114,9 @@
     gap: 20px;
 }
 
-.why .box-w .box-son {
+
+
+.box-w .box-son {
     position: relative;
     display: flex;
     flex-direction: column;
