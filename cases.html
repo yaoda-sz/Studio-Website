@@ -18,12 +18,11 @@
     <link rel="apple-touch-icon" href="apple-icon-180x180.png"> <!-- 支持Apple设备 -->
 
     <link rel="stylesheet" href="./css/com.css">
-    <link rel="stylesheet" href="./css/section.css">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="./css/cases.css">
     <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/music.css">
+
 
 
 </head>
@@ -46,12 +45,13 @@
                     <li><a href="#cases" class="active">客户案例</a></li>
                     <!-- <li><a href="#works">项目作品</a></li> -->
                     <li><a href="#contact">联系我们</a></li>
-                </ul </nav>
-                <div class="mobile-menu">
-                    <div class="top-line"></div>
-                    <div class="middle-line"></div>
-                    <div class="bottom-line"></div>
-                </div>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <div class="top-line"></div>
+                <div class="middle-line"></div>
+                <div class="bottom-line"></div>
+            </div>
         </div>
     </header>
     <!-- banner广告 -->
@@ -84,7 +84,7 @@
                 <ul class="mov-list">
                     <!-- Video items -->
                     <li class="mov-v" data-src="./video/mmd/mmd_clickhouse.webm">
-                        <video autoplay loop muted loading="lazy">
+                        <video autoplay loop muted loading="lazy" aria-label="Clickhouse 动画展示">
                             <source src="./video/mmd/mmd_clickhouse.webm" type="video/webm">
                             您的浏览器不支持 video 标签。
                         </video>
@@ -97,13 +97,13 @@
                     </li>
                     <li class="mov-v" data-src="./video/mmd/mmd_clicktree.webm">
                         <video autoplay loop muted loading="lazy">
-                            <source src="./video//mmd/mmd_clicktree.webm" type="video/webm">
+                            <source src="./video/mmd/mmd_clicktree.webm" type="video/webm">
                             您的浏览器不支持 video 标签。
                         </video>
                     </li>
                     <li class="mov-v" data-src="./video/mmd/mmd_fish_girl.webm">
                         <video autoplay loop muted loading="lazy">
-                            <source src="./video//mmd/mmd_fish_girl.webm" type="video/webm">
+                            <source src="./video/mmd/mmd_fish_girl.webm" type="video/webm">
                             您的浏览器不支持 video 标签。
                         </video>
                     </li>
@@ -217,13 +217,13 @@
                     </li>
                     <li class="mov-v" data-src="./video/mmd/mmd_q_02.webm">
                         <video autoplay loop muted loading="lazy">
-                            <source src="./video//mmd/mmd_q_02.webm" type="video/webm">
+                            <source src="./video/mmd/mmd_q_02.webm" type="video/webm">
                             您的浏览器不支持 video 标签。
                         </video>
                     </li>
                     <li class="mov-v" data-src="./video/mmd/mmd_q_03.webm">
                         <video autoplay loop muted loading="lazy">
-                            <source src="./video//mmd/mmd_q_03.webm" type="video/webm">
+                            <source src="./video/mmd/mmd_q_03.webm" type="video/webm">
                             您的浏览器不支持 video 标签。
                         </video>
                     </li>
@@ -318,7 +318,7 @@
                     </li>
                     <li class="mov-v" data-src="./video/dog/dog_hero_01.webm">
                         <video autoplay loop muted loading="lazy">
-                            <source src="./video/dog//dog_hero_01.webm" type="video/webm">
+                            <source src="./video/dog/dog_hero_01.webm" type="video/webm">
                             您的浏览器不支持 video 标签。
                         </video>
                     </li>
@@ -511,11 +511,9 @@
             </div>
             <div class="box-big end">
                 <div class="btn-more">
-                    <a href="#"> <span> </span>加载更多>></a>
+                    <a href="#"> <span>加载更多>></span></a>
                 </div>
             </div>
-        </div>
-
         </div>
         <!-- 模态框 -->
         <div id="myModal" class="modal">
@@ -568,7 +566,7 @@
               "@context": "https://www.schema.org",
               "@type": "LocalBusiness",
               "name": "雨文白告动漫设计工作室",
-              "url": "http://www.yourwebsite.com",
+              "url": "http://www.yaoda.art",
               "contactPoint": [
                 {
                   "@type": "ContactPoint",
@@ -590,7 +588,7 @@
     <!-- 音乐播放控制 -->
     <audio id="backgroundMusic" loop>
         <source src="./music/eyes on fire.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
+
         <br>您的浏览器不支持音频元素。
     </audio>
     <div id="playButton"></div>

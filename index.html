@@ -6,14 +6,10 @@
     <meta name="description" content="雨文白告官网，致力于打造市场上最好的综合性开发游戏动漫制作合作平台！">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="雨文白告, 游戏, 动漫, spine, 独立游戏, steam, 个人小游戏, 经济实惠">
-    <meta name="robots" content="index, follow, priority=0.8"> <!-- 添加robots meta标签 -->
+    <meta name="robots" content="index, follow"> <!-- 添加robots meta标签 -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self';">
-    <title>雨文白告游戏动漫工作室 - 专业、实惠！</title>
-    <!-- header和。banner 使用内联样式 -->
-    <style>
-
-    </style>
+        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i0.hdslb.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com;">
+    <title>雨文白告游戏动漫工作室 - 专业、实惠的游戏与动漫制作！</title>
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -22,12 +18,10 @@
     <link rel="apple-touch-icon" href="apple-icon-180x180.png"> <!-- 支持Apple设备 -->
 
     <link rel="stylesheet" href="./css/com.css">
-    <link rel="stylesheet" href="./css/section.css">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="./css/cases.css">
     <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/music.css">
 
 </head>
 
@@ -102,7 +96,7 @@
                         <h3>游戏动作</h3>
                         <p>创作一段炫酷的动作，不仅需要专业的软件工具,更需要衔接工作流程,为您创建惊艳的动作,并将其整合到游戏当中，实现您最想要的效果。</p>
 
-                        <a href="#" class="more">了解更多 more >></a>
+                        <div class="more"><a href="javascript:void(0)">了解更多 more >></a></div>
                     </div>
                     <div class="box-s">
                         <div class="card-v" data-src="./gif/king_01.webm">
@@ -284,13 +278,10 @@
                         target="_blank" style="color: rgb(0, 162, 255);">了解更多>></a></p>
                 <!-- 大视频video -->
                 <div class="video-container">
-                    <video id="Video-smj" controls>
-                        <source src="./video/dog_smj.mp4" type="video/webm">
-                        您的浏览器不支持视频标记。
-                        <br>
-                        Your browser does not support the video tag.
-                    </video>
-                    <!-- <div class="play-icon" id="playIcon"></div> -->
+                    <iframe
+                        src="https://player.bilibili.com/player.html?isOutside=true&aid=113895872203371&bvid=BV1RFfrYcEZq&cid=28098497400&p=1&autoplay=0"
+                        scrolling="no" border="0" frameborder="0" framespacing="0" allowfullscreen="true"
+                        allow="autoplay; fullscreen"></iframe>
                 </div>
                 <!-- 小动图组 -->
                 <div class="mov-items">
@@ -332,12 +323,10 @@
                         style="color: rgb(0, 119, 255);"> 看看去>></a></p>
                 <!-- 大视频video -->
                 <div class="video-container">
-                    <video id="Video-smj" controls>
-                        <source src="./video/zsl_bird.mp4" type="video/webm">
-                        您的浏览器不支持视频标记。
-                        <br>
-                        Your browser does not support the video tag.
-                    </video>
+                    <iframe
+                        src="https://player.bilibili.com/player.html?isOutside=true&aid=114099010736744&bvid=BV11L9BYREaB&cid=28675476944&p=1&autoplay=0"
+                        scrolling="no" border="0" frameborder="0" framespacing="0" allowfullscreen="true"
+                        allow="autoplay; fullscreen"></iframe>
 
                     <!-- <div class="play-icon" id="playIcon"></div> -->
                 </div>
@@ -438,7 +427,7 @@
     <!-- <script src="./js/test.js" defer></script> -->
     <script src="./js/video.js" defer></script>
     <!-- javascript音乐播放 -->
-    <script src="./js/music.js" defer></script>
+    <!-- <script src="./js/music.js" defer></script> -->
 
 </body>
 
