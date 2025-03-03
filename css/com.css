@@ -177,6 +177,145 @@ h1 {
     transition: all 0.3s ease-in-out;
 }
 
+/* 各页签公用部分 */
+.banner {
+    background-color: rgb(71, 71, 71);
+    background-image: url(../img/banner_01.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.banner .container {
+    max-width: 1200px;
+}
+
+.banner .img-b {
+    width: 100%;
+    max-height: 465px;
+    min-height: 340px;
+    aspect-ratio: 16/8;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}
+
+.banner .container .tip-r {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.right-sm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 12px;
+    max-width: 460px;
+    padding: 26px;
+    margin-bottom: 20px;
+}
+
+#banner-title {
+    font-size: 2rem;
+    font-weight: 400;
+    max-width: 460px;
+    color: white;
+    margin: 8px 0;
+    text-align: center;
+}
+
+.right-sm p {
+    max-width: 460px;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    color: rgb(225, 234, 238);
+    text-align: left;
+    margin: 5px 0;
+}
+
+/* spine字母i变红色 */
+#banner-title span {
+    color: #ff0000;
+}
+
+.banner .down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+}
+
+.down img {
+    width: 320px;
+    margin: 10px auto;
+
+}
+
+.box-big {
+    padding: 30px 3%;
+}
+
+/* new,why父级弹性容器共用属性 */
+.new,
+.why,
+.what,
+.yaoda,
+/* .box-title, */
+.dog {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 12px solid rgb(17, 17, 17);
+    margin: 0;
+}
+
+.box-w {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.new a,
+.end a {
+    display: inline-block;
+    width: 170px;
+    text-decoration: none;
+    color: rgb(2, 175, 255);
+}
+
+/* 深色背景盒子 */
+.why,
+.yaoda,
+.dog {
+    background-color: rgb(51, 51, 51);
+}
+
+/* 查看更多 */
+.end {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.end .more {
+    padding: 20px;
+}
+
+.end .more a {
+    margin-bottom: 20px;
+}
 
 
 /* 页面主体样式 */
@@ -190,7 +329,7 @@ section {
     max-width: 1200px;
     margin: 0 auto;
     background-color: rgb(255, 255, 255);
-    box-shadow: 8px 0 8px #0003, -8px 0 8px #0003;
+    /* box-shadow: 8px 0 8px #0003, -8px 0 8px #0003; */
     padding: 0;
 }
 
@@ -396,10 +535,41 @@ footer .bottom p {
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
     opacity: 0;
     transition: all 0.3s ease-in-out;
-
 }
 
 #backTop:hover {
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+/* 音乐播放器按钮 */
+#playButton {
+    position: fixed;
+    top: 80%;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #ffffff00;
+    border-radius: 50%;
+    background-color: rgba(168, 168, 168, 0.842);
+    box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.836);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    line-height: 50px;
+    z-index: 5;
+}
+
+#playButton.paused::before {
+    content: '🎵';
+    font-size: 14px;
+    color: #000000;
+}
+
+#playButton.playing::before {
+    content: '⏸';
+    font-size: 14px;
+    color: rgb(163, 0, 0);
 }
