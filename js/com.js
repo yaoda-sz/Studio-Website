@@ -11,23 +11,20 @@
         const newDiv = document.querySelector('.new');
         const sections = document.querySelectorAll('.box-big');
 
-        // 添加导航点击事件
+        // 添加导航点击事件（仅用于高亮和移动端菜单关闭）
         document.querySelectorAll('nav a').forEach(item => {
             item.addEventListener('click', onNavigation);
         });
 
         // 导航点击处理
         function onNavigation(ev) {
-            ev.preventDefault();
             const allLinks = document.querySelectorAll('nav a');
+            // 清除所有链接的active类
             allLinks.forEach(item => item.classList.remove('active'));
             ev.target.classList.add('active');
 
-            const targetId = ev.target.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            // 不阻止默认跳转行为，让页面自然跳转到href指定的URL
+            // 删除scrollIntoView逻辑，因为我们需要页面跳转而非滚动
 
             // 关闭移动端菜单
             if (mobileMenu && navLinks) {
@@ -65,26 +62,36 @@
             });
         }
 
-        // 滚动高亮导航
-        const io = new IntersectionObserver((entries) => {
-            const mostVisible = entries.reduce((max, curr) =>
-                curr.intersectionRatio > max.intersectionRatio ? curr : max
-            );
-            if (mostVisible.intersectionRatio > 0) {
-                const id = mostVisible.target.getAttribute('id');
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        }, {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.6 // 当60%区域可见时触发
-        });
-
+        // Intersection Observer（假设用于动画或其他效果）
         sections.forEach(section => io.observe(section));
     }
+
+    // 假设这是你的Intersection Observer定义（如果未定义会导致报错）
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible'); // 示例效果
+            }
+        });
+    });
 })();
+// 播放背景音乐
+document.addEventListener('DOMContentLoaded', function () {
+    const music = document.getElementById('backgroundMusic');
+    const playButton = document.getElementById('playButton');
+
+    playButton.addEventListener('click', function () {
+        if (music.paused) {
+            music.play();
+            playButton.classList.remove('paused');
+            playButton.classList.add('playing');
+        } else {
+            music.pause();
+            playButton.classList.remove('playing');
+            playButton.classList.add('paused');
+        }
+    });
+
+    // 初始状态设置为暂停
+    playButton.classList.add('paused');
+});

@@ -9,7 +9,7 @@
     <meta name="robots" content="index, follow"> <!-- 添加robots meta标签 -->
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i0.hdslb.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com;">
-    <title>雨文白告游戏动漫工作室 - 客户案例！</title>
+    <title>雨文白告游戏动漫工作室 - 了解我们！</title>
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -38,9 +38,9 @@
             <nav>
                 <ul class="nav-links">
                     <li><a href="./index.html" date-name="home">首页</a></li>
-                    <li><a href="#" date-name="cases" class="active">案例作品</a></li>
+                    <li><a href="./cases.html" date-name="cases">案例作品</a></li>
                     <li><a href="./service.html" date-name="service">作品展示</a></li>
-                    <li><a href="./about.html" date-name="about">关于我们</a></li>
+                    <li><a href="#" date-name="about" class="active">关于我们</a></li>
                     <li><a href="#" date-name="contact">联系我们</a></li>
                 </ul>
                 <div class="mobile-menu">
@@ -51,8 +51,8 @@
             </nav>
         </div>
     </header>
-    <!-- banner广告 -->
-    <div class="banner" id="home">
+    <!-- 首页banner广告 -->
+    <section class="banner" id="home">
         <div class="container img-b">
             <div class="tip-r">
                 <section class="right-sm">
@@ -65,86 +65,66 @@
         <div class="down">
             <img src="./img/icon_rj.webp" alt="Spine动画制作工具图标">
         </div>
-    </div>
+    </section>
+    <!-- banner下面内容主题内容！ -->
     <section>
         <!-- 以下为居中白色块区域内容 -->
         <div id="main">
-            <!-- 客户案例 -->
-            <div class="box-big box-title" id="cases">
-                <h2 id="cases-title">客户案例</h2>
+            <!-- 关于我们 -->
+            <div class="box-big yaoda" id="about">
+                <h2>关于我</h2>
+                <!-- 分割线 -->
                 <hr>
-                <p>工作室成立以来有幸参与多个合作项目，从数百万的研发公司到小游戏工作室、独立开发团队及个人开发者。您可在下方了解我们在移动和桌面Steam游戏、教培互动故事讲述、影视制作、卡通等部分演示案例。
-                </p>
-            </div>
-            <!-- 神魔诀案例区块 -->
-            <div class="box-big dog">
-                <h2>“ 神魔诀之江湖行 ”</h2>
-                <p>一款由个人独立制作的侠客风战旗角色扮演游戏，已在steam平台上线。<a href="https://store.steampowered.com/app/2838940/_/"
-                        target="_blank" style="color: rgb(0, 162, 255);">了解更多>></a></p>
-                <!-- 大视频video -->
-                <div class="video-container">
-                    <iframe
-                        src="https://player.bilibili.com/player.html?isOutside=true&aid=113895872203371&bvid=BV1RFfrYcEZq&cid=28098497400&p=1&autoplay=0"
-                        scrolling="no" border="0" frameborder="0" framespacing="0" allowfullscreen="true"
-                        allow="autoplay; fullscreen"></iframe>
-                </div>
-                <!-- 小动图组 -->
-                <div class="mov-items">
-                    <ul class="mov-list list-dog">
-                        <!-- Video items -->
-                        <li class="mov-v" data-src="./video/dog/dog_hero_00.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog/dog_hero_00.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="mov-v" data-src="./video/dog/dog_hero_01.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog//dog_hero_01.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="mov-v" data-src="./video/dog/dog_hero_02.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog/dog_hero_02.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="mov-v" data-src="./video/dog/dog_hero_03.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog/dog_hero_03.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                    </ul>
+                <!-- 子集弹性容器 -->
+                <div class="box-me">
+                    <!-- 左侧图片 -->
+                    <div class="left-me">
+                        <img src="./img/photo_01.webp" alt="创始人咬哒叔的照片" class="photo">
+                    </div>
+                    <!-- 右侧盒子介绍内容包含三个子盒子 -->
+                    <div class="right-me">
+                        <div class="about-title">
+                            <h3 class="big-text">咬哒叔</h3>
+                            <h4>您的开发合作伙伴</h4>
+                        </div>
+                        <div class="card">
+                            <ul>
+                                <li>
+                                    <div class="card-icon-1"></div>
+                                    <p>游戏动画设计师</p>
+                                </li>
+                                <li>
+                                    <div class="card-icon-2"></div>
+                                    <p>工作室首席执行官</p>
+                                </li>
+                                <li>
+                                    <div class="card-icon-3"></div>
+                                    <p>设计总监</p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <div class="card-icon-4"></div>
+                                    <p>客户项目急救员</p>
+                                </li>
+                                <li>
+                                    <div class="card-icon-5"></div>
+                                    <p>动画导师</p>
+                                </li>
+                            </ul>
+                        </div>
 
-                </div>
-            </div>
-            <!-- 大鸟案例区块 -->
-            <div class="box-big bird">
-                <h2>《魔法玩具树屋》</h2>
-                <p>“很不错的一部教培系列动画片,讲述小朋友们面对困境时如何变得勇敢的故事，已在腾讯视频上线” <a
-                        href="https://v.qq.com/x/cover/mzc00200dr3j8vo/x0045j4bukx.html?url_from=share" target="_blank"
-                        style="color: rgb(0, 119, 255);"> 看看去>></a></p>
-                <!-- 大视频video -->
-                <div class="video-container">
-                    <iframe
-                        src="https://player.bilibili.com/player.html?isOutside=true&aid=114099010736744&bvid=BV11L9BYREaB&cid=28675476944&p=1&autoplay=0"
-                        scrolling="no" border="0" frameborder="0" framespacing="0" allowfullscreen="true"
-                        allow="autoplay; fullscreen"></iframe>
-
-                    <!-- <div class="play-icon" id="playIcon"></div> -->
-                </div>
-
-            </div>
-
-            <!-- end链接 -->
-            <div class="box-big end">
-                <div class="more">
-                    <a href="./service.html" target="_blank" aria-label="查看我们过往完成的案例项目">更多示例项目→</a>
+                        <div class="content-text">
+                            <p>
+                                作为雨文白告工作室的创始人，我拥有7年的手游、页游及小游戏项目的开发经验。我的专业知识涵盖PS、Spine、Animate、AE、Unity、Creator、Sketch等软件技术应用。从事数年传统动画、Flash、平面设计、手游UI设计及Spine动画等岗位，拥有丰富的历程。
+                            </p>
+                            <br>
+                            <p>
+                                在我们的合作中将分享我深厚的知识，关于手游、独立游戏和个人游戏动效开发过程中遇到的问题给予帮助，为您在竞争激烈的游戏行业环境中研发成功上线做好准备。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
 
         <!-- 模态框 -->
@@ -156,7 +136,9 @@
             </div>
         </div>
     </section>
-    <footer>
+
+    <!-- 页尾 -->
+    <footer id="contact">
         <div class="container">
             <!-- 联系方式 -->
             <div class="contact-info">
@@ -197,7 +179,7 @@
               "@context": "https://www.schema.org",
               "@type": "LocalBusiness",
               "name": "雨文白告动漫设计工作室",
-              "url": "http://www.yaoda.art",
+              "url": "http://www.yourwebsite.com",
               "contactPoint": [
                 {
                   "@type": "ContactPoint",
@@ -219,16 +201,17 @@
     <!-- 音乐播放控制 -->
     <audio id="backgroundMusic" loop>
         <source src="./music/eyes on fire.mp3" type="audio/mpeg">
-
+        Your browser does not support the audio element.
         <br>您的浏览器不支持音频元素。
     </audio>
     <div id="playButton"></div>
 
     <!-- javascript首页基本脚本  -->
     <script src="./js/com.js" defer></script>
-    <script src="./js/video.js" defer></script>
+    <!-- <script src="./js/video.js" defer></script> -->
     <!-- javascript音乐播放 -->
     <!-- <script src="./js/music.js" defer></script> -->
+
 </body>
 
 </html>
