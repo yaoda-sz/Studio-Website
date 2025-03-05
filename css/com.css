@@ -338,13 +338,13 @@ section {
     display: none;
     /* 默认是隐藏的 */
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.85);
     z-index: 11;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 /* 模态框内容 */
@@ -353,37 +353,43 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 80vw;
-    /* 最大宽度为可视窗口的90% */
-    max-height: 80vh;
-    /* 最大高度为可视窗口的90% */
-    width: auto;
-    /* 允许宽度自适应内容 */
-    height: auto;
-    /* 允许高度自适应内容 */
-    cursor: move;
+    /* width: 80%; */
+    /* 保持宽度，但确保不挡住空白区域 */
+    max-width: 90vw;
+    /* 最大宽度96%视口 */
+
+    max-height: 90vh;
+    /* 最大高度为可视窗口的96% */
+    overflow: hidden;
+    z-index: 12;
     /* 移除描边 */
 
 }
 
+
+
 #modal-video {
     width: 100%;
-    /* 视频宽度填满容器 */
     height: auto;
-    /* 高度自适应比例 */
-    display: block;
+
+    max-height: 90vh;
+    /* 限制最大高度，避免溢出 */
     object-fit: contain;
+    /* 保持比例,适应容器*/
+    display: block;
+    /* 避免额外间距 */
 }
 
 /* 关闭按钮 */
 .video-close {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 30px;
     color: #f1f1f1;
     font-size: 50px;
     font-weight: bold;
     cursor: pointer;
+    z-index: 15;
 }
 
 body.no-scroll {
@@ -406,7 +412,7 @@ body.no-scroll {
     right: 0;
     bottom: 0;
     cursor: move;
-    z-index: 12;
+    z-index: 13;
     /* 确保覆盖层在视频之上 */
     background: transparent;
     display: block;
@@ -439,11 +445,11 @@ footer .contact-info {
     margin-bottom: 10px;
     padding: 0;
     gap: 20px;
-    ;
+
 }
 
 .contact-item-left {
-    padding-left: 36px;
+    padding-left: 0;
 }
 
 /* 左侧联系方式整体icon盒子 */
@@ -461,14 +467,14 @@ footer ul li {
     display: flex;
     align-items: center;
     list-style: none;
-    min-width: 300px;
+    min-width: 265px;
     height: 36px;
 }
 
 footer li p {
     color: inherit;
     padding-left: 10px;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 /* icon图标设定位置 */

@@ -1,14 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const lazyVideos = document.querySelectorAll(".lazy-video");
+    const items = document.querySelectorAll(".mov-v");
     const modal = document.getElementById("myModal");
     const modalVideo = document.getElementById("modal-video");
     const closeBtn = document.querySelector(".video-close");
     const videoContainer = document.getElementById("draggable-video-container");
-    let currentVideoIndex = -1;
+    let currentItemIndex = -1;
     let isDragging = false;
     let startX, startY, deltaX, deltaY;
 
-    // 检查元素是否在可视区域
     function isInViewport(element) {
         const rect = element.getBoundingClientRect();
         return (
@@ -19,28 +18,26 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
-    // 加载并循环播放视频
     function loadAndPlayVideo(video) {
         const source = video.querySelector("source");
         const src = source.getAttribute("data-src");
         if (!source.getAttribute("src")) {
             source.setAttribute("src", src);
             video.load();
+        }
+        if (video.paused) {
             video.loop = true;
-            video.play().catch((error) => console.log("播放失败:", error));
-        } else if (video.paused) {
             video.play().catch((error) => console.log("播放失败:", error));
         }
     }
 
-    // 暂停视频
     function pauseVideo(video) {
         if (!video.paused) video.pause();
     }
 
-    // 检查视频可见性并播放
     function checkVideos() {
-        lazyVideos.forEach((video) => {
+        items.forEach((item) => {
+            const video = item.querySelector("video");
             if (isInViewport(video)) {
                 loadAndPlayVideo(video);
             } else {
@@ -53,20 +50,25 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", checkVideos);
     window.addEventListener("resize", checkVideos);
 
-    // 点击视频弹出模态框
-    lazyVideos.forEach((video, index) => {
-        video.parentElement.addEventListener("click", () => {
-            currentVideoIndex = index;
-            const src = video.querySelector("source").getAttribute("data-src");
-            modalVideo.src = src;
+    items.forEach((item, index) => {
+        item.addEventListener("click", () => {
+            currentItemIndex = index;
+            const src = item.getAttribute("data-src");
+            if (!src) return;
+
+            const modalSource = modalVideo.querySelector("source") || document.createElement("source");
+            modalSource.setAttribute("src", src);
+            modalSource.setAttribute("type", "video/webm");
+            if (!modalVideo.querySelector("source")) modalVideo.appendChild(modalSource);
+
+            modalVideo.load();
             modalVideo.loop = true;
             modal.style.display = "block";
             document.body.classList.add("no-scroll");
-            modalVideo.play();
+            modalVideo.play().catch(err => console.log("播放失败:", err));
         });
     });
 
-    // 点击关闭按钮或空白区域关闭模态框
     closeBtn.addEventListener("click", closeModal);
     modal.addEventListener("click", (e) => {
         if (e.target === modal) closeModal();
@@ -76,73 +78,87 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.style.display = "none";
         document.body.classList.remove("no-scroll");
         modalVideo.pause();
-        modalVideo.src = "";
-        resetVideoPosition();
+        modalVideo.querySelector("source")?.setAttribute("src", "");
+        resetVideoPosition(true);
         checkVideos();
     }
 
-    // 拖动开始
     function startDragging(e) {
         isDragging = true;
         const touch = e.type === "touchstart" ? e.touches[0] : e;
         startX = touch.clientX;
         startY = touch.clientY;
-        videoContainer.style.transition = "none"; // 拖动时无动画
+        videoContainer.style.transition = "none";
         e.preventDefault();
     }
 
-    // 拖动中
     function onDragging(e) {
         if (!isDragging) return;
         const touch = e.type === "touchmove" ? e.touches[0] : e;
         deltaX = touch.clientX - startX;
         deltaY = touch.clientY - startY;
 
-        videoContainer.style.left = `calc(50% + ${deltaX}px)`;
-        videoContainer.style.top = `calc(50% + ${deltaY}px)`;
+        videoContainer.style.transform = `translate(calc(-50% + ${deltaX}px), calc(-50% + ${deltaY}px))`;
         e.preventDefault();
     }
 
-    // 拖动结束
     function stopDragging() {
         if (!isDragging) return;
         isDragging = false;
 
         const threshold = 50;
-        if (Math.abs(deltaX) > threshold || Math.abs(deltaY) > threshold) {
-            if (deltaX > threshold || deltaY > threshold) {
-                currentVideoIndex = (currentVideoIndex + 1) % lazyVideos.length;
-            } else if (deltaX < -threshold || deltaY < -threshold) {
-                currentVideoIndex = (currentVideoIndex - 1 + lazyVideos.length) % lazyVideos.length;
+        const absDeltaX = Math.abs(deltaX);
+        const absDeltaY = Math.abs(deltaY);
+
+        videoContainer.style.transition = "none";
+        videoContainer.style.transform = "translate(-50%, -50%)";
+
+        if (absDeltaX > threshold || absDeltaY > threshold) {
+            if (absDeltaX > absDeltaY) {
+                if (deltaX > threshold) {
+                    currentItemIndex = (currentItemIndex + 1) % items.length;
+                } else if (deltaX < -threshold) {
+                    currentItemIndex = (currentItemIndex - 1 + items.length) % items.length;
+                }
+            } else {
+                if (deltaY > threshold) {
+                    currentItemIndex = (currentItemIndex + 1) % items.length;
+                } else if (deltaY < -threshold) {
+                    currentItemIndex = (currentItemIndex - 1 + items.length) % items.length;
+                }
             }
-            updateModalVideo();
+            setTimeout(updateModalVideo, 50);
         }
 
-        resetVideoPosition();
+        setTimeout(() => resetVideoPosition(true), 0);
     }
 
-    // 更新模态框视频
     function updateModalVideo() {
-        const newVideo = lazyVideos[currentVideoIndex];
-        const src = newVideo.querySelector("source").getAttribute("data-src");
-        modalVideo.src = src;
+        const newItem = items[currentItemIndex];
+        const src = newItem.getAttribute("data-src");
+        const modalSource = modalVideo.querySelector("source") || document.createElement("source");
+        modalSource.setAttribute("src", src);
+        modalSource.setAttribute("type", "video/webm");
+        if (!modalVideo.querySelector("source")) modalVideo.appendChild(modalSource);
+
+        modalVideo.load();
         modalVideo.loop = true;
-        modalVideo.play();
+        modalVideo.play().catch(err => console.log("播放失败:", err));
     }
 
-    // 重置视频位置（可选：移除动画）
-    function resetVideoPosition() {
-        videoContainer.style.transition = "all 0.3s ease"; // 移除回弹动画
-        videoContainer.style.left = "50%";
-        videoContainer.style.top = "50%";
+    function resetVideoPosition(useTransition = false) {
+        if (useTransition) {
+            videoContainer.style.transition = "transform 0.3s ease";
+        } else {
+            videoContainer.style.transition = "none";
+        }
+        videoContainer.style.transform = "translate(-50%, -50%)";
     }
 
-    // 桌面端事件
     videoContainer.addEventListener("mousedown", startDragging);
     document.addEventListener("mousemove", onDragging);
     document.addEventListener("mouseup", stopDragging);
 
-    // 手机端触摸事件
     videoContainer.addEventListener("touchstart", startDragging);
     document.addEventListener("touchmove", onDragging, { passive: false });
     document.addEventListener("touchend", stopDragging);

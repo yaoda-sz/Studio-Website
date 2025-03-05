@@ -4,7 +4,13 @@ html {
 
 @media (min-width: 901px) and (max-width: 1200px) {
 
-  .container,
+  footer .container {
+    justify-content: center;
+    max-width: 1024px;
+  }
+
+
+
   #main {
     max-width: 1024px;
   }
@@ -17,7 +23,12 @@ html {
     border-radius: 20px;
     width: 200px;
   }
+
+  footer .contact-info {
+    max-width: 1024px;
+  }
 }
+
 
 /* 当页面窗口屏幕尺寸适配小于900px情况下执行样式 */
 @media (max-width: 900px) {
@@ -30,7 +41,7 @@ html {
   }
 
   .nav-links {
-    padding-top: 10vh;
+    padding-top: 7vh;
     position: absolute;
     top: 76px;
     left: 0;
@@ -96,6 +107,26 @@ html {
 
 /* 当页面窗口屏幕尺寸适配小于576px-767px 情况下执行样式 */
 @media (max-width: 767px) {
+  .modal-content {
+    width: 80vw;
+    /* 手机端宽度接近视口边缘 */
+    max-width: 80vw;
+    max-height: 90vh;
+    /* 高度也接近视口边缘 */
+  }
+
+  #modal-video {
+    width: 100%;
+    max-height: 90vh;
+    /* 与容器一致 */
+  }
+
+  .video-close {
+    font-size: 40px;
+    /* 手机端关闭按钮稍小，适配小屏幕 */
+    right: 20px;
+  }
+
 
   .img-dalao h3 {
     font-size: 1.6rem;
@@ -290,11 +321,18 @@ html {
 
   footer .contact-info {
     flex-wrap: wrap;
-    padding: 0 20px;
+    justify-content: center;
   }
 
   .contact-item-left {
     padding: 0;
+  }
+
+  footer ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
   }
 
   .bottom p {
