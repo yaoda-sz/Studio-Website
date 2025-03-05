@@ -32,7 +32,7 @@
 }
 
 .dog p {
-    color: #ccc;
+    color: #ddd;
     margin-bottom: 40px;
 }
 
@@ -75,6 +75,7 @@
 }
 
 .mov-list {
+
     width: 100%;
     display: grid;
     gap: 20px;
@@ -83,23 +84,27 @@
 }
 
 .mov-v {
+    position: relative;
     border-radius: 4px;
     min-width: 100px;
-    aspect-ratio: 1/1;
-    position: relative;
+    /* aspect-ratio: 1/1; */
+    /* 设置宽高比，但老版本不支持*/
+    padding-top: 100%;
     overflow: hidden;
     /* 隐藏超出部分的内容 */
 }
 
 .mov-v video {
-    cursor: pointer;
     position: absolute;
+    cursor: pointer;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
     height: auto;
 }
+
+
 
 .btn-more a {
     padding: 16px;

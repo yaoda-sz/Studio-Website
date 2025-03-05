@@ -30,7 +30,7 @@ html {
   }
 
   .nav-links {
-    padding-top: 1vh;
+    padding-top: 10vh;
     position: absolute;
     top: 76px;
     left: 0;
@@ -188,7 +188,7 @@ html {
   }
 
   .box-n .box-s>.card-v {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
   }
 

@@ -12,8 +12,8 @@
 
 * {
     box-sizing: border-box;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 /* 弹框时禁止滚屏 */
@@ -33,10 +33,10 @@ body,
 html {
     min-height: 100%;
     width: 100%;
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
-    font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+    font-family: 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
     color: var(--primary-color);
     background-color: var(--background-color);
     scroll-padding-top: 76px;
@@ -338,13 +338,13 @@ section {
     display: none;
     /* 默认是隐藏的 */
     position: fixed;
-    z-index: 11;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0, 0, 0, 0.85);
+    z-index: 11;
+    overflow: hidden;
 }
 
 /* 模态框内容 */
@@ -353,33 +353,42 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 90%;
-    max-height: 80%;
-    padding: 0;
-    border: none;
+    max-width: 80vw;
+    /* 最大宽度为可视窗口的90% */
+    max-height: 80vh;
+    /* 最大高度为可视窗口的90% */
+    width: auto;
+    /* 允许宽度自适应内容 */
+    height: auto;
+    /* 允许高度自适应内容 */
+    cursor: move;
     /* 移除描边 */
-    transition: top 0.5s ease-out, left 0.5s ease-out;
-    /* 默认有缓动效果 */
+
 }
 
 #modal-video {
     width: 100%;
-    /* 确保视频宽度占满容器 */
+    /* 视频宽度填满容器 */
     height: auto;
-    /* 保持宽高比 */
-    max-width: 100%;
-    max-height: 100%;
+    /* 高度自适应比例 */
+    display: block;
+    object-fit: contain;
 }
 
 /* 关闭按钮 */
 .video-close {
-    color: #f1f1f1;
     position: absolute;
-    top: 15px;
-    right: 35px;
+    top: 20px;
+    right: 20px;
+    color: #f1f1f1;
     font-size: 50px;
     font-weight: bold;
-    transition: 0.3s;
+    cursor: pointer;
+}
+
+body.no-scroll {
+    overflow: hidden;
+    /* 禁用页面滚动 */
 }
 
 .video-close:hover,
