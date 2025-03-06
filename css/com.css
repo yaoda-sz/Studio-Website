@@ -444,12 +444,14 @@ footer .contact-info {
     max-width: 1200px;
     margin-bottom: 10px;
     padding: 0;
-    gap: 20px;
 
 }
 
+
 .contact-item-left {
-    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 550px;
 }
 
 /* 左侧联系方式整体icon盒子 */
@@ -459,55 +461,32 @@ footer ul {
     justify-content: space-between;
     align-content: space-evenly;
     max-width: 768px;
-    padding: 0;
-    gap: 20px;
+    padding-left: 30px;
 }
 
 footer ul li {
     display: flex;
     align-items: center;
     list-style: none;
-    min-width: 265px;
-    height: 36px;
+    min-width: 250px;
 }
 
 footer li p {
     color: inherit;
     padding-left: 10px;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 /* icon图标设定位置 */
-.contact-icon__qq,
-.contact-icon__wx,
-.contact-icon__phone,
-.contact-icon__email {
-    width: 40px;
-    height: 32px;
-    background-image: url(../img/icons_com.webp);
+.iconfont {
+    font-size: 1.6rem !important;
+    color: #939393 !important;
 }
-
-.contact-icon__qq {
-    background-position: left -4px top -8px;
-}
-
-.contact-icon__wx {
-    background-position: left -84px top -8px;
-}
-
-.contact-icon__phone {
-    background-position: left -44px top -8px;
-}
-
-.contact-icon__email {
-    background-position: left -132px top -8px;
-}
-
 
 
 .wx-qrcode {
-    width: 120px;
-    height: 120px;
+    max-width: 120px;
+    height: auto;
 }
 
 /* 分割线 */

@@ -102,8 +102,13 @@ html {
   .mobile-menu.active .bottom-line {
     transform: rotate(45deg) translate(-8px, -8px);
   }
-}
 
+  footer ul {
+    align-content: space-between;
+    max-width: 250px;
+    padding-left: 0;
+  }
+}
 
 /* 当页面窗口屏幕尺寸适配小于576px-767px 情况下执行样式 */
 @media (max-width: 767px) {
@@ -319,20 +324,38 @@ html {
     color: #cccccc;
   }
 
+  footer .container {
+    padding: 0;
+  }
+
   footer .contact-info {
     flex-wrap: wrap;
-    justify-content: center;
+
   }
 
   .contact-item-left {
     padding: 0;
   }
 
-  footer ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  .contact-item-left ul {
+    max-width: 222px;
+  }
 
+  footer ul {
+    padding-left: 0;
+  }
+
+  footer ul li {
+
+    min-width: 20px;
+  }
+
+  footer li p {
+    font-size: 1rem;
+  }
+
+  .iconfont {
+    font-size: 1rem !important;
   }
 
   .bottom p {
