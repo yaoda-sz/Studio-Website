@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4847922 */
+  src: url('iconfont.woff2?t=1741219322328') format('woff2'),
+       url('iconfont.woff?t=1741219322328') format('woff'),
+       url('iconfont.ttf?t=1741219322328') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-back:before {
+  content: "\e635";
+}
+
+.icon-mail:before {
+  content: "\e62e";
+}
+
+.icon-top:before {
+  content: "\e602";
+}
+
+.icon-music:before {
+  content: "\e710";
+}
+
+.icon-daoshi:before {
+  content: "\e737";
+}
+
+.icon-shouji01:before {
+  content: "\e60e";
+}
+
+.icon-code:before {
+  content: "\e60b";
+}
+
+.icon-qq:before {
+  content: "\e611";
+}
+
+.icon-rongyu:before {
+  content: "\e600";
+}
+
+.icon-weixin:before {
+  content: "\e665";
+}
+
+.icon-phone:before {
+  content: "\e612";
+}
+
+.icon-good:before {
+  content: "\e6a8";
+}
+
+.icon-save:before {
+  content: "\e738";
+}
+
+.icon-yishu:before {
+  content: "\e619";
+}
+
+.icon-art:before {
+  content: "\e616";
+}
+
