@@ -8,44 +8,48 @@ document.addEventListener("DOMContentLoaded", function () {
     let isDragging = false;
     let startX, startY, deltaX, deltaY;
 
-    // 加载并播放视频
-    function loadAndPlayVideo(video, delay = 0) {
-        setTimeout(() => {
-            const source = video.querySelector("source");
-            const src = source.getAttribute("data-src");
-            if (!source.getAttribute("src")) {
-                source.setAttribute("src", src);
-                video.load();
-            }
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    function loadAndPlayVideo(video) {
+        const source = video.querySelector("source");
+        const src = source.getAttribute("data-src");
+        if (!source.getAttribute("src")) {
+            source.setAttribute("src", src);
+            video.load();
+        }
+        if (video.paused) {
             video.loop = true;
             video.play().catch((error) => console.log("播放失败:", error));
-        }, delay);
-    }
-
-    // 分批加载视频
-    function loadVideosInBatches() {
-        const batchSize = 10; // 每批 10 个视频
-        let batchIndex = 0;
-
-        function loadBatch() {
-            const start = batchIndex * batchSize;
-            const end = Math.min(start + batchSize, items.length);
-            for (let i = start; i < end; i++) {
-                const video = items[i].querySelector("video");
-                loadAndPlayVideo(video, (i - start) * 100); // 批内每隔 100ms 加载一个
-            }
-            batchIndex++;
-            if (end < items.length) {
-                setTimeout(loadBatch, batchSize * 100 + 200); // 批次间间隔 1.2s
-            }
         }
-        loadBatch();
     }
 
-    // 页面加载时启动分批加载
-    loadVideosInBatches();
+    function pauseVideo(video) {
+        if (!video.paused) video.pause();
+    }
 
-    // 点击视频弹出模态框
+    function checkVideos() {
+        items.forEach((item) => {
+            const video = item.querySelector("video");
+            if (isInViewport(video)) {
+                loadAndPlayVideo(video);
+            } else {
+                pauseVideo(video);
+            }
+        });
+    }
+
+    checkVideos();
+    window.addEventListener("scroll", checkVideos);
+    window.addEventListener("resize", checkVideos);
+
     items.forEach((item, index) => {
         item.addEventListener("click", () => {
             currentItemIndex = index;
@@ -76,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
         modalVideo.pause();
         modalVideo.querySelector("source")?.setAttribute("src", "");
         resetVideoPosition(true);
+        checkVideos();
     }
 
     function startDragging(e) {
