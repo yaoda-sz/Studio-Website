@@ -53,25 +53,7 @@
         }
     }
 
-    // 设置回到顶部按钮
-    function setupBackToTop() {
-        const backTop = document.querySelector('#backTop');
-        const newDiv = document.querySelector('.new');
-        if (!backTop || !newDiv) return;
 
-        // 点击回到顶部
-        backTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // 监听滚动，显示或隐藏回到顶部按钮
-        window.addEventListener('scroll', () => {
-            const scrollTop = document.documentElement.scrollTop;
-            const isVisible = scrollTop >= newDiv.offsetTop;
-            backTop.style.bottom = isVisible ? '10px' : '-60px';
-            backTop.style.opacity = isVisible ? 1 : 0;
-        });
-    }
 
     // 设置 Intersection Observer，监听页面滚动
     function setupIntersectionObserver() {

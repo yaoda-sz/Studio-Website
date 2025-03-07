@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="./css/com.css">
     <link rel="stylesheet" href="./css/home.css">
-    <link rel="stylesheet" href="./css/about.css">
+    <!-- <link rel="stylesheet" href="./css/about.css"> -->
     <link rel="stylesheet" href="./css/cases.css">
     <link rel="stylesheet" href="./font/iconfont.css">
     <link rel="stylesheet" href="./css/styles.css">
@@ -73,7 +73,7 @@
     <!-- banner下面内容主题内容！ -->
     <section>
         <!-- 以下为居中白色块区域内容 -->
-        <div id="main">
+        <main id="main">
             <!-- 大佬图 -->
             <section class="box-big">
                 <div class="box-dalao">
@@ -215,7 +215,7 @@
             </div>
             <!-- 客户案例 -->
             <div class="box-big box-title" id="cases">
-                <h2 id="cases-title">客户案例</h2>
+                <h2 id="cases-title">精选案例</h2>
                 <hr>
                 <p>工作室成立以来有幸参与多个合作项目，从数百万的研发公司到小游戏工作室、独立开发团队及个人开发者。您可在下方了解我们在移动和桌面Steam游戏、教培互动故事讲述、影视制作、卡通等部分演示案例。
                 </p>
@@ -233,36 +233,11 @@
                         allow="autoplay; fullscreen"></iframe>
                 </div>
                 <!-- 小动图组 -->
-                <div class="mov-items">
-                    <ul class="mov-list list-dog">
-                        <!-- Video items -->
-                        <li class="mov-v" data-src="./video/dog/dog_hero_00.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog/dog_hero_00.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="mov-v" data-src="./video/dog/dog_hero_01.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog//dog_hero_01.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="mov-v" data-src="./video/dog/dog_hero_02.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog/dog_hero_02.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
-                        <li class="mov-v" data-src="./video/dog/dog_hero_03.webm">
-                            <video autoplay loop muted loading="lazy">
-                                <source src="./video/dog/dog_hero_03.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </li>
+                <section class="box-big mov-items">
+                    <ul class="mov-list list-dog" id="other-video-list">
+                        <!-- 视频列表将由JS动态生成 -->
                     </ul>
-
-                </div>
+                </section>
             </div>
             <!-- end链接 -->
             <div class="box-big end">
@@ -270,17 +245,16 @@
                     <a href="cases.html" target="_blank" aria-label="查看我们过往完成的案例项目">更多示例项目→</a>
                 </div>
             </div>
-
-        </div>
-
-        <!-- 模态框 -->
-        <div id="myModal" class="modal">
-            <span class="video-close">&times;</span>
-            <div class="modal-content" id="draggable-video-container">
-                <div class="drag-overlay"></div> <!-- 添加拖拽覆盖层 -->
-                <video id="modal-video" controls autoplay loop></video> <!-- 添加 loop 属性 -->
+            <!-- 模态框 -->
+            <div id="myModal" class="modal">
+                <span class="video-close" role="button" tabindex="0" aria-label="关闭视频">×</span>
+                <div class="modal-content" id="draggable-video-container">
+                    <div class="drag-overlay"></div> <!-- 添加拖拽覆盖层 -->
+                    <video id="modal-video" controls autoplay loop></video><!-- 添加 loop 属性 -->
+                </div>
             </div>
-        </div>
+
+        </main>
     </section>
 
     <!-- 页尾 -->
@@ -316,7 +290,7 @@
             <hr>
             <!-- 版权 -->
             <div class="bottom">
-                <p>版权所有:苏州工业园区雨文白告游戏动漫工作室</p>
+                <p>版权所有:苏州工业园区雨文白告工作室</p>
                 <!-- <p>江ICP备：江ICP备17043432号-1</p> -->
             </div>
         </div>
@@ -342,7 +316,10 @@
         </script>
     </footer>
     <!-- 回到顶部按钮 -->
-    <div id="backTop">回到<br>顶部</div>
+    <div id="backTop">
+        <span class="iconfont icon-top"></span>
+        <p>TOP</p>
+    </div>
 
     <!-- 音乐播放控制 -->
     <audio id="backgroundMusic" loop>
@@ -354,10 +331,9 @@
 
     <!-- javascript首页基本脚本  -->
     <script src="./js/com.js" defer></script>
-    <!-- <script src="./js/test.js" defer></script> -->
-    <script src="./js/video.js" defer></script>
-    <!-- javascript音乐播放 -->
-    <!-- <script src="./js/music.js" defer></script> -->
+    <script src="./js/video.js" defer></script><!-- 弹出视频通用模块.js -->
+    <script src="./js/data_home.js" defer></script>
+
 
 </body>
 
