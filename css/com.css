@@ -548,7 +548,7 @@ footer li p {
 }
 
 /* icon图标设定位置 */
-.iconfont {
+footer li .iconfont {
     font-size: 1.6rem !important;
     color: #939393 !important;
 }
@@ -582,36 +582,39 @@ footer .bottom p {
 }
 
 #backTop {
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 6px;
     background-color: #ffffffc0;
-    border-radius: 3px;
+    border-radius: 1px;
     text-align: center;
-
-    position: fixed;
-
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
     right: 10px;
     bottom: 10px;
     z-index: 5;
     cursor: pointer;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     opacity: 1;
     transition: all 0.3s ease-in-out;
-
 }
 
 #backTop p {
-    font-size: 12px;
-    line-height: 16px;
-    color: #18b6ff;
+    margin-top: 2px;
+    font-size: .8rem;
+    line-height: .8rem;
+    color: #333333;
 }
 
-#backTop:hover {
-    background-color: #ff8181;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+#backTop .icon-back {
+    color: #333333;
+    font-size: 1.6rem;
+}
+
+#backback .icon-back:hover {
+    color: #ff0000;
 }
 
 /* 音乐播放器按钮 */
