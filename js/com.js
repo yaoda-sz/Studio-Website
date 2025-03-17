@@ -4,8 +4,6 @@
     function init() {
         setupNavigation(); // 设置导航栏事件监听
         setupMobileMenu(); // 设置移动端菜单
-        setupBackToTop(); // 设置回到顶部按钮
-        setupIntersectionObserver(); // 设置Intersection Observer 监听页面滚动
     }
 
     // 设置导航栏事件监听
@@ -52,46 +50,43 @@
             navLinks.classList.remove('open');
         }
     }
-
-
-
-    // 设置 Intersection Observer，监听页面滚动
-    function setupIntersectionObserver() {
-        const sections = document.querySelectorAll('.box-big');
-        if (!sections.length) return;
-
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
+    // 返回顶部
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => {
+        //当页面滚动超过一定距离时显示按钮
+        if (window.scrollY > 400) {
+            backTop.classList.add('show');
+        } else { backTop.classList.remove('show'); }
+    })
+    //点击返回顶部
+    backTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-
-        sections.forEach(section => io.observe(section));
-    }
+    });
 })();
 
 // 背景音乐播放控制
+
 (function () {
-    document.addEventListener('DOMContentLoaded', function () {
-        const music = document.getElementById('backgroundMusic');
-        const playButton = document.getElementById('playButton');
-        if (!music || !playButton) return;
+    const audio = document.getElementById('backgroundMusic');
+    const playButton = document.getElementById('playButton');
+    const playIcon = playButton.querySelector('.icon-play');
+    const stopIcon = playButton.querySelector('.icon-stop');
 
-        // 绑定播放/暂停点击事件
-        playButton.addEventListener('click', function () {
-            const isPlaying = !music.paused;
-            if (isPlaying) {
-                music.pause(); // 如果正在播放，则暂停
-            } else {
-                music.play().catch(console.error); // 尝试播放，并捕获可能的错误
-            }
-            playButton.classList.toggle('playing', !isPlaying);
-            playButton.classList.toggle('paused', isPlaying);
-        });
+    stopIcon.style.display = 'none';
+    playIcon.style.display = 'block';
 
-        // 初始状态设置为暂停
-        playButton.classList.add('paused');
+    playButton.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            playIcon.style.display = 'none';
+            stopIcon.style.display = 'block';
+        } else {
+            audio.pause();
+            playIcon.style.display = 'block';
+            stopIcon.style.display = 'none';
+        }
     });
 })();
