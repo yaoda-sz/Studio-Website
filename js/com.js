@@ -68,12 +68,12 @@
 })();
 
 // 背景音乐播放控制
-
 (function () {
     const audio = document.getElementById('backgroundMusic');
     const playButton = document.getElementById('playButton');
     const playIcon = playButton.querySelector('.icon-play');
     const stopIcon = playButton.querySelector('.icon-stop');
+
 
     stopIcon.style.display = 'none';
     playIcon.style.display = 'block';
@@ -83,6 +83,7 @@
             audio.play();
             playIcon.style.display = 'none';
             stopIcon.style.display = 'block';
+
         } else {
             audio.pause();
             playIcon.style.display = 'block';
@@ -90,3 +91,30 @@
         }
     });
 })();
+// 主题切换控制
+// (function () {
+//     const audio = document.getElementById('backgroundMusic');
+//     const toggleButton = document.getElementById('toggleButton');
+//     const sunnyIcon = toggleButton.querySelector('.icon-sunny');
+//     const duckIcon = toggleButton.querySelector('.icon-dark');
+
+
+//     sunnyIcon.style.display = 'block';
+//     duckIcon.style.display = 'none';
+
+//     toggleButton.addEventListener('click', () => {
+//         if (audio.paused) {
+//             audio.play();
+//             sunnyIcon.style.display = 'none';
+//             duckIcon.style.display = 'block';
+
+//         } else {
+//             audio.pause();
+//             sunnyIcon.style.display = 'block';
+//             duckIcon.style.display = 'none';
+//         }
+//     });
+// })();
+
+// 皮肤主题切换
+

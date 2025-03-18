@@ -56,6 +56,8 @@
         </div>
     </header>
     <!-- 首页banner广告 -->
+    <section id="bannerTop">
+    </section>
     <section class="banner" id="home">
         <div class="container img-b">
             <div class="tip-r">
@@ -316,29 +318,42 @@
             }
         </script>
     </footer>
+
+    <!-- 侧边功能 -->
+    <div id="side-control">
+        <!-- 主题切换 -->
+        <div id="toggleButton">
+            <span class="iconfont icon-sunny"></span>
+            <span class="iconfont icon-dark"></span>
+        </div>
+        <!-- 音乐播放 -->
+        <audio id="backgroundMusic" loop>
+            <source src="./music/eyes on fire.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+            <br>您的浏览器不支持音频元素。
+        </audio>
+
+        <div id="playButton">
+            <span class="iconfont icon-play"></span>
+            <span class="iconfont icon-stop"></span>
+        </div>
+
+    </div>
+
     <!-- 回到顶部按钮 -->
     <div id="backTop">
         <span class="iconfont icon-back"></span>
         <p>TOP</p>
     </div>
 
-    <!-- 音乐播放控制 -->
-    <audio id="backgroundMusic" loop>
-        <source src="./music/eyes on fire.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-        <br>您的浏览器不支持音频元素。
-    </audio>
-    <div id="bottom">
-        <div id="playButton">
-            <span class="iconfont icon-play"></span>
-            <span class="iconfont icon-stop"></span>
-        </div>
-    </div>
+
+
 
     <!-- javascript首页基本脚本  -->
     <script src="./js/com.js" defer></script>
     <script src="./js/video.js" defer></script><!-- 弹出视频通用模块.js -->
     <script src="./js/data_home.js" defer></script>
+    <script src="./js/light.js" defer></script>
 
 
 </body>

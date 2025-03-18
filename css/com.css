@@ -2,8 +2,7 @@
 :root {
     --primary-color: #333333;
     --background-color: #dadada;
-    --link-color: #ffffff;
-    --header-bg-color: rgba(0, 0, 0, 0.9);
+    --link-color: #008cff;
     --footer-bg-color: #333;
     --banner-bg-color: #474747;
     --highlight-color: #ff0000;
@@ -79,7 +78,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgba(0, 0, 0, 0.9);
     color: white;
     box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
     z-index: 10;
@@ -178,9 +177,13 @@ h1 {
     transition: all 0.3s ease-in-out;
 }
 
+#bannerTop {
+    height: 76px;
+}
+
 /* 各页签公用部分 */
 .banner {
-    background-color: rgb(71, 71, 71);
+    background-color: #474747;
     background-image: url(../img/banner_01.webp);
     background-repeat: no-repeat;
     background-size: cover;
@@ -583,30 +586,33 @@ footer .bottom p {
 }
 
 #backTop,
-#bottom {
+#side-control {
     position: fixed;
     display: flex;
-    width: 50px;
+    width: 44px;
+    min-height: 44px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 6px;
-    background-color: #ffffffc0;
-    border-radius: 1px;
-    text-align: center;
 
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 2px;
+    text-align: center;
     right: 10px;
-    bottom: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     z-index: 5;
+    color: #555555;
 }
 
 #backTop {
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 6px;
+    bottom: 20px;
+    /* border-top: 1px solid rgba(0, 0, 0, 0.2); */
     cursor: pointer;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
     transform: translateY(70px);
+
     opacity: 0;
-    /* visibility: hidden; */
     /*初始隐藏*/
     transition: all 0.3s ease-in-out;
 }
@@ -618,33 +624,28 @@ footer .bottom p {
 }
 
 #backTop p {
-    margin-top: 2px;
-    font-size: .8rem;
-    line-height: .8rem;
-    color: #333333;
+    margin-top: 1px;
+    font-size: .7rem;
+    line-height: .7rem;
+
 }
 
 #backTop .icon-back {
-    color: #333333;
     font-size: 1.6rem;
 }
 
-#backback .icon-back:hover {
-    color: #ff0000;
-}
 
 /* 音乐播放器按钮 */
-#bottom {}
+#side-control {
+    top: 20%;
+}
 
-#playButton {
-    position: fixed;
-    top: 86%;
-    right: 20px;
-    width: 30px;
-    height: 30px;
 
-    border-radius: 50%;
 
+#playButton,
+#lightControl {
+    min-height: 44px;
+    min-width: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -654,23 +655,7 @@ footer .bottom p {
     z-index: 5;
 }
 
-#playButton .icon-play {
+#side-control .iconfont {
     font-size: 1.6rem;
+    line-height: 44px;
 }
-
-#playButton .icon-stop {
-    /* display: none; */
-    font-size: 1.6rem;
-}
-
-/* #playButton .icon-play.paused::before {
-    content: '🎵';
-    font-size: 14px;
-    color: #000000;
-}
-
-#playButton .icon-stop.playing::before {
-    content: '⏸';
-    font-size: 14px;
-    color: rgb(163, 0, 0);
-} */
