@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4847922 */
-  src: url('iconfont.woff2?t=1741219322328') format('woff2'),
-       url('iconfont.woff?t=1741219322328') format('woff'),
-       url('iconfont.ttf?t=1741219322328') format('truetype');
+  src: url('iconfont.woff2?t=1742146200157') format('woff2'),
+       url('iconfont.woff?t=1742146200157') format('woff'),
+       url('iconfont.ttf?t=1742146200157') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,30 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-dark:before {
+  content: "\e72f";
+}
+
+.icon-sunny:before {
+  content: "\e746";
+}
+
+.icon-black:before {
+  content: "\e670";
+}
+
+.icon-white:before {
+  content: "\e672";
+}
+
+.icon-play:before {
+  content: "\e666";
+}
+
+.icon-stop:before {
+  content: "\e667";
 }
 
 .icon-back:before {
@@ -23,10 +47,6 @@
 
 .icon-top:before {
   content: "\e602";
-}
-
-.icon-music:before {
-  content: "\e710";
 }
 
 .icon-daoshi:before {
@@ -65,11 +85,7 @@
   content: "\e738";
 }
 
-.icon-yishu:before {
-  content: "\e619";
-}
-
 .icon-art:before {
-  content: "\e616";
+  content: "\e619";
 }
 

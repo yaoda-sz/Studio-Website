@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "25555523",
+      "name": "暗黑模式",
+      "font_class": "dark",
+      "unicode": "e72f",
+      "unicode_decimal": 59183
+    },
+    {
+      "icon_id": "25670468",
+      "name": "明亮模式",
+      "font_class": "sunny",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "3677270",
+      "name": "暗",
+      "font_class": "black",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "3677282",
+      "name": "亮",
+      "font_class": "white",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "7532880",
+      "name": "播放",
+      "font_class": "play",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "7532887",
+      "name": "暂停",
+      "font_class": "stop",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
       "icon_id": "611357",
       "name": "回到顶部",
       "font_class": "back",
@@ -25,13 +67,6 @@
       "font_class": "top",
       "unicode": "e602",
       "unicode_decimal": 58882
-    },
-    {
-      "icon_id": "515417",
-      "name": "music",
-      "font_class": "music",
-      "unicode": "e710",
-      "unicode_decimal": 59152
     },
     {
       "icon_id": "2171721",
@@ -99,16 +134,9 @@
     {
       "icon_id": "37037592",
       "name": "艺术",
-      "font_class": "yishu",
+      "font_class": "art",
       "unicode": "e619",
       "unicode_decimal": 58905
-    },
-    {
-      "icon_id": "38566163",
-      "name": "设计器",
-      "font_class": "art",
-      "unicode": "e616",
-      "unicode_decimal": 58902
     }
   ]
 }
