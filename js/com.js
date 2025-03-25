@@ -92,29 +92,15 @@
     });
 })();
 // 主题切换控制
-// (function () {
-//     const audio = document.getElementById('backgroundMusic');
-//     const toggleButton = document.getElementById('toggleButton');
-//     const sunnyIcon = toggleButton.querySelector('.icon-sunny');
-//     const duckIcon = toggleButton.querySelector('.icon-dark');
+(function () {
+    const audio = document.getElementById('backgroundMusic');
+    const toggleButton = document.getElementById('toggleButton');
 
 
-//     sunnyIcon.style.display = 'block';
-//     duckIcon.style.display = 'none';
-
-//     toggleButton.addEventListener('click', () => {
-//         if (audio.paused) {
-//             audio.play();
-//             sunnyIcon.style.display = 'none';
-//             duckIcon.style.display = 'block';
-
-//         } else {
-//             audio.pause();
-//             sunnyIcon.style.display = 'block';
-//             duckIcon.style.display = 'none';
-//         }
-//     });
-// })();
+    toggleButton.addEventListener('click', () => {
+        toggleButton.classList.toggle('active');
+    });
+})();
 
 // 皮肤主题切换
 

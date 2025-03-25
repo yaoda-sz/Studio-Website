@@ -607,11 +607,8 @@ footer .bottom p {
 #backTop {
     padding: 6px;
     bottom: 20px;
-    /* border-top: 1px solid rgba(0, 0, 0, 0.2); */
     cursor: pointer;
-
     transform: translateY(70px);
-
     opacity: 0;
     /*初始隐藏*/
     transition: all 0.3s ease-in-out;
@@ -627,7 +624,6 @@ footer .bottom p {
     margin-top: 1px;
     font-size: .7rem;
     line-height: .7rem;
-
 }
 
 #backTop .icon-back {
@@ -637,13 +633,32 @@ footer .bottom p {
 
 /* 音乐播放器按钮 */
 #side-control {
-    top: 20%;
+    top: 82%;
+}
+
+#side-control .iconfont {
+    transition: all 0.1s;
 }
 
 
+.icon-sunny {
+    display: block;
+}
+
+.icon-dark {
+    display: none;
+}
+
+#toggleButton.active .icon-sunny {
+    display: none;
+}
+
+#toggleButton.active .icon-dark {
+    display: block;
+}
 
 #playButton,
-#lightControl {
+#toggleButton {
     min-height: 44px;
     min-width: 44px;
     display: flex;
@@ -654,6 +669,13 @@ footer .bottom p {
     line-height: 50px;
     z-index: 5;
 }
+
+#playButton:hover,
+#toggleButton:hover,
+#backTop:hover {
+    color: var(--link-color);
+}
+
 
 #side-control .iconfont {
     font-size: 1.6rem;
