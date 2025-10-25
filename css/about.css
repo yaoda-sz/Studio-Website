@@ -13,9 +13,9 @@
 }
 
 #main .yaoda .box-me .left-me .photo {
-    border-radius: 20px;
+    border-radius: 50%;
     width: 240px;
-    aspect-ratio: 3/4;
+    aspect-ratio: 1 / 1;
 }
 
 #main .yaoda .box-me .right-me {
@@ -24,22 +24,25 @@
     align-items: flex-start;
 }
 
-.about-title{
+.about-title {
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
     gap: 20px;
 }
+
 .yaoda h3,
 .yaoda h2,
 .anli h2 {
     color: white;
 }
-.yaoda h4{
+
+.yaoda h4 {
     font-size: 1.3rem;
     font-weight: 400;
     color: #ccc;
 }
+
 .yaoda hr {
     width: 100%;
     border: none;
