@@ -275,7 +275,7 @@ h1 {
 .what,
 .yaoda,
 /* .box-title, */
-.dog {
+.black {
     display: flex;
     flex-direction: column;
     border-bottom: 12px solid rgb(17, 17, 17);
@@ -301,7 +301,7 @@ h1 {
 /* 深色背景盒子 */
 .why,
 .yaoda,
-.dog {
+.black {
     background-color: rgb(51, 51, 51);
 }
 
