@@ -21,7 +21,7 @@ function initializeVideoPlayer(videoData, listContainerId) {
     });
 
     // 获取所有视频项和相关元素
-    const items = document.querySelectorAll(".mov-v");
+    const items = videoList.querySelectorAll(".mov-v");
     const modal = document.getElementById("myModal");
     const modalVideo = document.getElementById("modal-video");
     const closeBtn = document.querySelector(".video-close");
@@ -183,4 +183,12 @@ if (typeof module !== "undefined" && module.exports) {
     module.exports = initializeVideoPlayer;
 } else {
     window.initializeVideoPlayer = initializeVideoPlayer;
-}
+}// 使用 AbortController 来统一控制事件解绑
+const controller = new AbortController();
+
+document.addEventListener("mousemove", onDragging, {
+    signal: controller.signal,
+    passive: false
+});
+
+// 在适当时机调用 controller.abort() 解除所有监听器
