@@ -1,7 +1,7 @@
 /* 大佬了解 */
 .box-dalao {
     width: 100%;
-    min-height: 212px;
+    min-height: 262px;
     background-image: url(../img/dalao.webp);
     background-size: cover;
     background-position: center;
@@ -18,7 +18,6 @@
     align-items: center;
     text-align: center;
     color: white;
-    /* margin: 40px auto; */
 }
 
 .img-dalao h3 {
@@ -30,7 +29,7 @@
 .img-dalao p {
     font-size: 1.1rem;
     padding: 0 20px;
-    margin: 12px 0;
+    margin: 14px 0 24px;
 }
 
 .img-dalao a {
@@ -195,7 +194,7 @@ li .box-icon .icon-4 {
     width: 100%;
     border-radius: 6px;
     border: 1px solid #ccc;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -233,33 +232,33 @@ li .box-icon .icon-4 {
 }
 
 .icon-img {
-    width: 146px;
-    height: 146px;
+    width: 156px;
+    height: 156px;
     background-image: url(../img/icon_gan.webp);
 }
 
 .icon-mf {
-    background-position: -580px;
+    background-position: -312px;
 }
 
 .icon-sz {
-    background-position: 0px;
+    background-position: -468px;
 }
 
 .icon-an {
-    background-position: -141px;
+    background-position: -624px;
 }
 
 .icon-pm {
-    background-position: -284px;
+    background-position: 0px;
 }
 
 .icon-yc {
-    background-position: -430px;
+    background-position: -156px;
 }
 
 .icon-pz {
-    background-position: -730px;
+    background-position: 156px;
 }
 
 .service-item__title {
