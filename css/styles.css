@@ -188,6 +188,11 @@ html {
     width: 100%;
     gap: 20px;
   }
+
+  .box_adress_container {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
 }
 
 /* 当页面窗口屏幕尺寸适配小于576px情况下执行样式 */
@@ -352,10 +357,6 @@ html {
 
   footer li p {
     font-size: 1rem;
-  }
-
-  .iconfont {
-    font-size: 1rem !important;
   }
 
   .bottom p {

@@ -1,0 +1,47 @@
+#cases {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 50px;
+}
+
+#cases h5 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 10px;
+}
+
+.box_adress_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 80px 0;
+}
+
+.box_adress_icon {
+    min-width: 175px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10%;
+    padding: 20px 0;
+}
+
+.box_adress_bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: var(--button-bg);
+    border-radius: 50%;
+}
+
+.box_adress_bg span {
+    font-size: 50px;
+    color: white;
+}
