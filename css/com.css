@@ -1,25 +1,27 @@
 /* 默认浅色模式 */
 :root {
-    --primary: #1E3A8A;
-    --accent: #F59E0B;
-    --background-color: #f0f0f0;
+    /* --primary: #1E3A8A; */
+    /* --accent: #F59E0B; */
+    --background-color: #e6e8eb;
     --text-color: #333333;
     --link-color: #0066cc;
-    --button-bg: #0066cc;
-    --button-text: #ffffff;
+    --button-bg: #ffffff;
+    --button-text: #333333;
     --card-bg: #ffffff;
     --border-color: #dddddd;
+    --footer-bg: #f8f8f8;
 }
 
 /* 深色模式 */
 [data-theme="dark"] {
     --background-color: #1a1a1a;
     --text-color: #e0e0e0;
-    --link-color: #66b3ff;
-    --button-bg: #66b3ff;
+    --link-color: #1E3A8A;
+    --button-bg: #ffffffc9;
     --button-text: #1a1a1a;
     --card-bg: #2d2d2d;
     --border-color: #444444;
+    --footer-bg: #333;
 }
 
 * {
@@ -75,12 +77,14 @@ h2 {
 h3 {
     font-size: 1.8rem;
     font-weight: 400;
+    color: #333333;
 }
 
 p {
     font-size: 1.1rem;
     line-height: 1.5em;
     margin: 0;
+    color: #333333;
 }
 
 a {
@@ -512,7 +516,7 @@ body.no-scroll {
 /* 页脚footer样式 */
 footer {
     width: 100%;
-    background-color: var(--text-color);
+    background-color: var(--footer-bg);
     color: white;
     padding: 10px 0;
     margin: 0;
@@ -561,7 +565,7 @@ footer ul li {
 }
 
 footer li p {
-    color: inherit;
+    color: var(--text-color);
     padding-left: 10px;
     font-size: 1.1rem;
 }
@@ -569,7 +573,7 @@ footer li p {
 /* icon图标设定位置 */
 footer li .iconfont {
     font-size: 1.6rem !important;
-    color: #939393 !important;
+    color: var(--text-color)
 }
 
 
@@ -596,11 +600,11 @@ footer .bottom {
 }
 
 footer .bottom p {
-    color: #dbdbdb;
+    color: var(--card-bg);
     margin: 0 20px;
 }
 
-#backTop,
+
 #side-control {
     position: fixed;
     display: flex;
@@ -609,24 +613,11 @@ footer .bottom p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 2px;
     text-align: center;
     right: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    top: 80%;
+    gap: 10px;
     z-index: 5;
-    color: #555555;
-}
-
-#backTop {
-    padding: 6px;
-    bottom: 20px;
-    cursor: pointer;
-    transform: translateY(70px);
-    opacity: 0;
-    /*初始隐藏*/
-    transition: all 0.3s ease-in-out;
 }
 
 #backTop.show {
@@ -635,11 +626,11 @@ footer .bottom p {
     /* visibility: visible; */
 }
 
-#backTop p {
+/* #backTop p {
     margin-top: 1px;
     font-size: .7rem;
     line-height: .7rem;
-}
+} */
 
 #backTop .icon-back {
     font-size: 1.6rem;
@@ -647,21 +638,12 @@ footer .bottom p {
 
 
 /* 音乐播放器按钮 */
-#side-control {
-    top: 82%;
-}
 
 #side-control .iconfont {
+    font-size: 1.6rem;
+    line-height: 44px;
     transition: all 0.1s;
-}
-
-
-.icon-sunny {
-    display: block;
-}
-
-.icon-dark {
-    display: none;
+    color: var(--button-text);
 }
 
 #toggleButton.active .icon-sunny {
@@ -672,27 +654,36 @@ footer .bottom p {
     display: block;
 }
 
+button {
+    background-color: var(--button-bg);
+}
+
 #playButton,
-#toggleButton {
+#toggleButton,
+#backTop {
     min-height: 44px;
     min-width: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s;
-    line-height: 50px;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: #00000013 0 2px 6px;
     z-index: 5;
 }
 
 #playButton:hover,
 #toggleButton:hover,
 #backTop:hover {
-    color: var(--link-color);
+    box-shadow: #33333367 0 2px 6px;
+    transition: all 0.3s ease-in-out;
 }
 
-
-#side-control .iconfont {
-    font-size: 1.6rem;
-    line-height: 44px;
+#backTop {
+    bottom: 20px;
+    transform: translateY(70px);
+    opacity: 0;
+    /*初始隐藏*/
+    transition: all 0.3s ease-in-out;
 }

@@ -92,15 +92,8 @@
     });
 })();
 // 主题切换控制
-(function () {
-    const audio = document.getElementById('backgroundMusic');
-    const toggleButton = document.getElementById('toggleButton');
 
-
-    toggleButton.addEventListener('click', () => {
-        toggleButton.classList.toggle('active');
-    });
-})();
-
-// 皮肤主题切换
+// toggleButton.addEventListener('click', () => {
+//     toggleButton.classList.toggle('active');
+// });
 

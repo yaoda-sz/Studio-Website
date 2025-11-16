@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>深色/浅色模式切换</title>
+  <link rel="stylesheet" href="styles_00.css">
+  <!-- 引入 Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+  <header>
+    <h1>欢迎体验主题切换</h1>
+    <nav>
+      <a href="#home">首页</a>
+      <a href="#about">关于</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </header>
+
+  <!-- 跑马灯 Banner -->
+  <div class="banner-container">
+    <div class="banner-slides">
+      <img
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+        alt="自然景观1" class="slide active">
+      <img
+        src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+        alt="自然景观2" class="slide">
+      <img
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+        alt="城市景观" class="slide">
+    </div>
+    <button class="banner-prev"><i class="fas fa-chevron-left"></i></button>
+    <button class="banner-next"><i class="fas fa-chevron-right"></i></button>
+    <div class="banner-dots">
+      <span class="dot active" data-slide="0"></span>
+      <span class="dot" data-slide="1"></span>
+      <span class="dot" data-slide="2"></span>
+    </div>
+  </div>
+
+  <main>
+    <section>
+      <h2>这是一个测试页面</h2>
+      <p>点击下面的按钮，可以在深色模式和浅色模式之间切换。页面包含多种元素，展示切换效果。</p>
+      <button id="toggleButton"><i class="fas fa-sun"></i></button>
+    </section>
+
+    <section class="card">
+      <h3>卡片标题</h3>
+      <p>这是一张卡片，包含文字和按钮。</p>
+      <button class="card-button">点击我</button>
+    </section>
+
+    <section>
+      <h3>列表示例</h3>
+      <ul>
+        <li>项目 1</li>
+        <li>项目 2</li>
+        <li>项目 3</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 测试网站。保留所有权利。</p>
+  </footer>
+
+  <script src="script_00.js"></script>
+</body>
+
+</html>

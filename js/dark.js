@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
         body.setAttribute('data-theme', savedTheme);
-        toggleButton.innerHTML = savedTheme === 'dark' ? '<span class="iconfont icon-sunny"></span>' : '<span class="iconfont icon-dark"></span>';
+        toggleButton.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         body.setAttribute('data-theme', 'dark');
-        toggleButton.innerHTML = '<span class="iconfont icon-sunny"></span>';
+        toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
     } else {
-        toggleButton.innerHTML = '<span class="iconfont icon-dark"></span>';
+        toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
     }
 
     toggleButton.addEventListener('click', () => {
@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentTheme === 'dark') {
             body.removeAttribute('data-theme');
             localStorage.setItem('theme', 'light');
-            toggleButton.innerHTML = '<span class="iconfont icon-dark"></span>'; // 显示月亮图标
+            toggleButton.innerHTML = '<i class="fas fa-moon"></i>'; // 显示月亮图标
         } else {
             body.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
-            toggleButton.innerHTML = '<span class="iconfont icon-sunny"></span>'; // 显示太阳图标
+            toggleButton.innerHTML = '<i class="fas fa-sun"></i>'; // 显示太阳图标
         }
     });
 });
