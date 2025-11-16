@@ -600,7 +600,7 @@ footer .bottom {
 }
 
 footer .bottom p {
-    color: var(--card-bg);
+    color: var(--text-color);
     margin: 0 20px;
 }
 
