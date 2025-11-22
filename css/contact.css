@@ -46,3 +46,10 @@
     font-size: 50px;
     color: white;
 }
+
+@media (max-width: 767px) {
+    .box_adress_container {
+        flex-direction: column;
+        gap: 30px;
+    }
+}

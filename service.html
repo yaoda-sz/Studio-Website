@@ -3,13 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="致力于打造市场上最好的综合性开发游戏动漫制作合作平台！">
+    <meta name="description" content="作品展示、动作、特效、2D动画。">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="雨文白告, 游戏, 动漫, spine, 独立游戏, steam, 个人小游戏, 经济实惠">
+    <meta name="keywords" content="游戏动画, 独立游戏,影视特效,动漫制作 spine, steam, 个人小游戏">
+    <meta name="author" content="雨文白告工作室">
     <meta name="robots" content="index, follow"> <!-- 添加robots meta标签 -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i0.hdslb.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com;">
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://i0.hdslb.com https://www.mihuashi.com https://image-assets.mihuashi.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com; object-src 'none';">
+
     <title>雨文白告游戏动漫工作室 - 作品展示！</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="[雨文白告游戏动漫工作室 - 作品展示]">
+    <meta property="og:description" content="[过往制作的作品效果，帮助您了解我们的制作风格和业务范围]">
+    <meta property="og:url" content="[https://yaoda.art/service.html]">
+    <meta property="og:image" content="http://www.yourwebsite.com/img/logo.webp">
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -17,129 +25,80 @@
     <link rel="icon" href="favicon-192x192.png" sizes="192x192">
     <link rel="apple-touch-icon" href="apple-icon-180x180.png"> <!-- 支持Apple设备 -->
 
+    <link rel="canonical" href="https://www.yaoda.art/service.html">
+
     <link rel="stylesheet" href="./css/com.css">
-    <!-- <link rel="stylesheet" href="./css/home.css"> -->
-    <!-- <link rel="stylesheet" href="./css/about.css"> -->
-    <link rel="stylesheet" href="./css/cases.css">
+    <link rel="stylesheet" href="./css/service.css">
     <link rel="stylesheet" href="./font/iconfont.css">
-    <link rel="stylesheet" href="./css/styles.css">
+    <script>
+        (function () {
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // 只有当明确设置了 'dark' 或系统偏好是 dark 且没有 saved 值时，才设置
+            if (saved === 'dark' || (!saved && prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 
 </head>
 
 <body>
     <!-- 头部导航栏 -->
     <header>
-        <div class="container">
-            <div class="logo">
-                <a href="./index.html">
-                    <img src="./img/logo.webp" alt="公司Logo">
-                    <h1>雨文白告工作室</h1>
-                </a>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="./index.html">首页</a></li>
-                    <li><a href="./cases.html">案例作品</a></li>
-                    <li><a href="./service.html" class="active">作品展示</a></li>
-                    <li><a href="./about.html">关于我们</a></li>
-                    <li><a href="./contact.html">联系我们</a></li>
-                </ul>
-                <div class="mobile-menu">
-                    <div class="top-line"></div>
-                    <div class="middle-line"></div>
-                    <div class="bottom-line"></div>
-                </div>
-            </nav>
-        </div>
     </header>
-
-    <section id="bannerTop">
-    </section>
-    <!-- Banner广告 -->
-    <div class="banner" id="home">
-        <div class="container img-b">
-            <div class="tip-r">
-                <section class="right-sm">
-                    <h2 id="banner-title">我们在 Sp<span>i</span>ne 中制作动画</h2>
-                    <p>在Spine中，我们为各类需求制作2D动画，让每个成果都富有使用意义。我们优先考虑您的需求安排、提供您最想要的一切。</p>
-                </section>
-            </div>
-        </div>
-        <!-- banner图底部icon -->
-        <div class="down">
-            <img src="./img/icon_rj.webp" alt="Spine动画制作工具图标">
-        </div>
-    </div>
-
-    <!-- 以下为居中白色块区域内容 -->
+    <!-- 主体内容 -->
     <main id="main">
-        <!-- 作品展示 -->
-        <section class="box-big box-title" id="cases">
-            <h2 id="cases-title">作品展示</h2>
-            <hr>
-            <p>以下是一些过往制作的作品效果，帮助您了解我们的制作风格和业务范围。
-            </p>
+        <section id="bannerTop">
         </section>
-        <!-- 动图展示区域 -->
-        <section class="box-big mov-items">
-            <ul class="mov-list" id="video-list">
-                <!-- 视频项将由JavaScript动态生成 -->
-            </ul>
-        </section>
-        <div class="box-big end">
-            <div class="btn-more">
-                <a href="#"> <span> 全部加载完毕！</span></a>
+        <!-- Banner广告 -->
+        <div class="banner" id="home">
+            <div class="container img-b">
+                <div class="tip-r">
+                    <section class="right-sm">
+                        <h2 id="banner-title">我们在 Sp<span>i</span>ne 中制作动画</h2>
+                        <p>在Spine中，我们为各类需求制作2D动画，让每个成果都富有使用意义。我们优先考虑您的需求安排、提供您最想要的一切。</p>
+                    </section>
+                </div>
+            </div>
+            <!-- banner图底部icon -->
+            <div class="down">
+                <img src="./img/icon_rj.webp" alt="Spine动画制作工具图标">
             </div>
         </div>
-        <!-- 模态框 -->
-        <div id="myModal" class="modal">
-            <span class="video-close">&times;</span>
-            <div class="modal-content" id="draggable-video-container">
-                <div class="drag-overlay"></div> <!-- 添加拖拽覆盖层 -->
-                <video id="modal-video" controls autoplay loop></video> <!-- 添加 loop 属性 -->
+        <!-- 以下为居中白色块区域内容 -->
+        <section id="object">
+            <!-- 作品展示 -->
+            <section class="box-big box-title" id="service">
+                <h2>作品展示</h2>
+                <hr>
+                <p>以下是一些过往制作的作品效果，帮助您了解我们的制作风格和业务范围。
+                </p>
+            </section>
+            <!-- 动图展示区域 -->
+            <section class="box-big mov-items">
+                <ul class="mov-list" id="video-list">
+                    <!-- 视频项将由JavaScript动态生成 -->
+                </ul>
+            </section>
+            <div class="box-big end">
+                <div class="btn-more">
+                    <a href="#"> <span> 全部加载完毕！</span></a>
+                </div>
             </div>
-        </div>
+            <!-- 模态框 -->
+            <div id="myModal" class="modal">
+                <span class="video-close">&times;</span>
+                <div class="modal-content" id="draggable-video-container">
+                    <div class="drag-overlay"></div> <!-- 添加拖拽覆盖层 -->
+                    <video id="modal-video" controls autoplay loop></video> <!-- 添加 loop 属性 -->
+                </div>
+            </div>
+        </section>
     </main>
-
     <!-- 页尾 -->
     <footer id="contact">
-        <div class="container">
-            <!-- 联系方式 -->
-            <div class="contact-info">
-                <div class="contact-item-left">
-                    <ul>
-                        <li>
-                            <span class="iconfont icon-qq"></span>
-                            <p>QQ:170469162</p>
-                        </li>
-                        <li>
-                            <span class="iconfont icon-weixin"></span>
-                            <p>微信:yaodasz</p>
-                        </li>
-                        <li>
-                            <span class="iconfont icon-phone"></span>
-                            <p>电话:13814865715</p>
-                        </li>
-                        <li>
-                            <span class="iconfont icon-mail"></span>
-                            <p>邮箱:170469162@qq.com</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="contact-item-right">
-                    <img src="./img/weixin.webp" alt="微信二维码" class="wx-qrcode">
-                </div>
-            </div>
-            <!-- 分割线 -->
-            <hr>
-            <!-- 版权 -->
-            <div class="bottom">
-                <p>版权所有：苏州工业园区雨文白告游戏动漫工作室</p>
-                <br>
-                <p>© 2025 测试网站。保留所有权利。</p>
-                <!-- <p>江ICP备：江ICP备17043432号-1</p> -->
-            </div>
-        </div>
         <script type="application/ld+json">
             {
               "@context": "https://www.schema.org",
@@ -161,9 +120,16 @@
             }
         </script>
     </footer>
-
+    <!-- 模态框 -->
+    <div id="myModal" class="modal">
+        <span class="video-close" role="button" tabindex="0" aria-label="关闭视频">×</span>
+        <div class="modal-content" id="draggable-video-container">
+            <div class="drag-overlay"></div> <!-- 添加拖拽覆盖层 -->
+            <video id="modal-video" controls autoplay loop></video><!-- 添加 loop 属性 -->
+        </div>
+    </div>
     <!-- 侧边功能 -->
-    <div id="side-control">
+    <div id="side-control" role="complementary" aria-label="网站辅助功能">
         <!-- 主题切换 -->
         <button id="toggleButton">
             <span class="iconfont icon-sunny"></span>
@@ -186,9 +152,10 @@
     </div>
 
     <!-- javascript首页基本脚本  -->
+    <script src="./js/layout.js" defer></script>
     <script src="./js/com.js" defer></script>
     <script src="./js/video.js" defer></script>
-    <script src="./js/data_sevice.js"></script>
+    <script src="./js/data_service.js" defer></script>
     <script src="./js/light.js" defer></script>
 
 </body>

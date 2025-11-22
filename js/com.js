@@ -1,13 +1,15 @@
 (function () {
+    // 监听 layout.js 发出的加载完成事件
+    // window.addEventListener('layoutLoaded', init);
+    // 如果 layout.js 还没准备好，或者页面没有用 layout.js，保留 DOMContentLoaded 作为后备
     document.addEventListener('DOMContentLoaded', init);
 
     function init() {
-        setupNavigation(); // 设置导航栏事件监听
-        setupMobileMenu(); // 设置移动端菜单
+        initNavigation(); // 设置导航栏事件监听
+        initMobileMenu(); // 设置移动端菜单
     }
-
     // 设置导航栏事件监听
-    function setupNavigation() {
+    function initNavigation() {
         const nav = document.querySelector('nav');
         if (!nav) return;
 
@@ -21,7 +23,7 @@
     }
 
     // 设置移动端菜单
-    function setupMobileMenu() {
+    function initMobileMenu() {
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
         const navMenuItems = document.querySelectorAll('.nav-links li');
@@ -91,9 +93,38 @@
         }
     });
 })();
-// 主题切换控制
 
-// toggleButton.addEventListener('click', () => {
-//     toggleButton.classList.toggle('active');
-// });
 
+// 监听所有 class 为 video-lazy-load 元素的点击事件
+document.addEventListener('click', function (e) {
+    // 检查点击的是不是我们的视频占位符（或者它的子元素）
+    const container = e.target.closest('.video-lazy-load');
+
+    if (container) {
+        // 获取 HTML 标签里存的 I  
+        const bvid = container.dataset.bvid;
+        const cid = container.dataset.cid;
+
+        const iframe = document.createElement('iframe');
+        // 注意：autoplay=1 让视频加载出来后自动播放
+        iframe.src = `https://player.bilibili.com/player.html?isOutside=true&bvid=${bvid}&cid=${cid}&autoplay=1`;
+
+        // 设置 iframe 的样式属性
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        iframe.setAttribute('scrolling', 'no');
+        iframe.setAttribute('border', '0');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('framespacing', '0');
+        iframe.setAttribute('allowfullscreen', 'true');
+
+        // 清空容器里的图片和按钮，放入 iframe
+        container.innerHTML = '';
+        container.appendChild(iframe);
+
+        // 移除点击事件类名，变成普通容器（可选）
+        container.classList.remove('video-lazy-load');
+
+    }
+});

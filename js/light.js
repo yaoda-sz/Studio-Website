@@ -1,27 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('toggleButton');
-    const body = document.body;
-
-    // 主题切换逻辑
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        body.setAttribute('data-theme', savedTheme);
-        toggleButton.innerHTML = savedTheme === 'dark' ? '<span class="iconfont icon-sunny"></span>' : '<span class="iconfont icon-dark"></span>';
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        body.setAttribute('data-theme', 'dark');
-        toggleButton.innerHTML = '<span class="iconfont icon-sunny"></span>';
-    } else {
-        toggleButton.innerHTML = '<span class="iconfont icon-dark"></span>';
-    }
+    const html = document.documentElement;
 
     toggleButton.addEventListener('click', () => {
-        const currentTheme = body.getAttribute('data-theme');
+        const currentTheme = html.getAttribute('data-theme');
         if (currentTheme === 'dark') {
-            body.removeAttribute('data-theme');
+            html.removeAttribute('data-theme');
             localStorage.setItem('theme', 'light');
             toggleButton.innerHTML = '<span class="iconfont icon-dark"></span>'; // 显示月亮图标
         } else {
-            body.setAttribute('data-theme', 'dark');
+            html.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
             toggleButton.innerHTML = '<span class="iconfont icon-sunny"></span>'; // 显示太阳图标
         }

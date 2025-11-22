@@ -267,3 +267,77 @@ li .box-icon .icon-4 {
 .service-item__title {
     margin: 20px 0 10px;
 }
+
+@media (max-width: 767px) {
+    .img-dalao h3 {
+        font-size: 1.6rem;
+
+    }
+
+    .img-dalao p {
+        font-size: 1rem;
+    }
+
+    .why .box-w .box-son {
+        max-width: calc(100%);
+    }
+
+    .box-w {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
+    }
+
+    .box-s {
+        padding: 30px 0 50px;
+        max-width: 45%;
+        min-width: 160px;
+    }
+}
+
+@media (max-width: 575px) {
+    .img-dalao h3 {
+        font-size: 1.6rem;
+    }
+
+    .img-dalao a {
+        font-size: 1rem;
+        line-height: 1rem;
+        padding: 10px 32px
+    }
+
+    .img-dalao a:hover {
+        background-color: rgb(24, 182, 255);
+        padding: 10px 36px;
+    }
+
+    .why .box-w .box-son {
+        max-width: calc(100%);
+    }
+
+    .box-n {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .box-n .box-s {
+        padding: 30px 10px 50px;
+        max-width: 100%;
+
+    }
+
+    .box-n .box-s>.card-v {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .box-w {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+}

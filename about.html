@@ -3,13 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="致力于打造市场上最好的综合性开发游戏动漫制作合作平台！">
+    <meta name="description" content="专业实惠、免费咨询、远程协作。">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="雨文白告, 游戏, 动漫, spine, 独立游戏, steam, 个人小游戏, 经济实惠">
+    <meta name="keywords" content="游戏动画, 独立游戏,影视特效,动漫制作 spine, steam, 个人小游戏">
+    <meta name="author" content="雨文白告工作室">
     <meta name="robots" content="index, follow"> <!-- 添加robots meta标签 -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i0.hdslb.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com;">
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://i0.hdslb.com https://www.mihuashi.com https://image-assets.mihuashi.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com; object-src 'none';">
+
     <title>雨文白告游戏动漫工作室 - 了解我们！</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="[雨文白告游戏动漫工作室 - 关于我们]">
+    <meta property="og:description" content="[了解我们的团队、核心理念和发展历程。]">
+    <meta property="og:url" content="[https://yaoda.art/about.html]">
+    <meta property="og:image" content="http://www.yourwebsite.com/img/logo.webp">
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -17,40 +25,28 @@
     <link rel="icon" href="favicon-192x192.png" sizes="192x192">
     <link rel="apple-touch-icon" href="apple-icon-180x180.png"> <!-- 支持Apple设备 -->
 
+    <link rel="canonical" href="https://www.yaoda.art/about.html">
+
     <link rel="stylesheet" href="./css/com.css">
-    <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/about.css">
-    <link rel="stylesheet" href="./css/cases.css">
     <link rel="stylesheet" href="./font/iconfont.css">
-    <link rel="stylesheet" href="./css/styles.css">
+    <script>
+        (function () {
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // 只有当明确设置了 'dark' 或系统偏好是 dark 且没有 saved 值时，才设置
+            if (saved === 'dark' || (!saved && prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 
 </head>
 
 <body>
     <!-- 头部导航栏 -->
     <header>
-        <div class="container">
-            <div class="logo">
-                <a href="./index.html">
-                    <img src="./img/logo.webp" alt="公司Logo">
-                    <h1>雨文白告工作室</h1>
-                </a>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="./index.html">首页</a></li>
-                    <li><a href="./cases.html">案例作品</a></li>
-                    <li><a href="./service.html">作品展示</a></li>
-                    <li><a href="./about.html" class="active">关于我们</a></li>
-                    <li><a href="./contact.html">联系我们</a></li>
-                </ul>
-                <div class="mobile-menu">
-                    <div class="top-line"></div>
-                    <div class="middle-line"></div>
-                    <div class="bottom-line"></div>
-                </div>
-            </nav>
-        </div>
     </header>
     <!-- 首页banner广告 -->
     <section class="banner" id="home">
@@ -70,7 +66,7 @@
     <!-- banner下面内容主题内容！ -->
     <section>
         <!-- 以下为居中白色块区域内容 -->
-        <div id="main">
+        <div id="object">
             <!-- 关于我们 -->
             <div class="box-big yaoda" id="about">
                 <h2>关于我</h2>
@@ -127,62 +123,17 @@
                 </div>
             </div>
         </div>
-
-        <!-- 模态框 -->
-        <div id="myModal" class="modal">
-            <span class="video-close">&times;</span>
-            <div class="modal-content" id="draggable-video-container">
-                <div class="drag-overlay"></div> <!-- 添加拖拽覆盖层 -->
-                <video id="modal-video" controls autoplay loop></video> <!-- 添加 loop 属性 -->
-            </div>
-        </div>
     </section>
 
     <!-- 页尾 -->
     <footer id="contact">
-        <div class="container">
-            <!-- 联系方式 -->
-            <div class="contact-info">
-                <div class="contact-item-left">
-                    <ul>
-                        <li>
-                            <span class="iconfont icon-qq"></span>
-                            <p>QQ:170469162</p>
-                        </li>
-                        <li>
-                            <span class="iconfont icon-weixin"></span>
-                            <p>微信:yaodasz</p>
-                        </li>
-                        <li>
-                            <span class="iconfont icon-phone"></span>
-                            <p>电话:13814865715</p>
-                        </li>
-                        <li>
-                            <span class="iconfont icon-mail"></span>
-                            <p>邮箱:170469162@qq.com</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="contact-item-right">
-                    <img src="./img/weixin.webp" alt="微信二维码" class="wx-qrcode">
-                </div>
-            </div>
-            <!-- 分割线 -->
-            <hr>
-            <!-- 版权 -->
-            <div class="bottom">
-                <p>版权所有：苏州工业园区雨文白告游戏动漫工作室</p>
-                <br>
-                <p>© 2025 测试网站。保留所有权利。</p>
-                <!-- <p>江ICP备：江ICP备17043432号-1</p> -->
-            </div>
-        </div>
+
         <script type="application/ld+json">
             {
               "@context": "https://www.schema.org",
               "@type": "LocalBusiness",
               "name": "雨文白告动漫设计工作室",
-              "url": "http://www.yourwebsite.com",
+              "url": "http://www.yaoda.art",
               "contactPoint": [
                 {
                   "@type": "ContactPoint",
@@ -200,7 +151,7 @@
     </footer>
 
     <!-- 侧边功能 -->
-    <div id="side-control">
+    <div id="side-control" role="complementary" aria-label="网站辅助功能">
         <!-- 主题切换 -->
         <button id="toggleButton">
             <span class="iconfont icon-sunny"></span>
@@ -222,9 +173,10 @@
         </button>
     </div>
 
+
     <!-- javascript首页基本脚本  -->
+    <script src="./js/layout.js" defer></script>
     <script src="./js/com.js" defer></script>
-    <!-- <script src="./js/video.js" defer></script> -->
     <script src="./js/light.js" defer></script>
 
 </body>

@@ -9,7 +9,16 @@
     --button-text: #333333;
     --card-bg: #ffffff;
     --border-color: #dddddd;
-    --footer-bg: #f8f8f8;
+    --footer-bg: #ffffff;
+
+    /* 层级变量 */
+    --z-nav: 100;
+    /* 导航栏最高 */
+    --z-modal: 20;
+    /* 弹窗比导航栏高 */
+    --z-modal-content: 200;
+    --z-controls: 50;
+    /* 侧边按钮 */
 }
 
 /* 深色模式 */
@@ -100,7 +109,7 @@ header {
     background-color: rgba(0, 0, 0, 0.9);
     color: white;
     box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
-    z-index: 10;
+    z-index: var(--z-nav);
     backdrop-filter: saturate(5) blur(20px);
 }
 
@@ -108,7 +117,6 @@ header>.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 /* 头部logo整体盒子 */
@@ -293,7 +301,6 @@ h1 {
 .why,
 .what,
 .yaoda,
-/* .box-title, */
 .black {
     display: flex;
     flex-direction: column;
@@ -341,6 +348,7 @@ h1 {
 }
 
 
+
 /* 页面主体样式 */
 section {
     width: 100%;
@@ -348,7 +356,7 @@ section {
     margin: 0;
 }
 
-#main {
+#object {
     max-width: 1200px;
     margin: 0 auto;
     background-color: rgb(255, 255, 255);
@@ -359,18 +367,72 @@ section {
 .video-container {
     position: relative;
     width: 100%;
-    /* 确保父容器宽度为100% */
-    height: 0;
-    /* 设置高度为0，通过padding-bottom保持宽高比 */
-    padding-bottom: 56.25%;
-    /* 16:9的宽高比 (9 / 16 * 100) */
-    min-height: 200px;
-    /* 确保有最小高度 */
+    height: 100%;
+    /* 确保父容器宽高度为100% */
+    aspect-ratio: 16 / 9;
+    /* 16：9 比例 */
     overflow: hidden;
     /* 隐藏超出部分的内容 */
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     margin: 0 auto;
     z-index: 1;
+}
+
+/* 视频占位容器 */
+.video-lazy-load {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* 封面图：填满容器 */
+.video-lazy-load .video-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 保持比例填满，多余裁剪 */
+    transition: transform 0.3s ease;
+}
+
+/* 鼠标悬停时，图片轻微放大，增加交互感 */
+.video-lazy-load:hover .video-poster {
+    transform: scale(1.05);
+}
+
+/* 播放按钮容器：绝对定位居中 */
+.video-lazy-load .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* 半透明黑色背景 */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    /* 让点击穿透到父级 */
+    transition: background-color 0.3s;
+    z-index: 10;
+    /* 确保它在最上层 */
+}
+
+.video-lazy-load:hover .play-icon {
+    background-color: rgba(2, 175, 255, 0.9);
+    /* 悬停变亮蓝色 */
+}
+
+/* 播放图标 */
+.video-lazy-load .play-icon .iconfont {
+    font-size: 30px;
+    color: white;
+    margin-left: 4px;
+    /* 视觉修正，让三角形看起来居中 */
 }
 
 .video-container iframe,
@@ -389,24 +451,9 @@ section {
     width: 100%;
 }
 
-.mov-list {
-    width: 100%;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-}
 
-.mov-v {
-    position: relative;
-    border-radius: 4px;
-    min-width: 100px;
-    /* aspect-ratio: 1/1; */
-    /* 设置宽高比，但老版本不支持*/
-    padding-top: 100%;
-    min-height: 100%;
-    overflow: hidden;
-    /* 隐藏超出部分的内容 */
-}
+
+
 
 .mov-v video {
     position: absolute;
@@ -436,7 +483,7 @@ section {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.85);
-    z-index: 11;
+    z-index: 201;
     /* overflow: hidden; */
 }
 
@@ -446,15 +493,12 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* width: 80%; */
     /* 保持宽度，但确保不挡住空白区域 */
     max-width: 90vw;
-    /* 最大宽度96%视口 */
-
     max-height: 90vh;
     /* 最大高度为可视窗口的96% */
-    overflow: hidden;
-    z-index: 12;
+    overflow: visible;
+    z-index: var(--z-modal-content);
     /* 移除描边 */
 
 }
@@ -505,7 +549,7 @@ body.no-scroll {
     right: 0;
     bottom: 0;
     cursor: move;
-    z-index: 13;
+    z-index: var(--z-modal);
     /* 确保覆盖层在视频之上 */
     background: transparent;
     display: block;
@@ -600,6 +644,7 @@ footer .bottom {
 }
 
 footer .bottom p {
+    font-size: 12px;
     color: var(--text-color);
     margin: 0 20px;
 }
@@ -617,7 +662,7 @@ footer .bottom p {
     right: 10px;
     top: 80%;
     gap: 10px;
-    z-index: 5;
+    z-index: var(--z-controls);
 }
 
 #backTop.show {
@@ -670,7 +715,7 @@ button {
     border-radius: 5px;
     border: 0;
     box-shadow: #00000013 0 2px 6px;
-    z-index: 5;
+    z-index: var(--z-controls);
 }
 
 #playButton:hover,
@@ -686,4 +731,228 @@ button {
     opacity: 0;
     /*初始隐藏*/
     transition: all 0.3s ease-in-out;
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+
+    footer .container {
+        justify-content: center;
+        max-width: 1024px;
+    }
+
+    #object {
+        max-width: 1024px;
+    }
+
+    header>.container {
+        padding: 0px 20px;
+    }
+
+    #object .yaoda .box-me .left-me .photo {
+        border-radius: 50%;
+        width: 200px;
+    }
+
+    footer .contact-info {
+        max-width: 1024px;
+    }
+}
+
+
+/* 当页面窗口屏幕尺寸适配小于900px情况下执行样式 */
+@media (max-width: 900px) {
+    header {
+        box-shadow: none;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        padding-top: 7vh;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: calc(100vh - 76px);
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        transform: translateX(100%);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nav-links.open {
+        transform: translateX(0);
+    }
+
+    .nav-links li {
+        padding: 0;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin: 1vh;
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    .nav-links li a {
+        font-size: 1.4rem;
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+        z-index: 100;
+    }
+
+    .mobile-menu.active div {
+        transition: 0.3s ease-in-out 0.1s;
+
+    }
+
+    .mobile-menu.active .top-line {
+        transform: rotate(-45deg) translate(-7px, 8px);
+    }
+
+    .mobile-menu.active .middle-line {
+        opacity: 0;
+        transform: translateX(50%);
+        transition: 0.3s ease-in-out;
+    }
+
+    .mobile-menu.active .bottom-line {
+        transform: rotate(45deg) translate(-8px, -8px);
+    }
+
+    footer ul {
+        align-content: space-between;
+        max-width: 250px;
+        padding-left: 0;
+    }
+}
+
+/* 当页面窗口屏幕尺寸适配小于576px-767px 情况下执行样式 */
+@media (max-width: 767px) {
+    .modal-content {
+        width: 80vw;
+        /* 手机端宽度接近视口边缘 */
+        max-width: 80vw;
+        max-height: 90vh;
+        /* 高度也接近视口边缘 */
+    }
+
+    #modal-video {
+        width: 100%;
+        max-height: 90vh;
+        /* 与容器一致 */
+    }
+
+    .video-close {
+        font-size: 40px;
+        /* 手机端关闭按钮稍小，适配小屏幕 */
+        right: 20px;
+    }
+
+}
+
+/* 当页面窗口屏幕尺寸适配小于576px情况下执行样式 */
+@media (max-width: 575px) {
+    .banner {
+        display: flex;
+        background-size: auto;
+    }
+
+    #banner-title {
+        font-size: 1.8rem;
+    }
+
+    .right-sm {
+        padding: 16px;
+        width: 94vw;
+        margin: 0 auto 10px;
+    }
+
+
+    .icon-img {
+        width: 140px;
+        height: 140px;
+        background-image: url(../img/icon_gan.webp);
+        background-size: 600%;
+    }
+
+    .icon-mf {
+        background-position: 560px;
+    }
+
+    .icon-sz {
+        background-position: -420px;
+    }
+
+    .icon-an {
+        background-position: -560px;
+    }
+
+    .icon-pm {
+        background-position: 0px;
+    }
+
+    .icon-yc {
+        background-position: -141px;
+    }
+
+    .icon-pz {
+        background-position: 140px;
+    }
+
+
+
+    footer .container {
+        padding: 0;
+    }
+
+    footer .contact-info {
+        flex-wrap: wrap;
+
+    }
+
+
+    footer ul {
+        padding-left: 0;
+    }
+
+    footer ul li {
+
+        min-width: 20px;
+    }
+
+    footer li p {
+        font-size: 1rem;
+    }
+
+    .bottom p {
+        font-size: 1rem;
+    }
+
+
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }

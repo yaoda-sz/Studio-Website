@@ -9,28 +9,55 @@
     <meta name="author" content="雨文白告工作室">
     <meta name="robots" content="index, follow"> <!-- 添加robots meta标签 -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i0.hdslb.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com;">
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://i0.hdslb.com https://www.mihuashi.com https://image-assets.mihuashi.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com; object-src 'none';">
+
     <title>雨文白告游戏动漫工作室 - 专业、实惠的游戏与动漫制作！</title>
 
-    <!-- Favicon -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="雨文白告游戏动漫工作室">
+    <meta property="og:description" content="专业、实惠的游戏、spine、动画制作！">
+    <meta property="og:url" content="https://www.yaoda.art">
+    <meta property="og:image" content="https://www.yaoda.art/img/logo.webp">
+
+    <!-- Favicon & PWA -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon-32x32.png" sizes="32x32">
     <link rel="icon" href="favicon-192x192.png" sizes="192x192">
     <link rel="apple-touch-icon" href="apple-icon-180x180.png"> <!-- 支持Apple设备 -->
 
+    <link rel="manifest" href="site.webmanifest.json">
+    </link>
+    <link rel="canonical" href="https://www.yaoda.art">
+
+    <!-- Preload critical resources -->
     <link rel="stylesheet" href="./css/com.css">
     <link rel="stylesheet" href="./css/home.css">
-    <!-- <link rel="stylesheet" href="./css/about.css"> -->
-    <link rel="stylesheet" href="./css/cases.css">
     <link rel="stylesheet" href="./font/iconfont.css">
-    <link rel="stylesheet" href="./css/styles.css">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "雨文白告游戏动漫工作室",
-        "url": "https://www.yaoda.art"
+        "url": "https://www.yaoda.art",
+        "logo": "https://www.yaoda.art/img/logo.webp",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+86-13814865715",
+            "contactType": "Customer Service",
+            "email": "170469162@qq.com"
+        }
     }
+    </script>
+    <script>
+        (function () {
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // 只有当明确设置了 'dark' 或系统偏好是 dark 且没有 saved 值时，才设置
+            if (saved === 'dark' || (!saved && prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
     </script>
 
 </head>
@@ -38,274 +65,185 @@
 <body>
     <!-- 头部导航栏 -->
     <header>
-        <div class="container">
-            <div class="logo">
-                <a href="#">
-                    <img src="./img/logo.webp" alt="公司Logo">
-                    <h1>雨文白告工作室</h1>
-                </a>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#" class="active">首页</a></li>
-                    <li><a href="./cases.html">案例作品</a></li>
-                    <li><a href="./service.html">作品展示</a></li>
-                    <li><a href="./about.html">关于我们</a></li>
-                    <li><a href="./contact.html">联系我们</a></li>
-                </ul>
-                <div class="mobile-menu">
-                    <div class="top-line"></div>
-                    <div class="middle-line"></div>
-                    <div class="bottom-line"></div>
-                </div>
-            </nav>
-        </div>
     </header>
-    <!-- 首页banner广告 -->
-    <section id="bannerTop">
-    </section>
-    <section class="banner" id="home">
-        <div class="container img-b">
-            <div class="tip-r">
-                <section class="right-sm">
-                    <h2 id="banner-title">我们在 Sp<span>i</span>ne 中制作动画</h2>
-                    <p>在Spine中，我们为各类需求制作2D动画，让每个成果都富有使用意义。我们优先考虑您的需求安排、提供您最想要的一切。</p>
-                </section>
-            </div>
-        </div>
-        <!-- banner图底部icon -->
-        <div class="down">
-            <img src="./img/icon_rj.webp" alt="Spine动画制作工具图标">
-        </div>
-    </section>
-    <!-- banner下面内容主题内容！ -->
-    <section>
-        <!-- 以下为居中白色块区域内容 -->
-        <main id="main">
-            <!-- 大佬图 -->
-            <section class="box-big">
-                <div class="box-dalao">
-                    <div class="img-dalao">
-                        <h3>让我们为您作品增添活力</h3>
-                        <p>小游戏、独立游戏开发团队、媒体动画等客户合作最佳选择</p>
-                        <a href="cases.html">了解更多</a>
-                    </div>
-                </div>
-            </section>
-            <!-- 最新更新 -->
-            <div class="box-big">
-                <h2>最近更新</h2>
-                <!-- 纵列弹性容器 -->
-                <div class="box-n">
-                    <!-- 纵列3个弹性盒子 -->
-                    <div class="box-s">
-                        <div class="card-v" data-src="./video/">
-                            <video autoplay loop muted class="img-an" loading="lazy">
-                                <source src="./video/king.mp4" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </div>
-                        <h3>游戏动作</h3>
-                        <p>创作一段炫酷的动作，不仅需要专业的软件工具,更需要衔接工作流程,为您创建惊艳的动作,并将其整合到游戏当中，实现您最想要的效果。</p>
-
-                        <div class="more"><a href="javascript:void(0)">了解更多 more &gt;&gt;</a></div>
-                    </div>
-                    <div class="box-s">
-                        <div class="card-v" data-src="./mmd/fx_fish.mp4">
-                            <video autoplay loop muted class="img-an" loading="lazy">
-                                <source src="./video/fx_fish.mp4" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </div>
-                        <h3>交互动效</h3>
-                        <p>什么是动效？就是动画与特效，血与骨的关系。没有动画的特效没有生命，没有特效的动画没有灵魂。</p>
-                        <div class="more"><a href="javascript:void(0)">了解更多 more &gt;&gt;</a></div>
-                    </div>
-                    <div class="box-s">
-                        <div class="card-v" data-src="./video/npc_02.webm">
-                            <video autoplay loop muted class="img-an" loading="lazy">
-                                <source src="./video/npc_02.webm" type="video/webm">
-                                您的浏览器不支持 video 标签。
-                            </video>
-                        </div>
-                        <h3>影视动画</h3>
-                        <p>对于每一个不同角色特点，精心塑造每一个角色动画细节，我们拥有丰富技能，因此我们实现多样效果。</p>
-                        <div class="more"><a href="javascript:void(0)">了解更多 more &gt;&gt;</a></div>
-                    </div>
+    <!-- 主体内容 -->
+    <main id="main">
+        <!-- 首页banner广告 -->
+        <section id="bannerTop">
+        </section>
+        <section class="banner" id="home">
+            <div class="container img-b">
+                <div class="tip-r">
+                    <section class="right-sm">
+                        <h2 id="banner-title">我们在 Sp<span>i</span>ne 中制作动画</h2>
+                        <p>在Spine中，我们为各类需求制作2D动画，让每个成果都富有使用意义。我们优先考虑您的需求安排、提供您最想要的一切。</p>
+                    </section>
                 </div>
             </div>
-            <!-- 选择我们why -->
-            <div class="box-big why">
-
-                <h2>为什么选择我们</h2>
-                <!-- 子集弹性容器 -->
-
-                <ul class="box-w">
-                    <li class="box-son">
-                        <div class="box-icon">
-                            <div class="icon-1"></div>
-                        </div>
-                        <h3>品质保证</h3>
-                        <p>致力于提供出色的工作流程，就像对待我们自己的项目一样，将我们的创造力倾注到每一个细节中</p>
-
-                    </li>
-                    <li class="box-son">
-                        <div class="box-icon">
-                            <div class="icon-2"></div>
-                        </div>
-
-                        <h3>值得信赖</h3>
-                        <p>我们一直秉持诚信为本理念，做有意义、有价值、可持续的事，成就他人，充实自我</p>
-
-                    </li>
-                    <li class="box-son">
-                        <div class="box-icon">
-                            <div class="icon-3"></div>
-                        </div>
-                        <h3>技术成熟</h3>
-                        <p>我们的专业知识和经验使我们能够制作针对游戏动效、角色动画的各种需求</p>
-                    </li>
-                    <li class="box-son">
-                        <div class="box-icon">
-                            <div class="icon-4"></div>
-                        </div>
-
-                        <h3>性价比高</h3>
-                        <p>我们在保证项目品质同时价格实惠最优，对于每一个项目后续需求我们都有跟进迭代维护更新</p>
-
-                    </li>
-                </ul>
-
+            <!-- banner图底部icon -->
+            <div class="down">
+                <img src="./img/icon_rj.webp" alt="Spine动画制作工具图标">
             </div>
-            <!-- 我们能做什么what -->
-            <div class="box-big what" id="services">
-                <!-- 能做啥标题 -->
-                <h2>我们做什么</h2>
-                <!-- 能做啥小标题 -->
-                <div class="title-box">
-                    <h4>如果您的项目有任何动效制作需求，请随时联系我们，无论您的项目是大是小，我们乐于接受任何机会：D</h4>
+        </section>
+        <!-- banner下面内容主题内容！ -->
+        <section>
+            <!-- 以下为居中白色块区域内容 -->
+            <div id="object">
+                <!-- 大佬图 -->
+                <div class="box-big">
+                    <div class="box-dalao">
+                        <div class="img-dalao">
+                            <h3>让我们为您作品增添活力</h3>
+                            <p>小游戏、独立游戏开发团队、媒体动画等客户合作最佳选择</p>
+                            <a href="cases.html">了解更多</a>
+                        </div>
+                    </div>
                 </div>
-                <!-- 能做啥大弹性盒子 -->
-                <ul>
-                    <!-- 子弹性盒子 -->
-                    <li>
-                        <div class="icon-img icon-mf" aria-label="咨询图标"></div>
-                        <h3 class="service-item__title">免费咨询</h3>
-                        <p class="service-item__description">我们提供免费咨询，如果您对项目有疑问，请随时联系我们，我们将为您提供最专业的帮助。</p>
-                    </li>
-                    <li>
-                        <div class="icon-img icon-sz" aria-label="数字媒体"></div>
-                        <h3 class="service-item__title">数字媒体</h3>
-                        <p class="service-item__description">我们根据您的需求为游戏、应用程序、广告等进行艺术创作。</p>
-                    </li>
-                    <li>
-                        <div class="icon-img icon-an" aria-label="影视动漫"></div>
-                        <h3 class="service-item__title">影视动画</h3>
-                        <p class="service-item__description">无论是GIF、Banner、角色的动作或场景。</p>
-                    </li>
-                    <li>
-                        <div class="icon-img icon-pm" aria-label="平面设计"></div>
-                        <h3 class="service-item__title">平面设计</h3>
-                        <p class="service-item__description">网页设计、传单、小册子广告等平面美术设计，我们全都可以做。</p>
-                    </li>
-                    <li>
-                        <div class="icon-img icon-yc" aria-label="远程协作"></div>
-                        <h3 class="service-item__title">远程协作</h3>
-                        <p class="service-item__description">无论您离我们远近，我们都可以为您开展项目！我们尽可能多的与您沟通协作</p>
-                    </li>
-                    <li>
-                        <div class="icon-img icon-pz" aria-label="品质保证"></div>
-                        <h3 class="service-item__title">品质保证</h3>
-                        <p class="service-item__description">从初稿到过审，我们确保您在每一步都做到你满意的效果。</p>
-                    </li>
-                </ul>
+                <!-- 最新更新 -->
+                <div class="box-big">
+                    <h2>最近更新</h2>
+                    <!-- 纵列弹性容器 -->
+                    <div class="box-n">
+                        <!-- 纵列3个弹性盒子 -->
+                        <div class="box-s">
+                            <div class="card-v" data-src="./video/">
+                                <video autoplay loop muted playsinline loading="lazy">
+                                    <source src="./video/king.webm" type="video/webm">
+                                    <source src="./video/king.mp4" type="video/mp4">
+                                    您的浏览器不支持 video 标签。
+                                </video>
+                            </div>
+                            <h3>游戏动作</h3>
+                            <p>创作一段炫酷的动作，不仅需要专业的软件工具,更需要衔接工作流程,为您创建惊艳的动作,并将其整合到游戏当中，实现您最想要的效果。</p>
 
-            </div>
-            <!-- 客户案例 -->
-            <div class="box-big box-title" id="cases">
-                <h2 id="cases-title">精选案例</h2>
-                <hr>
-                <p>工作室成立以来有幸参与多个合作项目，从数百万的研发公司到小游戏工作室、独立开发团队及个人开发者。您可在下方了解我们在移动和桌面Steam游戏、教培互动故事讲述、影视制作、卡通等部分演示案例。
-                </p>
-            </div>
-            <!-- 神魔诀案例区块 -->
-            <div class="box-big black">
-                <h2>“ 神魔诀之江湖行 ”</h2>
-                <p>一款由个人独立制作的侠客风战旗角色扮演游戏，已在steam平台上线。<a href="https://store.steampowered.com/app/2838940/_/"
-                        target="_blank" style="color: rgb(0, 162, 255);">了解更多&gt;&gt;</a>
-                </p>
-                <!-- 大视频video -->
-                <div class="video-container">
-
-                    <iframe
-                        src="https://player.bilibili.com/player.html?isOutside=true&aid=114206519067788&bvid=BV1foXxY5END&cid=29013509219&p=1&autoplay=0"
-                        scrolling="no" border="0" frameborder="0" framespacing="0" allowfullscreen="true"
-                        allow="autoplay; fullscreen"></iframe>
+                            <div class="more"><a href="javascript:void(0)">了解更多 more &gt;&gt;</a></div>
+                        </div>
+                        <div class="box-s">
+                            <div class="card-v" data-src="./mmd/fx_fish.mp4">
+                                <video autoplay loop muted playsinline loading="lazy">
+                                    <source src="./video/fx_fish.webm" type="video/webm">
+                                    <source src="./video/fx_fish.mp4" type="video/mp4">
+                                    您的浏览器不支持 video 标签。
+                                </video>
+                            </div>
+                            <h3>交互动效</h3>
+                            <p>什么是动效？就是动画与特效，血与骨的关系。没有动画的特效没有生命，没有特效的动画没有灵魂。</p>
+                            <div class="more"><a href="javascript:void(0)">了解更多 more &gt;&gt;</a></div>
+                        </div>
+                        <div class="box-s">
+                            <div class="card-v" data-src="./video/npc_02.webm">
+                                <video autoplay loop muted playsinline loading="lazy">
+                                    <source src="./video/npc_02.webm" type="video/webm">
+                                    <source src="./video/npc_02.mp4" type="video/mp4">
+                                    您的浏览器不支持 video 标签。
+                                </video>
+                            </div>
+                            <h3>影视动画</h3>
+                            <p>对于每一个不同角色特点，精心塑造每一个角色动画细节，我们拥有丰富技能，因此我们实现多样效果。</p>
+                            <div class="more"><a href="javascript:void(0)">了解更多 more &gt;&gt;</a></div>
+                        </div>
+                    </div>
                 </div>
-                <!-- 小动图组 -->
-                <section class="box-big mov-items">
-                    <ul class="mov-list list-dog" id="other-video-list">
-                        <!-- 视频列表将由JS动态生成 -->
+                <!-- 选择我们why -->
+                <div class="box-big why">
+
+                    <h2>为什么选择我们</h2>
+                    <!-- 子集弹性容器 -->
+
+                    <ul class="box-w">
+                        <li class="box-son">
+                            <div class="box-icon">
+                                <div class="icon-1"></div>
+                            </div>
+                            <h3>品质保证</h3>
+                            <p>致力于提供出色的工作流程，就像对待我们自己的项目一样，将我们的创造力倾注到每一个细节中</p>
+
+                        </li>
+                        <li class="box-son">
+                            <div class="box-icon">
+                                <div class="icon-2"></div>
+                            </div>
+
+                            <h3>值得信赖</h3>
+                            <p>我们一直秉持诚信为本理念，做有意义、有价值、可持续的事，成就他人，充实自我</p>
+
+                        </li>
+                        <li class="box-son">
+                            <div class="box-icon">
+                                <div class="icon-3"></div>
+                            </div>
+                            <h3>技术成熟</h3>
+                            <p>我们的专业知识和经验使我们能够制作针对游戏动效、角色动画的各种需求</p>
+                        </li>
+                        <li class="box-son">
+                            <div class="box-icon">
+                                <div class="icon-4"></div>
+                            </div>
+
+                            <h3>性价比高</h3>
+                            <p>我们在保证项目品质同时价格实惠最优，对于每一个项目后续需求我们都有跟进迭代维护更新</p>
+
+                        </li>
                     </ul>
-                </section>
-            </div>
-            <!-- end链接 -->
-            <div class="box-big end">
-                <div class="more">
-                    <a href="cases.html" target="_blank" aria-label="查看我们过往完成的案例项目">更多示例项目→</a>
-                </div>
-            </div>
-            <!-- 模态框 -->
-            <div id="myModal" class="modal">
-                <span class="video-close" role="button" tabindex="0" aria-label="关闭视频">×</span>
-                <div class="modal-content" id="draggable-video-container">
-                    <div class="drag-overlay"></div> <!-- 添加拖拽覆盖层 -->
-                    <video id="modal-video" controls autoplay loop></video><!-- 添加 loop 属性 -->
-                </div>
-            </div>
 
-        </main>
-    </section>
-
-    <!-- 页尾 -->
-    <footer id="contact">
-        <div class="container">
-            <!-- 联系方式 -->
-            <div class="contact-info">
-                <div class="contact-item-left">
+                </div>
+                <!-- 我们能做什么what -->
+                <div class="box-big what" id="services">
+                    <!-- 能做啥标题 -->
+                    <h2>我们做什么</h2>
+                    <!-- 能做啥小标题 -->
+                    <div class="title-box">
+                        <h4>如果您的项目有任何动效制作需求，请随时联系我们，无论您的项目是大是小，我们乐于接受任何机会：D</h4>
+                    </div>
+                    <!-- 能做啥大弹性盒子 -->
                     <ul>
+                        <!-- 子弹性盒子 -->
                         <li>
-                            <span class="iconfont icon-qq"></span>
-                            <p>QQ:170469162</p>
+                            <div class="icon-img icon-mf" aria-label="咨询图标"></div>
+                            <h3 class="service-item__title">免费咨询</h3>
+                            <p class="service-item__description">我们提供免费咨询，如果您对项目有疑问，请随时联系我们，我们将为您提供最专业的帮助。</p>
                         </li>
                         <li>
-                            <span class="iconfont icon-weixin"></span>
-                            <p>微信:yaodasz</p>
+                            <div class="icon-img icon-sz" aria-label="数字媒体"></div>
+                            <h3 class="service-item__title">数字媒体</h3>
+                            <p class="service-item__description">我们根据您的需求为游戏、应用程序、广告等进行艺术创作。</p>
                         </li>
                         <li>
-                            <span class="iconfont icon-phone"></span>
-                            <p>电话:13814865715</p>
+                            <div class="icon-img icon-an" aria-label="影视动漫"></div>
+                            <h3 class="service-item__title">影视动画</h3>
+                            <p class="service-item__description">无论是GIF、Banner、角色的动作或场景。</p>
                         </li>
                         <li>
-                            <span class="iconfont icon-mail"></span>
-                            <p>邮箱:170469162@qq.com</p>
+                            <div class="icon-img icon-pm" aria-label="平面设计"></div>
+                            <h3 class="service-item__title">平面设计</h3>
+                            <p class="service-item__description">网页设计、传单、小册子广告等平面美术设计，我们全都可以做。</p>
+                        </li>
+                        <li>
+                            <div class="icon-img icon-yc" aria-label="远程协作"></div>
+                            <h3 class="service-item__title">远程协作</h3>
+                            <p class="service-item__description">无论您离我们远近，我们都可以为您开展项目！我们尽可能多的与您沟通协作</p>
+                        </li>
+                        <li>
+                            <div class="icon-img icon-pz" aria-label="品质保证"></div>
+                            <h3 class="service-item__title">品质保证</h3>
+                            <p class="service-item__description">从初稿到过审，我们确保您在每一步都做到你满意的效果。</p>
                         </li>
                     </ul>
+
                 </div>
-                <div class="contact-item-right">
-                    <img src="./img/weixin.webp" alt="微信二维码" class="wx-qrcode">
+
+                <!-- end链接 -->
+                <div class="box-big end">
+                    <div class="more">
+                        <a href="cases.html" target="_blank" aria-label="查看我们过往完成的案例项目">更多示例项目→</a>
+                    </div>
                 </div>
+
             </div>
-            <!-- 分割线 -->
-            <hr>
-            <!-- 版权 -->
-            <div class="bottom">
-                <p>版权所有：苏州工业园区雨文白告游戏动漫工作室</p>
-                <br>
-                <p>© 2025 测试网站。保留所有权利。</p>
-                <!-- <p>江ICP备：江ICP备17043432号-1</p> -->
-            </div>
-        </div>
+        </section>
+    </main>
+    <!-- 页尾 -->
+    <footer id="contact" role="contentinfo">
         <script type="application/ld+json">
             {
               "@context": "https://www.schema.org",
@@ -327,9 +265,17 @@
             }
         </script>
     </footer>
+    <!-- 模态框 -->
+    <div id="myModal" class="modal">
+        <span class="video-close" role="button" tabindex="0" aria-label="关闭视频">×</span>
+        <div class="modal-content" id="draggable-video-container">
+            <div class="drag-overlay"></div> <!-- 添加拖拽覆盖层 -->
+            <video id="modal-video" controls autoplay loop></video><!-- 添加 loop 属性 -->
+        </div>
+    </div>
 
     <!-- 侧边功能 -->
-    <div id="side-control">
+    <div id="side-control" role="complementary" aria-label="网站辅助功能">
         <!-- 主题切换 -->
         <button id="toggleButton">
             <span class="iconfont icon-sunny"></span>
@@ -352,9 +298,9 @@
     </div>
 
     <!-- javascript首页基本脚本  -->
+    <script src="./js/layout.js" defer></script>
     <script src="./js/com.js" defer></script>
     <script src="./js/video.js" defer></script><!-- 弹出视频通用模块.js -->
-    <script src="./js/data_home.js" defer></script>
     <script src="./js/light.js" defer></script>
 
 
