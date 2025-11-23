@@ -33,12 +33,6 @@
     --footer-bg: #333;
 }
 
-/* header,
-nav,
-.nav-links {
-    transform: none !important;
-} */
-
 * {
     box-sizing: border-box;
     padding: 0;
@@ -77,6 +71,7 @@ html {
     scroll-padding-top: 76px;
     scroll-behavior: smooth;
 }
+
 
 .container {
     max-width: 1200px;
@@ -516,7 +511,7 @@ section {
     max-width: 90vw;
     max-height: 90vh;
     /* 最大高度为可视窗口的96% */
-    overflow: visible;
+    overflow: hidden;
     z-index: var(--z-modal-content);
     transition: transform 0.4s ease-out;
     /* 加缓出动画，更顺滑 */
@@ -997,7 +992,4 @@ footer .bottom p {
         transform: translateX(0);
         opacity: 1;
     }
-
 }
-
-
