@@ -51,12 +51,14 @@
             mobileMenu.classList.remove('active');
             navLinks.classList.remove('open');
         }
+        navLinks.style.transition = 'transform 0.3s ease'; // 加关闭动画
+        navLinks.style.transform = 'translateX(100%)'; // 滑出效果
     }
     // 返回顶部
     const backTop = document.getElementById('backTop');
     window.addEventListener('scroll', () => {
         //当页面滚动超过一定距离时显示按钮
-        if (window.scrollY > 400) {
+        if (window.scrollY > 200) {
             backTop.classList.add('show');
         } else { backTop.classList.remove('show'); }
     })

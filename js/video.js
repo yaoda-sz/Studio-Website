@@ -1,4 +1,3 @@
-
 // 模态框全局变量 (确保其他函数可以访问它们)
 // ----------------------------------------------------
 const modal = document.getElementById("myModal");
@@ -16,27 +15,41 @@ function openVideo(index) {
     currentIndex = index;
     const data = currentItems[index].dataset;
 
-    modalVideo.innerHTML = '';
+    // 新增：淡出当前视频，掩盖加载空白
+    modalVideo.style.opacity = 0;
 
-    const src1 = document.createElement('source');
+    // 不清空 innerHTML，而是更新现有 source（假设总是两个 source）
+    let src1 = modalVideo.querySelector('source[type="video/webm"]');
+    let src2 = modalVideo.querySelector('source[type="video/mp4"]');
+
+    // 如果没有 source，先创建（只执行一次）
+    if (!src1 || !src2) {
+        src1 = document.createElement('source');
+        src1.type = 'video/webm';
+        src2 = document.createElement('source');
+        src2.type = 'video/mp4';
+        modalVideo.appendChild(src1);
+        modalVideo.appendChild(src2);
+    }
+
+    // 更新 src
     src1.src = data.webm;
-    src1.type = 'video/webm';
-
-    const src2 = document.createElement('source');
     src2.src = data.mp4;
-    src2.type = 'video/mp4';
 
-    modalVideo.appendChild(src1);
-    modalVideo.appendChild(src2);
+    // 加载新视频
+    modalVideo.load();
 
-    // --- 新增：每次打开视频时，强制重置位置和动画 ---
+    // 在视频数据加载完成后，淡入 + 播放
+    modalVideo.addEventListener('loadeddata', () => {
+        modalVideo.style.opacity = 1; // 淡入
+        modalVideo.play();
+    }, { once: true }); // 只监听一次
+
+    // 重置位置（从你的原代码）
     modalVideo.style.transform = 'translate(0px, 0px)';
     modalVideo.style.transition = 'none';
-    // -------------------------------------------
 
-    modalVideo.load();
-    modalVideo.play();
-
+    // 显示模态框（如果已显示，就保持）
     modal.style.display = "block";
     document.body.classList.add("no-scroll");
 }
@@ -119,7 +132,6 @@ function initializeVideoPlayer(videoData, listContainerId) {
 // ----------------------------------------------------
 (function () {
     if (!modal) return;
-
     // 关闭按钮和背景点击
     closeBtn.onclick = closeVideo;
     modal.onclick = (e) => { if (e.target === modal) closeVideo(); };
@@ -205,6 +217,84 @@ function initializeVideoPlayer(videoData, listContainerId) {
         moveX = 0;
         moveY = 0;
     });
+    // ----------------------------------------------------
+    // 新增：鼠标事件（PC 端拖拽切换）
+    let isDraggingMouse = false;
+    let startXMouse = 0, startYMouse = 0;
+    let moveXMouse = 0, moveYMouse = 0;
+
+    modal.addEventListener('mousedown', (e) => {
+        // 新变化：排除关闭按钮，但允许在整个模态框（包括周边空白）拖拽
+        if (e.target.closest('.video-close')) return; // 如果点击关闭按钮，不触发拖拽
+
+        // 允许在 modal、modalVideo、drag-overlay 等任何子元素上触发（扩展到周边）
+        isDraggingMouse = true;
+        startXMouse = e.clientX;
+        startYMouse = e.clientY;
+
+        // 拖动开始时，取消过渡动画，让视频紧跟鼠标
+        modalVideo.style.transition = 'none';
+
+        // 新增：加个“抓手”指针反馈（可选，通过 CSS 已实现）
+    }, { passive: true });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDraggingMouse) return;
+
+        const currentX = e.clientX;
+        const currentY = e.clientY;
+
+        moveXMouse = currentX - startXMouse;
+        moveYMouse = currentY - startYMouse;
+
+        // 判断主要移动方向，只在一个轴上移动（左右优先于上下）
+        if (Math.abs(moveXMouse) > Math.abs(moveYMouse)) {
+            // 水平移动（左右拖拽切换）
+            modalVideo.style.transform = `translate(${moveXMouse}px, 0)`;
+        } else {
+            // 垂直移动（上下拖拽切换）
+            modalVideo.style.transform = `translate(0, ${moveYMouse}px)`;
+        }
+    }, { passive: true });
+
+    document.addEventListener('mouseup', (e) => {
+        if (!isDraggingMouse) return;
+        isDraggingMouse = false;
+
+        // 恢复动画过渡
+        modalVideo.style.transition = 'transform 0.3s ease-out'; // 加 ease-out，更顺滑
+
+        // 判断水平滑动距离（左右拖拽）
+        if (Math.abs(moveXMouse) > threshold) {
+            const direction = moveXMouse > 0 ? -1 : 1; // 右拖（>0）: prev (-1), 左拖(<0): next (1)
+            finishSwipe(direction, 'x');
+        }
+        // 判断垂直滑动距离（上下拖拽）
+        else if (Math.abs(moveYMouse) > threshold) {
+            const direction = moveYMouse > 0 ? -1 : 1; // 下拖（>0）: prev (-1), 上拖(<0): next (1)
+            finishSwipe(direction, 'y');
+        }
+        else {
+            // 距离不够，回弹到原位
+            modalVideo.style.transform = 'translate(0px, 0px)';
+        }
+
+        // 重置移动距离
+        moveXMouse = 0;
+        moveYMouse = 0;
+    });
+
+    // finishSwipe 函数（保持不变，或微调动画时间）
+    function finishSwipe(direction, axis) {
+        const endX = axis === 'x' ? (direction === 1 ? -window.innerWidth : window.innerWidth) : 0;
+        const endY = axis === 'y' ? (direction === 1 ? -window.innerHeight : window.innerHeight) : 0;
+
+        modalVideo.style.transform = `translate(${endX}px, ${endY}px)`;
+
+        setTimeout(() => {
+            switchVideo(direction);
+        }, 200); // 缩短到200ms，让滑动更快连上新视频
+    }
 
     // 辅助函数：完成滑动动画并切换
     function finishSwipe(direction, axis) {
@@ -218,7 +308,7 @@ function initializeVideoPlayer(videoData, listContainerId) {
         setTimeout(() => {
             switchVideo(direction);
             // switchVideo 内部调用 openVideo，openVideo 里会重置位置为 (0,0)
-        }, 300);
+        }, 400);
     }
 
     // 左右切换按钮

@@ -52,6 +52,10 @@ body {
     overflow-x: hidden;
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
+    line-height: 1.6;
+    /* 行间距加大，阅读更舒适 */
+    font-size: 1rem;
+    /* 统一基础大小 */
 }
 
 body,
@@ -451,10 +455,6 @@ section {
     width: 100%;
 }
 
-
-
-
-
 .mov-v video {
     position: absolute;
     cursor: pointer;
@@ -465,8 +465,6 @@ section {
     height: auto;
 }
 
-
-
 .btn-more a {
     padding: 16px;
     border: 1px solid rgb(2, 175, 255);
@@ -474,6 +472,20 @@ section {
 }
 
 /* 模态框背景 */
+#myModal {
+    background-color: rgba(0, 0, 0, 0.8);
+    /* 加强半透明底，确保一直可见 */
+    transition: none;
+    /* 模态框本身不加过渡，避免整体闪烁 */
+    cursor: default;
+    /* 空白区默认指针，不像可拖 */
+}
+
+#myModal:active {
+    cursor: grabbing;
+    /* 按住时变紧握指针 */
+}
+
 .modal {
     display: none;
     /* 默认是隐藏的 */
@@ -489,7 +501,8 @@ section {
 
 /* 模态框内容 */
 .modal-content {
-    position: absolute;
+    position: relative;
+    /* 便于添加覆盖层 */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -499,16 +512,26 @@ section {
     /* 最大高度为可视窗口的96% */
     overflow: visible;
     z-index: var(--z-modal-content);
-    /* 移除描边 */
+    transition: transform 0.4s ease-out;
+    /* 加缓出动画，更顺滑 */
 
 }
 
+#draggable-video-container {
+    cursor: grab;
+    /* 默认抓手指针 */
+    user-select: none;
+    /* 防止选中文本干扰拖拽 */
+}
 
+#draggable-video-container:active {
+    cursor: grabbing;
+    /* 按下时变紧握 */
+}
 
 #modal-video {
     width: 100%;
     height: auto;
-
     max-height: 90vh;
     /* 限制最大高度，避免溢出 */
     object-fit: contain;
@@ -523,8 +546,11 @@ section {
     top: 20px;
     right: 30px;
     color: #f1f1f1;
-    font-size: 50px;
+    font-size: 40px;
+    /* 加大，便于手机点击 */
     font-weight: bold;
+    padding: 10px;
+    /* 加点击区 */
     cursor: pointer;
     z-index: 15;
 }
@@ -552,6 +578,7 @@ body.no-scroll {
     z-index: var(--z-modal);
     /* 确保覆盖层在视频之上 */
     background: transparent;
+    /* 透明，不影响视觉 */
     display: block;
     /* 默认显示 */
 }
@@ -653,8 +680,8 @@ footer .bottom p {
 #side-control {
     position: fixed;
     display: flex;
-    width: 44px;
-    min-height: 44px;
+    width: 40px;
+    min-height: 40px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -664,6 +691,8 @@ footer .bottom p {
     gap: 10px;
     z-index: var(--z-controls);
 }
+
+
 
 #backTop.show {
     transform: translateY(0);
@@ -685,9 +714,9 @@ footer .bottom p {
 /* 音乐播放器按钮 */
 
 #side-control .iconfont {
-    font-size: 1.6rem;
-    line-height: 44px;
-    transition: all 0.1s;
+    font-size: 1.4rem;
+    line-height: 40px;
+    /* transition: all 0.2s; */
     color: var(--button-text);
 }
 
@@ -699,8 +728,15 @@ footer .bottom p {
     display: block;
 }
 
-button {
+#side-control button {
     background-color: var(--button-bg);
+}
+
+#side-control button:hover {
+    transform: scale(1.1);
+    /*  hover 放大 */
+    transition: 0.2s;
+    /* 快速反馈 */
 }
 
 #playButton,
