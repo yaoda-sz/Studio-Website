@@ -309,6 +309,36 @@
     <script src="./js/com.js" defer></script>
     <script src="./js/video.js" defer></script><!-- 弹出视频通用模块.js -->
     <script src="./js/light.js" defer></script>
+    <script>
+        // 尝试播放所有视频的函数
+        function autoPlayVideos() {
+            var videos = document.querySelectorAll('video');
+            videos.forEach(function (video) {
+                // 确保视频是静音的
+                video.muted = true;
+                // 尝试播放
+                var playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(function (error) {
+                        console.log("Autoplay prevented: " + error);
+                    });
+                }
+            });
+        }
+
+        // 监听微信的 BridgeReady 事件
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            autoPlayVideos();
+        }, false);
+
+        // 兼容 iOS 微信，有时候需要监听 touchstart（用户触摸屏幕的一瞬间触发）
+        document.addEventListener('touchstart', function () {
+            autoPlayVideos();
+        }, { once: true }); // 仅执行一次，避免性能浪费
+
+        // 常规加载尝试
+        window.onload = autoPlayVideos;
+    </script>
 
 
 </body>
