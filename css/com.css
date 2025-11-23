@@ -33,11 +33,11 @@
     --footer-bg: #333;
 }
 
-header,
+/* header,
 nav,
 .nav-links {
     transform: none !important;
-}
+} */
 
 * {
     box-sizing: border-box;
@@ -999,4 +999,5 @@ footer .bottom p {
     }
 
 }
+
 
