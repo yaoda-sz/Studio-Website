@@ -152,6 +152,12 @@ h1 {
 }
 
 /* 导航链接 */
+header,
+nav,
+.nav-links {
+    transform: none !important;
+}
+
 .nav-links {
     display: flex;
     list-style: none;
@@ -991,4 +997,5 @@ footer .bottom p {
         transform: translateX(0);
         opacity: 1;
     }
+
 }
