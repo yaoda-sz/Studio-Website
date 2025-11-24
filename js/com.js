@@ -51,8 +51,8 @@
             mobileMenu.classList.remove('active');
             navLinks.classList.remove('open');
         }
-        navLinks.style.transition = 'transform 0.3s ease'; // 加关闭动画
-        navLinks.style.transform = 'translateX(100%)'; // 滑出效果
+        // navLinks.style.transition = 'transform 0.3s ease'; // 加关闭动画
+        // navLinks.style.transform = 'translateX(100%)'; // 滑出效果
     }
     // 返回顶部
     const backTop = document.getElementById('backTop');
