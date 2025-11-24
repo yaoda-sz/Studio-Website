@@ -72,7 +72,6 @@ html {
     scroll-behavior: smooth;
 }
 
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -353,7 +352,6 @@ h1 {
 }
 
 
-
 /* 页面主体样式 */
 section {
     width: 100%;
@@ -502,7 +500,7 @@ section {
 
 /* 模态框内容 */
 .modal-content {
-    position: relative;
+    position: absolute;
     /* 便于添加覆盖层 */
     top: 50%;
     left: 50%;
@@ -548,12 +546,11 @@ section {
     right: 30px;
     color: #f1f1f1;
     font-size: 40px;
-    /* 加大，便于手机点击 */
     font-weight: bold;
     padding: 10px;
     /* 加点击区 */
     cursor: pointer;
-    z-index: 15;
+    z-index: var(--z-modal);
 }
 
 body.no-scroll {
@@ -692,8 +689,6 @@ footer .bottom p {
     gap: 10px;
     z-index: var(--z-controls);
 }
-
-
 
 #backTop.show {
     transform: translateY(0);
@@ -992,4 +987,5 @@ footer .bottom p {
         transform: translateX(0);
         opacity: 1;
     }
+
 }
