@@ -125,7 +125,6 @@ function initializeVideoPlayer(videoData, listContainerId) {
     });
 }
 
-
 // js/video.js 底部
 // ----------------------------------------------------
 // 3. 全局事件绑定 (包含拖拽、回弹、切换逻辑)
@@ -296,25 +295,25 @@ function initializeVideoPlayer(videoData, listContainerId) {
         }, 200); // 缩短到200ms，让滑动更快连上新视频
     }
 
-    // 辅助函数：完成滑动动画并切换
-    function finishSwipe(direction, axis) {
-        // 1. 先让视频彻底滑出屏幕 (视觉反馈)
-        const endX = axis === 'x' ? (direction === 1 ? -window.innerWidth : window.innerWidth) : 0;
-        const endY = axis === 'y' ? (direction === 1 ? -window.innerHeight : window.innerHeight) : 0;
+    // // 辅助函数：完成滑动动画并切换
+    // function finishSwipe(direction, axis) {
+    //     // 1. 先让视频彻底滑出屏幕 (视觉反馈)
+    //     const endX = axis === 'x' ? (direction === 1 ? -window.innerWidth : window.innerWidth) : 0;
+    //     const endY = axis === 'y' ? (direction === 1 ? -window.innerHeight : window.innerHeight) : 0;
 
-        modalVideo.style.transform = `translate(${endX}px, ${endY}px)`;
+    //     modalVideo.style.transform = `translate(${endX}px, ${endY}px)`;
 
-        // 2. 等待 0.3秒 动画结束后，真正的切换视频
-        setTimeout(() => {
-            switchVideo(direction);
-            // switchVideo 内部调用 openVideo，openVideo 里会重置位置为 (0,0)
-        }, 400);
-    }
+    //     // 2. 等待 0.3秒 动画结束后，真正的切换视频
+    //     setTimeout(() => {
+    //         switchVideo(direction);
+    //         // switchVideo 内部调用 openVideo，openVideo 里会重置位置为 (0,0)
+    //     }, 400);
+    // }
 
-    // 左右切换按钮
-    const nextBtn = document.querySelector('#modal-next-btn');
-    const prevBtn = document.querySelector('#modal-prev-btn');
-    if (nextBtn) nextBtn.addEventListener('click', () => switchVideo(1));
-    if (prevBtn) prevBtn.addEventListener('click', () => switchVideo(-1));
+    // // 左右切换按钮
+    // const nextBtn = document.querySelector('#modal-next-btn');
+    // const prevBtn = document.querySelector('#modal-prev-btn');
+    // if (nextBtn) nextBtn.addEventListener('click', () => switchVideo(1));
+    // if (prevBtn) prevBtn.addEventListener('click', () => switchVideo(-1));
 
 })();
