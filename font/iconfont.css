@@ -1,8 +1,9 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 4847922 */
+  font-family: "iconfont";
+  /* Project id 4847922 */
   src: url('iconfont.woff2?t=1742146200157') format('woff2'),
-       url('iconfont.woff?t=1742146200157') format('woff'),
-       url('iconfont.ttf?t=1742146200157') format('truetype');
+    url('iconfont.woff?t=1742146200157') format('woff'),
+    url('iconfont.ttf?t=1742146200157') format('truetype');
 }
 
 .iconfont {
@@ -13,7 +14,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-dark:before {
+.icon-moon:before {
   content: "\e72f";
 }
 
@@ -88,4 +89,3 @@
 .icon-art:before {
   content: "\e619";
 }
-
