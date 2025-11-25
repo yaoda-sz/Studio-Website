@@ -40,3 +40,7 @@
     color: #000000;
     margin-bottom: 40px;
 }
+
+.box-big p a {
+    color: var(--link-color);
+}
