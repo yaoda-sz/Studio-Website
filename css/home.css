@@ -81,20 +81,18 @@
     object-fit: cover;
 }
 
-.box-s>.card-v video {
+.box-s>.card-v img {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     width: auto;
     height: 100%;
-    transition: all 0.5s;
-
+    transition: all 0.2s;
 }
 
-.box-s>.card-v video:hover {
+.box-s>.card-v img:hover {
     transform: translate(-50%, -50%) scale(1.1);
-    /* will-change: transform; */
     cursor: pointer;
 }
 

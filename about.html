@@ -30,17 +30,7 @@
     <link rel="stylesheet" href="./css/com.css">
     <link rel="stylesheet" href="./css/about.css">
     <link rel="stylesheet" href="./font/iconfont.css">
-    <script>
-        (function () {
-            const saved = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-            // 只有当明确设置了 'dark' 或系统偏好是 dark 且没有 saved 值时，才设置
-            if (saved === 'dark' || (!saved && prefersDark)) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        })();
-    </script>
 
 </head>
 

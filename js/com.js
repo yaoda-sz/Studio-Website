@@ -96,7 +96,6 @@
     });
 })();
 
-
 // 监听所有 class 为 video-lazy-load 元素的点击事件
 document.addEventListener('click', function (e) {
     // 检查点击的是不是我们的视频占位符（或者它的子元素）
