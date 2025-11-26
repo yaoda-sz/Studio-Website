@@ -37,7 +37,7 @@
             // 添加菜单动画
             navMenuItems.forEach((item, index) => {
                 item.style.animation = navLinks.classList.contains('open')
-                    ? `0.5s ease-in-out slideIn forwards ${index * 0.1 + 0.1}s`
+                    ? `0.3s ease-in-out slideIn forwards ${index * 0.1 + 0.1}s`
                     : '';
             });
         });

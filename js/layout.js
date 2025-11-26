@@ -46,7 +46,7 @@ const footerHTML = `
     <div class="bottom">
         <p>版权所有：苏州工业园区雨文白告游戏动漫工作室</p>
         <br>
-        <p>© 2025 测试网站。保留所有权利。</p>
+        <p>© 2025 yaoda.art | 作品展示测试网站，保留所有权利。</p>
     </div>
 </div>
 `;
@@ -62,15 +62,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (footerElem) footerElem.innerHTML = footerHTML;
 
     // 自动高亮当前页面的导航链接
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.pathname.toLowerCase();
     const navLinks = document.querySelectorAll('.nav-links a');
 
     navLinks.forEach(link => {
-        // 获取链接的 href 属性（例如 "./cases.html"）
-        const href = link.getAttribute('href').replace('./', '');
+        let href = link.getAttribute('href').toLowerCase();
+        // 处理相对路径：移除 './' 并标准化首页
+        href = href.replace('./', '');
+        const isHome = (href === 'index.html' || href === '') && (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath === '');
 
-        // 如果当前路径包含 href (处理 index.html 这种特殊情况)
-        if (currentPath.includes(href) || (href === 'index.html' && (currentPath.endsWith('/') || currentPath === '/'))) {
+        if (currentPath.endsWith('/' + href) || isHome) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');

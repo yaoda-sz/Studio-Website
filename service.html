@@ -30,17 +30,18 @@
     <link rel="stylesheet" href="./css/com.css">
     <link rel="stylesheet" href="./css/service.css">
     <link rel="stylesheet" href="./font/iconfont.css">
-    <!-- <script>
-        (function () {
-            const saved = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-            // 只有当明确设置了 'dark' 或系统偏好是 dark 且没有 saved 值时，才设置
-            if (saved === 'dark' || (!saved && prefersDark)) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        })();
-    </script> -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "苏州工业园区雨文白告游戏动漫工作室",
+            "url": "https://www.yaoda.art",
+            "contactPoint": [
+                { "@type": "ContactPoint", "telephone": "+86-13814865715", "contactType": "customer service" },
+                { "@type": "ContactPoint", "email": "170469162@qq.com", "contactType": "customer service" }
+            ]
+        }
+    </script>
 
 </head>
 
@@ -93,31 +94,23 @@
     <footer id="contact">
         <script type="application/ld+json">
             {
-              "@context": "https://www.schema.org",
-              "@type": "LocalBusiness",
-              "name": "雨文白告动漫设计工作室",
-              "url": "http://www.yourwebsite.com",
-              "contactPoint": [
-                {
-                  "@type": "ContactPoint",
-                  "telephone": "+8613814865715",
-                  "contactType": "customer service"
-                },
-                {
-                  "@type": "ContactPoint",
-                  "email": "170469162@qq.com",
-                  "contactType": "customer service"
-                }
-              ]
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "苏州工业园区雨文白告游戏动漫工作室",
+                "url": "https://www.yaoda.art",
+                "contactPoint": [
+                    { "@type": "ContactPoint", "telephone": "+86-13814865715", "contactType": "customer service" },
+                    { "@type": "ContactPoint", "email": "170469162@qq.com", "contactType": "customer service" }
+                ]
             }
         </script>
     </footer>
     <!-- 模态框 -->
     <div id="myModal" class="modal">
+        <div class="modal-backdrop"></div> <!-- 可选：防止穿透 -->
         <span class="video-close" role="button" tabindex="0" aria-label="关闭视频">×</span>
         <div class="modal-content" id="draggable-video-container">
-            <div class="drag-overlay"></div> <!-- 添加拖拽覆盖层 -->
-            <video id="modal-video" controls autoplay loop></video><!-- 添加 loop 属性 -->
+            <video id="modal-video" playsinline loop muted></video>
         </div>
     </div>
     <!-- 侧边功能 -->
