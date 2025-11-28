@@ -555,10 +555,6 @@ section {
     z-index: var(--z-modal);
 }
 
-body.no-scroll {
-    overflow: hidden;
-    /* 禁用页面滚动 */
-}
 
 .video-close:hover,
 .video-close:focus {
