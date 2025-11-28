@@ -27,6 +27,7 @@ const videoData = [
         label: "钓鱼女孩动画展示"
     },
     {
+        previewSrc: "https://attach.cgjoy.com/attachment/forum/202304/01/223014zbr42h0f44gciz2h.gif.webp",
         srcMp4: "./video/king.mp4",
         srcWebm: "./video/king.webm",
         label: "战斗角色动作展示"
@@ -139,6 +140,7 @@ const videoData = [
         label: "Q角色休闲动作展示"
     },
     {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2024/04/12/17/FsuJD-I1gbktTCkal-CE15YO8441.gif!artwork.square",
         srcMp4: "./video/mmd/mmd_q_08.mp4",
         srcWebm: "./video/mmd/mmd_q_08.webm",
         label: "Q角色休闲动作展示"
@@ -149,6 +151,7 @@ const videoData = [
         label: "Q角色休闲动作展示"
     },
     {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2024/04/12/17/FsuJD-I1gbktTCkal-CE15YO8441.gif!artwork.square",
         srcMp4: "./video/mmd/mmd_q_10.mp4",
         srcWebm: "./video/mmd/mmd_q_10.webm",
         label: "Q角色休闲动作展示"
@@ -174,6 +177,7 @@ const videoData = [
         label: "Q角色休闲动作展示"
     },
     {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2023/12/31/15/lsY8rsjbjHnO6_kxHpzd__hpu1mH.gif!artwork.square",
         srcMp4: "./video/mmd/mmd_q_15.mp4",
         srcWebm: "./video/mmd/mmd_q_15.webm",
         label: "Q角色休闲动作展示"
