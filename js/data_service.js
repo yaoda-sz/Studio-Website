@@ -102,6 +102,99 @@ const videoData = [
         srcWebm: "./video/mmd/mmd_role08.webm",
         label: "立绘角色待机呼吸动画展示"
     },
+    // 水狗
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/FtstOecfPnlQLD4oZDd7YBQmyeq1_2637.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_00.mp4",
+        srcWebm: "./video/dog/dog_hero_00.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/lj8HISR7OohPG6wJkuiqPKG2IgZW_1540.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_01.mp4",
+        srcWebm: "./video/dog/dog_hero_01.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/lijfVRSAOxo6cEzoM74c7TF1RdIB_1553.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_02.mp4",
+        srcWebm: "./video/dog/dog_hero_02.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/FrKebopzZ9fRf30k7n3fG1RAs1EQ_1547.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_03.mp4",
+        srcWebm: "./video/dog/dog_hero_03.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/Fgsg5ahEMI3gxqKxkmu0t9qmksxj_1545.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_04.mp4",
+        srcWebm: "./video/dog/dog_hero_04.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/Fj_5ESDfQsXSNHdd2AQQ0faIG7SI_1551.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_08.mp4",
+        srcWebm: "./video/dog/dog_hero_08.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/Fsw9SS7-131I8oOFW5WlkeLMW_zu_1538.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_09.mp4",
+        srcWebm: "./video/dog/dog_hero_09.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/ltW8tWJmJi3RxpNrjrzScIlGmbVh_1549.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_15.mp4",
+        srcWebm: "./video/dog/dog_hero_15.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/FmYR1FFbXOWa59T59gD6Wwtj40Bm_1543.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_06.mp4",
+        srcWebm: "./video/dog/dog_hero_06.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/Fhjesl80940ms2WCzBl7T5hiHiqZ_1534.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_13.mp4",
+        srcWebm: "./video/dog/dog_hero_13.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/Fj4UBdzlhjn9ybuWW8Ti5wkCQCLO_1542.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_16.mp4",
+        srcWebm: "./video/dog/dog_hero_16.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2025/12/02/03/FsQCKYZmcvYNmHEatgZkqcp1ugNq_1531.gif!artwork.square",
+        srcMp4: "./video/dog/dog_hero_07.mp4",
+        srcWebm: "./video/dog/dog_hero_07.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        srcMp4: "./video/dog/dog_hero_10.mp4",
+        srcWebm: "./video/dog/dog_hero_10.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        srcMp4: "./video/dog/dog_hero_05.mp4",
+        srcWebm: "./video/dog/dog_hero_05.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        srcMp4: "./video/dog/dog_hero_11.mp4",
+        srcWebm: "./video/dog/dog_hero_11.webm",
+        label: "神魔诀角色动作展示"
+    },
+    {
+        srcMp4: "./video/dog/dog_hero_14.mp4",
+        srcWebm: "./video/dog/dog_hero_14.webm",
+        label: "神魔诀角色动作展示"
+    },
     // 萌萌哒Q角色
     {
         previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2024/04/12/17/lmkYTWXtu8ugawrDHSB7I1YqVv-r.gif!artwork.square",
@@ -189,88 +282,6 @@ const videoData = [
         srcMp4: "./video/mmd/mmd_q_16.mp4",
         srcWebm: "./video/mmd/mmd_q_16.webm",
         label: "Q角色休闲动作展示"
-    },
-    // 水狗
-    {
-        srcMp4: "./video/dog/dog_hero_00.mp4",
-        srcWebm: "./video/dog/dog_hero_00.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_01.mp4",
-        srcWebm: "./video/dog/dog_hero_01.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_02.mp4",
-        srcWebm: "./video/dog/dog_hero_02.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_03.mp4",
-        srcWebm: "./video/dog/dog_hero_03.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_04.mp4",
-        srcWebm: "./video/dog/dog_hero_04.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_05.mp4",
-        srcWebm: "./video/dog/dog_hero_05.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_06.mp4",
-        srcWebm: "./video/dog/dog_hero_06.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_107.mp4",
-        srcWebm: "./video/dog/dog_hero_07.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_08.mp4",
-        srcWebm: "./video/dog/dog_hero_08.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_09.mp4",
-        srcWebm: "./video/dog/dog_hero_09.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_10.mp4",
-        srcWebm: "./video/dog/dog_hero_10.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_11.mp4",
-        srcWebm: "./video/dog/dog_hero_11.webm",
-        label: "神魔诀角色动作展示"
-    },
-
-    {
-        srcMp4: "./video/dog/dog_hero_13.mp4",
-        srcWebm: "./video/dog/dog_hero_13.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_14.mp4",
-        srcWebm: "./video/dog/dog_hero_14.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_15.mp4",
-        srcWebm: "./video/dog/dog_hero_15.webm",
-        label: "神魔诀角色动作展示"
-    },
-    {
-        srcMp4: "./video/dog/dog_hero_16.mp4",
-        srcWebm: "./video/dog/dog_hero_16.webm",
-        label: "神魔诀角色动作展示"
     },
     // 帧速率
     {
