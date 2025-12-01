@@ -104,14 +104,32 @@ const videoData = [
     },
     // 萌萌哒Q角色
     {
-        srcMp4: "./video/mmd/mmd_q_01.mp4",
-        srcWebm: "./video/mmd/mmd_q_01.webm",
-        label: "Q角色休闲动作展示"
-    },
-    {
         previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2024/04/12/17/lmkYTWXtu8ugawrDHSB7I1YqVv-r.gif!artwork.square",
         srcMp4: "./video/mmd/mmd_q_02.mp4",
         srcWebm: "./video/mmd/mmd_q_02.webm",
+        label: "Q角色休闲动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2024/04/12/17/FsuJD-I1gbktTCkal-CE15YO8441.gif!artwork.square",
+        srcMp4: "./video/mmd/mmd_q_08.mp4",
+        srcWebm: "./video/mmd/mmd_q_08.webm",
+        label: "Q角色休闲动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2023/12/31/15/lsY8rsjbjHnO6_kxHpzd__hpu1mH.gif!artwork.square",
+        srcMp4: "./video/mmd/mmd_q_15.mp4",
+        srcWebm: "./video/mmd/mmd_q_15.webm",
+        label: "Q角色休闲动作展示"
+    },
+    {
+        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2024/04/12/17/lvnrP75w4fTe_vaZdETh4JyxCW7l.gif!artwork.square",
+        srcMp4: "./video/mmd/mmd_q_10.mp4",
+        srcWebm: "./video/mmd/mmd_q_10.webm",
+        label: "Q角色休闲动作展示"
+    },
+    {
+        srcMp4: "./video/mmd/mmd_q_01.mp4",
+        srcWebm: "./video/mmd/mmd_q_01.webm",
         label: "Q角色休闲动作展示"
     },
     {
@@ -139,23 +157,13 @@ const videoData = [
         srcWebm: "./video/mmd/mmd_q_07.webm",
         label: "Q角色休闲动作展示"
     },
-    {
-        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2024/04/12/17/FsuJD-I1gbktTCkal-CE15YO8441.gif!artwork.square",
-        srcMp4: "./video/mmd/mmd_q_08.mp4",
-        srcWebm: "./video/mmd/mmd_q_08.webm",
-        label: "Q角色休闲动作展示"
-    },
+
     {
         srcMp4: "./video/mmd/mmd_q_09.mp4",
         srcWebm: "./video/mmd/mmd_q_09.webm",
         label: "Q角色休闲动作展示"
     },
-    {
-        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2024/04/12/17/FsuJD-I1gbktTCkal-CE15YO8441.gif!artwork.square",
-        srcMp4: "./video/mmd/mmd_q_10.mp4",
-        srcWebm: "./video/mmd/mmd_q_10.webm",
-        label: "Q角色休闲动作展示"
-    },
+
     {
         srcMp4: "./video/mmd/mmd_q_11.mp4",
         srcWebm: "./video/mmd/mmd_q_11.webm",
@@ -176,12 +184,7 @@ const videoData = [
         srcWebm: "./video/mmd/mmd_q_14.webm",
         label: "Q角色休闲动作展示"
     },
-    {
-        previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2023/12/31/15/lsY8rsjbjHnO6_kxHpzd__hpu1mH.gif!artwork.square",
-        srcMp4: "./video/mmd/mmd_q_15.mp4",
-        srcWebm: "./video/mmd/mmd_q_15.webm",
-        label: "Q角色休闲动作展示"
-    },
+
     {
         srcMp4: "./video/mmd/mmd_q_16.mp4",
         srcWebm: "./video/mmd/mmd_q_16.webm",
