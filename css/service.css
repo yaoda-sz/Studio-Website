@@ -14,20 +14,21 @@
 
 /* 1. 列表容器：使用网格布局 (Grid) */
 .mov-list {
-    display: grid;
-    /* 电脑版：一行显示 4 个 */
-    grid-template-columns: repeat(4, 1fr);
-    /* 格子之间的间距：20像素 */
-    gap: 20px;
+    width: 100%;
     padding: 0;
     margin: 0;
+    display: grid;
+    /* 电脑版：一行显示 4 个 */
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    /* 格子之间的间距：20像素 */
+    gap: 20px;
     list-style: none;
 }
 
 /* 2. 单个格子：强制 1:1 正方形 */
 .mov-v {
     position: relative;
-    width: 100%;
+
     /* 核心代码：强制宽高比为 1:1 */
     aspect-ratio: 1 / 1;
     border-radius: 8px;
@@ -36,7 +37,7 @@
     /* 超出格子的内容切掉 */
     background-color: #000;
     /* 背景黑底，防闪烁 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     /* 加一点阴影 */
     cursor: pointer;
     transition: transform 0.3s ease;

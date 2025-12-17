@@ -6,13 +6,13 @@ const headerHTML = `
     <div class="logo">
         <a href="./index.html">
             <img src="./img/logo.webp" alt="公司Logo">
-            <h1>雨文白告工作室</h1>
+            <h1>雨文白告游戏动漫</h1>
         </a>
     </div>
     <nav>
         <ul class="nav-links">
             <li><a href="./index.html">首页</a></li>
-            <li><a href="./cases.html">案例作品</a></li>
+            <li><a href="./cases.html">客户案例</a></li>
             <li><a href="./service.html">作品展示</a></li>
             <li><a href="./about.html">关于我们</a></li>
             <li><a href="./contact.html">联系我们</a></li>
@@ -46,7 +46,7 @@ const footerHTML = `
     <div class="bottom">
         <p>版权所有：苏州工业园区雨文白告游戏动漫工作室</p>
         <br>
-        <p>© 2025 yaoda.art | 作品展示测试网站，保留所有权利。</p>
+        <p>版权所有© 2025 yaoda.art 网站测试，保留所有权利。</p>
     </div>
 </div>
 `;

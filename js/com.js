@@ -1,12 +1,43 @@
 (function () {
     // 监听 layout.js 发出的加载完成事件
-    // window.addEventListener('layoutLoaded', init);
-    // 如果 layout.js 还没准备好，或者页面没有用 layout.js，保留 DOMContentLoaded 作为后备
     document.addEventListener('DOMContentLoaded', init);
+
+    // 添加页面加载动画
+    function addPageLoadAnimation() {
+        // 添加淡入动画
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            document.body.style.opacity = '1';
+        }, 100);
+
+        // 为所有带有 data-animate 属性的元素添加动画
+        const animateElements = document.querySelectorAll('[data-animate]');
+        animateElements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `all 0.5s ease-out ${index * 0.1}s`;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            observer.observe(el);
+        });
+    }
 
     function init() {
         initNavigation(); // 设置导航栏事件监听
         initMobileMenu(); // 设置移动端菜单
+        addPageLoadAnimation(); // 添加页面加载动画
+        initSmoothScroll(); // 初始化平滑滚动
+        initHoverEffects(); // 初始化悬停效果
     }
     // 设置导航栏事件监听
     function initNavigation() {
@@ -54,44 +85,109 @@
         // navLinks.style.transition = 'transform 0.3s ease'; // 加关闭动画
         // navLinks.style.transform = 'translateX(100%)'; // 滑出效果
     }
-    // 返回顶部
-    const backTop = document.getElementById('backTop');
-    window.addEventListener('scroll', () => {
-        //当页面滚动超过一定距离时显示按钮
-        if (window.scrollY > 200) {
-            backTop.classList.add('show');
-        } else { backTop.classList.remove('show'); }
-    })
-    //点击返回顶部
-    backTop.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+
+    // 初始化平滑滚动
+    function initSmoothScroll() {
+        // 为所有锚点链接添加平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // 减去导航栏高度
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-    });
+
+        // 返回顶部按钮
+        const backTop = document.getElementById('backTop');
+        if (backTop) {
+            window.addEventListener('scroll', () => {
+                // 当页面滚动超过一定距离时显示按钮
+                if (window.scrollY > 200) {
+                    backTop.classList.add('show');
+                } else {
+                    backTop.classList.remove('show');
+                }
+            });
+
+            // 点击返回顶部
+            backTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    }
+
+    // 初始化悬停效果
+    function initHoverEffects() {
+        // 为卡片添加悬停效果
+        document.querySelectorAll('.card, .card-v').forEach(card => {
+            card.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 10px 10px rgba(0,0,0,0.2)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+            });
+        });
+
+        // 为按钮添加波纹效果
+        document.querySelectorAll('button, .btn, a.btn').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 1000);
+            });
+        });
+    }
 })();
 
 // 背景音乐播放控制
 (function () {
     const audio = document.getElementById('backgroundMusic');
     const playButton = document.getElementById('playButton');
+
+    if (!audio || !playButton) return;
+
     const playIcon = playButton.querySelector('.icon-play');
     const stopIcon = playButton.querySelector('.icon-stop');
 
-
-    stopIcon.style.display = 'none';
-    playIcon.style.display = 'block';
+    if (stopIcon) stopIcon.style.display = 'none';
+    if (playIcon) playIcon.style.display = 'block';
 
     playButton.addEventListener('click', () => {
         if (audio.paused) {
-            audio.play();
-            playIcon.style.display = 'none';
-            stopIcon.style.display = 'block';
-
+            audio.play().catch(e => console.log('音频播放失败:', e));
+            if (playIcon) playIcon.style.display = 'none';
+            if (stopIcon) stopIcon.style.display = 'block';
         } else {
             audio.pause();
-            playIcon.style.display = 'block';
-            stopIcon.style.display = 'none';
+            if (playIcon) playIcon.style.display = 'block';
+            if (stopIcon) stopIcon.style.display = 'none';
         }
     });
 })();

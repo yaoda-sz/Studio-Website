@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="./css/com.css">
     <link rel="stylesheet" href="./css/cases.css">
     <link rel="stylesheet" href="./font/iconfont.css">
+    <link rel="stylesheet" href="https://unpkg.com/@esotericsoftware/spine-player@4.1.*/dist/spine-player.css">
 
 
 </head>
@@ -57,14 +58,16 @@
     </div>
     <section>
         <!-- 以下为居中白色块区域内容 -->
+
         <div id="object">
             <!-- 客户案例 -->
             <div class="box-big box-title" id="cases">
                 <h2 id="cases-title">客户案例</h2>
                 <hr>
-                <p>工作室成立以来有幸参与多个合作项目，从数百万的研发公司到小游戏工作室、独立开发团队及个人开发者。您可在下方了解我们在移动和桌面Steam游戏、教培互动故事讲述、影视制作、卡通等部分演示案例。
+                <p>工作室成立以来有幸参与多个合作项目，我们的合作伙伴涵盖数百万级的专业研发公司、新锐小游戏工作室及独立开发者。项目触达移动端、Steam 平台及教培互动等多个领域。
                 </p>
             </div>
+            <div id="player-container" style="width: 640px; height: 480px;"></div>
             <!-- 波粒狂潮案例区块 -->
             <div class="box-big black">
                 <h2>《波粒狂潮Infinity Boli》</h2>
@@ -196,6 +199,14 @@
     </div>
 
     <!-- javascript首页基本脚本  -->
+    <script>
+        new spine.SpinePlayer("player-container", {
+            skeleton: "/assets/animation/spineboy.json",
+            atlas: "/assets/animation/spineboy.atlas",
+        });
+    </script>
+
+    <script src="https://unpkg.com/@esotericsoftware/spine-player@4.1.*/dist/iife/spine-player.js"></script>
     <script src="./js/layout.js" defer></script>
     <script src="./js/com.js" defer></script>
     <script src="./js/video.js" defer></script>

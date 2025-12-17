@@ -80,7 +80,7 @@
 
 
 
-.yaoda .right-me .card {
+.yaoda .right-me .card-me {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -89,7 +89,7 @@
     padding: 20px 0;
 }
 
-.yaoda .card ul {
+.yaoda .card-me ul {
     display: flex;
     flex-direction: column;
     max-width: 220px;
@@ -99,14 +99,14 @@
 }
 
 
-.yaoda .card ul li {
+.yaoda .card-me ul li {
     list-style: none;
     display: flex;
     align-items: center;
     margin: 5px 0;
 }
 
-.yaoda .card ul li p {
+.yaoda .card-me ul li p {
     color: rgb(150, 140, 255);
     line-height: 30px;
 }
