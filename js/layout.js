@@ -6,7 +6,7 @@ const headerHTML = `
     <div class="logo">
         <a href="./index.html">
             <img src="./img/logo.webp" alt="公司Logo">
-            <h1>雨文白告游戏动漫</h1>
+            <h1>雨文白告工作室</h1>
         </a>
     </div>
     <nav>
@@ -83,4 +83,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // 建议直接把 com.js 里的 setupNavigation 和 setupMobileMenu 逻辑整合或者确保在 layout 插入后再执行。
     // 临时的简单办法：触发一个自定义事件告诉 com.js 内容加载完了
     window.dispatchEvent(new Event('layoutLoaded'));
+
 });
