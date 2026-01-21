@@ -65,15 +65,15 @@
             <div class="container img-b">
                 <div class="tip-r">
                     <section class="right-sm">
-                        <h2 id="banner-title">我们在 Sp<span>i</span>ne 中制作动画</h2>
-                        <p>释放 2D 骨骼动画的无限潜能 深耕 Spine 动画多年，我们擅长通过高效的骨骼绑定与权重优化，为各类项目提供流畅、生动的 2D
-                            动画解决方案。我们不仅关注视觉表现，更注重动画在不同引擎环境下的性能表现与逻辑适配，确保每一帧都为产品增色。</p>
+                        <h2 id="banner-title">我们用 Sp<span>i</span>ne 制作动画</h2>
+                        <p>我们深谙 Spine 核心技术，致力于为每一项需求提供高性能、高表现力的 2D 动画方案。从动态构建到性能调优，我们确保动画在提升视觉品质的同时，完美适配各类引擎要求。</p>
                     </section>
                 </div>
             </div>
             <!-- banner图底部icon -->
             <div class="down">
-                <img src="./img/icon_rj.webp" alt="Spine动画制作工具图标">
+                <img src="./img/icon_rj.webp" srcset="./img/icon_rj.webp 1x, ./img/icon_rj@2x.webp 2x"
+                    alt="Spine专业2D动画制作软件图标" loading="lazy" decoding="async">
             </div>
         </section>
         <!-- banner下面内容主题内容！ -->
@@ -84,8 +84,8 @@
                 <div class="box-big">
                     <div class="box-dalao">
                         <div class="img-dalao">
-                            <h3>赋予视觉新生，让作品更具张力</h3>
-                            <p>专注于为小游戏与独立游戏提供量身定制的动效方案。如果您正在寻找可靠的设计伙伴，我们已准备好为您创造惊喜。</p>
+                            <h3>为创意注入灵动张力</h3>
+                            <p>独立开发者与中小型团队的专业级美术合作伙伴。 点击下方，开启惊喜。</p>
                             <a href="cases.html">了解更多</a>
                         </div>
                     </div>
@@ -97,29 +97,42 @@
                     <div class="box-n">
                         <!-- 纵列3个弹性盒子 -->
                         <div class="box-s">
-                            <div class="card-v" data-src="./video/king.mp4" data-poster="./video/king.jpg">
-                                <img src="./video/king.webp" alt="游戏动作演示视频封面图片" loading="lazy">
+                            <div class="card-v" data-src="./video/king.mp4" data-poster="./video/king.jpg" role="button"
+                                tabindex="0" aria-label="播放游戏动作演示视频"
+                                onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"
+                                style="cursor: pointer;">
+                                <img src="./video/king.webp" srcset="./video/king.webp 1x, ./video/king@2x.webp 2x"
+                                    alt="游戏角色战斗动作演示 - 展示流畅的攻击和技能动画" loading="lazy" width="320" height="180">
                             </div>
                             <h3>游戏动作</h3>
-                            <p>极致打击与流畅体验 我们深知动作是游戏的灵魂。不仅精通专业动画工具，更深度整合引擎工作流。从设计到落地，为您打造兼具视觉张力与操作手感的顶级游戏动作。</p>
-                            <div class="more"><a href="./service.html">了解更多 more &gt;&gt;</a></div>
+                            <p>深度打磨动作张力与打击感，提供从 Spine 制作到引擎整合的全流程支持。</p>
+                            <div class="more"><a href="./service.html">了解更多 LEARN MORE &gt;&gt;</a></div>
                         </div>
                         <div class="box-s">
                             <div class="card-v" data-src="./mmd/fx_hualingchi.mp4"
-                                data-poster="./video/fx_hualingchi.jpg">
-                                <img src="./video/fx_hualingchi.webp" alt="场景特效演示视频封面图片" loading="lazy">
+                                data-poster="./video/fx_hualingchi.jpg" role="button" tabindex="0"
+                                aria-label="播放交互动效演示视频"
+                                onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"
+                                style="cursor: pointer;">
+                                <img src="./video/fx_hualingchi.webp"
+                                    srcset="./video/fx_hualingchi.webp 1x, ./video/fx_hualingchi@2x.webp 2x"
+                                    alt="华丽场景特效展示 - 包含火焰、光影等视觉特效" loading="lazy" width="320" height="180">
                             </div>
                             <h3>交互动效</h3>
-                            <p>动效不仅是特效，更是呼吸。 探索血与骨的共生关系，用灵动的节奏感赋能交互。通过细腻的动态反馈与粒子光影，提升产品的沉浸感，让每一次点击都成为享受。</p>
-                            <div class="more"><a href="./service.html">了解更多 more &gt;&gt;</a></div>
+                            <p>赋予视觉灵魂，用细腻的动态反馈连接用户与产品。</p>
+                            <div class="more"><a href="./service.html">了解更多 LEARN MORE &gt;&gt;</a></div>
                         </div>
                         <div class="box-s">
-                            <div class="card-v" data-src="./video/king.mp4" data-poster="./video/king.jpg">
-                                <img src="./video/npc_02.webp" alt="游戏动作演示视频封面图片" loading="lazy">
+                            <div class="card-v" data-src="./video/king.mp4" data-poster="./video/king.jpg" role="button"
+                                tabindex="0" aria-label="播放影视动画演示视频"
+                                onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"
+                                style="cursor: pointer;">
+                                <img src="./video/npc_02.webp" alt="游戏NPC角色动画展示 - 展示生动的角色表情和动作" loading="lazy"
+                                    width="320" height="180">
                             </div>
                             <h3>影视动画</h3>
-                            <p>为您定制独一无二的表演 每一个角色都值得被精心对待。利用我们丰富的动画经验，针对不同角色特点进行定制化塑造，满足您对多样化风格的需求。</p>
-                            <div class="more"><a href="./service.html">了解更多 more &gt;&gt;</a></div>
+                            <p>精于角色表演细节，为不同性格的角色注入独特生命力。</p>
+                            <div class="more"><a href="./service.html">了解更多 LEARN MORE &gt;&gt;</a></div>
                         </div>
                     </div>
                 </div>
@@ -134,8 +147,8 @@
                             <div class="box-icon">
                                 <div class="icon-1"></div>
                             </div>
-                            <h3>品质保证</h3>
-                            <p>不止于完成，更追求完美。我们将每一个委托视为打造标杆案例的机会，以严苛的品控标准，确保交付物在视觉与性能上均达到最优。</p>
+                            <h3>卓越品质</h3>
+                            <p>严苛控制工作流细节，严苛的品控标准，确保交付物在视觉与性能上均达到最优。</p>
 
                         </li>
                         <li class="box-son">
@@ -143,24 +156,24 @@
                                 <div class="icon-2"></div>
                             </div>
 
-                            <h3>值得信赖</h3>
-                            <p>我们信奉“成就客户即成就自己”。拒绝一锤子买卖，以透明的沟通和契约精神，做您最坚实可靠的外部美术合伙人。</p>
+                            <h3>信赖承诺</h3>
+                            <p>真诚沟通，拒绝套路，做您项目最可靠、坚实的长期成长的坚实后盾。</p>
 
                         </li>
                         <li class="box-son">
                             <div class="box-icon">
                                 <div class="icon-3"></div>
                             </div>
-                            <h3>技术成熟</h3>
-                            <p>并不是每一家工作室都懂引擎。我们深耕游戏动效与角色动画领域，通过成熟的工业化流程与技术储备，精准解决各类复杂的制作需求。</p>
+                            <h3>技术积淀</h3>
+                            <p>深耕 Spine、Unity 等核心工具，精准攻克各类交接复杂技术难题。</p>
                         </li>
                         <li class="box-son">
                             <div class="box-icon">
                                 <div class="icon-4"></div>
                             </div>
 
-                            <h3>超值服务</h3>
-                            <p>在预算与品质之间寻找最佳平衡点。提供极具竞争力的报价方案，并承诺完善的售后维护，让您的每一分投入都转化为肉眼可见的产品力。</p>
+                            <h3>价值共生</h3>
+                            <p>提供极具竞争力的价格方案与完善的售后支持，助力项目价值最大化。</p>
 
                         </li>
                     </ul>
@@ -179,13 +192,13 @@
                         <!-- 子弹性盒子 -->
                         <li>
                             <div class="icon-img icon-mf" aria-label="咨询图标"></div>
-                            <h3 class="service-item__title">免费咨询</h3>
-                            <p class="service-item__description">您的想法，我们来听。如果您正处于创意萌芽期，欢迎随时交流，我们将用专业经验为您拨开云雾。</p>
+                            <h3 class="service-item__title">专业咨询</h3>
+                            <p class="service-item__description">免费提供项目前期技术评估，让您的创意有据可依。</p>
                         </li>
                         <li>
                             <div class="icon-img icon-sz" aria-label="数字媒体"></div>
-                            <h3 class="service-item__title">数字媒体</h3>
-                            <p class="service-item__description">为数字产品注入艺术灵魂。我们根据您的项目特质，量身打造跨平台的沉浸式数字视觉体验。</p>
+                            <h3 class="service-item__title">全案定制</h3>
+                            <p class="service-item__description">涵盖数字媒体、影视动画及 UI 设计的全方位美术支持。</p>
                         </li>
                         <li>
                             <div class="icon-img icon-an" aria-label="影视动漫"></div>
@@ -199,8 +212,8 @@
                         </li>
                         <li>
                             <div class="icon-img icon-yc" aria-label="远程协作"></div>
-                            <h3 class="service-item__title">远程协作</h3>
-                            <p class="service-item__description">距离不是创意的阻碍。我们拥有成熟的远程交付体系，实时同步进度，让沟通与协作近在咫尺。</p>
+                            <h3 class="service-item__title">高效协作</h3>
+                            <p class="service-item__description">成熟的远程办公体系，确保进度实时同步，沟通无缝衔接。</p>
                         </li>
                         <li>
                             <div class="icon-img icon-pz" aria-label="品质保证"></div>
@@ -214,6 +227,8 @@
                 <!-- end链接 -->
                 <div class="box-big end">
                     <div class="more">
+                        <p>为您的创意注入灵动生命 —— 独立开发者与中小型团队的专业级美术合作伙伴，我们已准备好为您创造惊喜。</p>
+                        <br>
                         <a href="cases.html" target="_blank" aria-label="查看我们过往完成的案例项目">更多示例项目→</a>
                     </div>
                 </div>
