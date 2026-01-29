@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的Spine作品集</title>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/spine-player.css"> -->
+    <!-- <link rel="stylesheet" href="css/spine-player.css"> -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            min-height: 100vh;
+            /* overflow: auto; */
+        }
+
+        #ninja {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            /* min-height: 100vh; */
+            max-width: 1400px;
+            height: auto;
+            margin: 0 auto;
+            padding-bottom: 60px;
+        }
+
+        /* 外层容器：1400x600 */
+        #display-container {
+            width: 100vw;
+            /* max-width: 1400px; */
+            /* aspect-ratio: calc(16 / 5); */
+            height: 600px;
+            /* background-color: #585858; */
+            position: relative;
+            overflow: hidden;
+            /* 关键：超出此框的内容（左右）将被隐藏 */
+            /* border: 2px solid #444; */
+            /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 内部淡紫色装饰块：700x300 */
+        #sky-bg {
+            /* top: 19%;
+            left: 20%;
+            width: 60%;
+            height: 68%; */
+            width: 100%;
+            max-width: 1400px;
+            height: 70%;
+            background-image: url(/img/ninja_bg.webp);
+            background-size: cover;
+            background-position: center center;
+            border-radius: 20px;
+            position: absolute;
+            z-index: 0;
+            /* 位于底层 */
+            pointer-events: none;
+            /* 鼠标事件穿透，不影响角色抓取 */
+        }
+
+        #display-container canvas {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            /* 角色位于装饰块上方 */
+        }
+
+        /*响应适配*/
+        @media (max-width: 768px) {
+            #display-container {
+                width: 100%;
+                height: 60vh;
+                max-height: 400px;
+                margin: 0 auto;
+            }
+
+            #sky-bg {
+                width: 80%;
+                height: 70%;
+                max-width: 400px;
+                max-height: 200px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            #display-container {
+                width: 100vw;
+                height: 60vh;
+                max-height: 300px;
+            }
+
+            #sky-bg {
+                width: 70%;
+                height: 60%;
+                max-width: 300px;
+                max-height: 150px;
+            }
+        }
+
+        @media (max-height: 600px) {
+            #display-container {
+                height: 80vh;
+                max-height: 500px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="ninja">
+            <!-- girl展示区（鼠标跟随交互） -->
+            <div id="display-container">
+                <div id="sky-bg"></div>
+                <h5
+                    style="font-size: 18px; position: absolute; bottom: 10px; width: 100%; text-align: center; color: white; z-index: 2;">
+                    点住四处拖拽她！</h5>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+
+    </footer>
+    <!-- <script src="pixi.mini.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@latest/dist/pixi.min.js"></script>
+    <!-- <script src="spine-pixi-v8.js"></script> -->
+    <script src="https://unpkg.com/@esotericsoftware/spine-pixi-v8@4.2.*/dist/iife/spine-pixi-v8.js"></script>
+    <!-- 上面两个先后顺序很重要 -->
+    <script src="js/ninja.js"></script>
+</body>
+
+</html>

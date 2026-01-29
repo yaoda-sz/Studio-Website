@@ -140,6 +140,7 @@
 
     girl.state.setAnimation(0, "swing", true); // 播放默认待机动画
     girl.state.setAnimation(1, "eyeblink-long", true); // 播放眨眼动画（叠加在track 1上）
+
     app.stage.addChild(girl);
 
     // 执行初始计算并将角色放入舞台中心

@@ -9,7 +9,7 @@
     <meta name="author" content="雨文白告工作室">
     <meta name="robots" content="index, follow"> <!-- 添加robots meta标签 -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://i0.hdslb.com https://www.mihuashi.com https://image-assets.mihuashi.com https://attach.cgjoy.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com; object-src 'none';">
+        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i0.hdslb.com https://www.mihuashi.com https://image-assets.mihuashi.com https://attach.cgjoy.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' blob: https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com; object-src 'none';">
 
     <title>雨文白告游戏动漫工作室 - 专业、实惠的游戏与动漫制作！</title>
 
@@ -33,22 +33,6 @@
     <link rel="stylesheet" href="./css/com.css">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./font/iconfont.css">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "雨文白告游戏动漫工作室",
-        "url": "https://www.yaoda.art",
-        "logo": "https://www.yaoda.art/img/logo.webp",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+86-13814865715",
-            "contactType": "Customer Service",
-            "email": "170469162@qq.com"
-        }
-    }
-    </script>
-
 
 </head>
 
@@ -57,7 +41,7 @@
     <header>
     </header>
     <!-- 主体内容 -->
-    <main id="main">
+    <main>
         <!-- 首页banner广告 -->
         <section id="bannerTop">
         </section>
@@ -65,15 +49,14 @@
             <div class="container img-b">
                 <div class="tip-r">
                     <section class="right-sm">
-                        <h2 id="banner-title">专注 Sp<span>i</span>ne 动效制作</h2>
+                        <h2 id="banner-title">专注Sp<span>i</span>ne 动画制作</h2>
                         <p>深耕 Spine 核心技术，提供高性能、高表现力的 2D 动画解决方案。兼顾视觉品质与性能优化，精准满足各类引擎与项目需求。</p>
                     </section>
                 </div>
             </div>
             <!-- banner图底部icon -->
             <div class="down">
-                <img src="./img/icon_rj.webp"
-                    alt="Spine专业2D动画制作软件图标" loading="lazy" decoding="async">
+                <img src="./img/icon_rj.webp" alt="Spine专业2D动画制作软件图标" loading="lazy" decoding="async">
             </div>
         </section>
         <!-- banner下面内容主题内容！ -->
@@ -98,9 +81,7 @@
                         <!-- 纵列3个弹性盒子 -->
                         <div class="box-s">
                             <div class="card-v" data-src="./video/king.mp4" data-poster="./video/king.jpg" role="button"
-                                tabindex="0" aria-label="播放游戏动作演示视频"
-                                onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"
-                                style="cursor: pointer;">
+                                tabindex="0" aria-label="播放游戏动作演示视频">
                                 <img src="./video/king.webp" alt="游戏角色战斗动作演示 - 展示流畅的攻击和技能动画" loading="lazy" width="320"
                                     height="180">
                             </div>
@@ -111,9 +92,7 @@
                         <div class="box-s">
                             <div class="card-v" data-src="./mmd/fx_hualingchi.mp4"
                                 data-poster="./video/fx_hualingchi.jpg" role="button" tabindex="0"
-                                aria-label="播放交互动效演示视频"
-                                onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"
-                                style="cursor: pointer;">
+                                aria-label="播放交互动效演示视频">
                                 <img src="./video/fx_hualingchi.webp" alt="华丽场景特效展示 - 包含火焰、光影等视觉特效" loading="lazy"
                                     width="320" height="180">
                             </div>
@@ -123,9 +102,7 @@
                         </div>
                         <div class="box-s">
                             <div class="card-v" data-src="./video/king.mp4" data-poster="./video/king.jpg" role="button"
-                                tabindex="0" aria-label="播放影视动画演示视频"
-                                onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"
-                                style="cursor: pointer;">
+                                tabindex="0" aria-label="播放影视动画演示视频">
                                 <img src="./video/npc_02.webp" alt="游戏NPC角色动画展示 - 展示生动的角色表情和动作" loading="lazy"
                                     width="320" height="180">
                             </div>
@@ -269,25 +246,6 @@
 
     <!-- 侧边功能 -->
     <div id="side-control" role="complementary" aria-label="网站辅助功能">
-        <!-- 主题切换 -->
-        <button id="toggleButton">
-            <span class="iconfont icon-sunny"></span>
-            <!-- <span class="iconfont icon-moon"></span> -->
-        </button>
-        <!-- 音乐播放 -->
-        <audio id="backgroundMusic" loop>
-            <source src="./music/eyes on fire.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-            <br>您的浏览器不支持音频元素。
-        </audio>
-        <button id="playButton">
-            <span class="iconfont icon-play"></span>
-            <span class="iconfont icon-stop"></span>
-        </button>
-        <!-- 回到顶部按钮 -->
-        <button id="backTop">
-            <span class="iconfont icon-back"></span>
-        </button>
     </div>
 
     <!-- javascript首页基本脚本  -->
@@ -295,40 +253,7 @@
     <script src="./js/com.js" defer></script>
     <script src="./js/video.js" defer></script><!-- 弹出视频通用模块.js -->
     <script src="./js/light.js" defer></script>
-    <script>
-        // 尝试播放所有视频的函数
-        function autoPlayVideos() {
-            var videos = document.querySelectorAll('video');
-            videos.forEach(function (video) {
-                // 确保视频是静音的
-                video.muted = true;
-                // 尝试播放
-                var playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(function (error) {
-                        console.log("Autoplay prevented: " + error);
-                    });
-                }
-            });
-        }
-
-        // 监听微信的 BridgeReady 事件
-        document.addEventListener("WeixinJSBridgeReady", function () {
-            autoPlayVideos();
-        }, false);
-
-        // 兼容 iOS 微信，有时候需要监听 touchstart（用户触摸屏幕的一瞬间触发）
-        document.addEventListener('touchstart', function () {
-            autoPlayVideos();
-        }, { once: true }); // 仅执行一次，避免性能浪费
-
-        // 常规加载尝试
-        window.onload = autoPlayVideos;
-    </script>
-
 
 </body>
 
-
 </html>
-

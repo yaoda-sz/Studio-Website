@@ -507,15 +507,18 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* 保持宽度，但确保不挡住空白区域 */
-    max-width: 90vw;
-    max-height: 90vh;
-    /* 最大高度为可视窗口的96% */
-    overflow: hidden;
+    /* 自适应尺寸，确保内容完整显示 */
+    max-width: 95vw;
+    max-height: 95vh;
+    /* 移除 overflow: hidden，允许内容完整显示 */
     z-index: var(--z-modal-content);
     transition: transform 0.4s ease-out;
     /* 加缓出动画，更顺滑 */
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    /* 添加黑色背景，避免透明区域 */
 }
 
 #draggable-video-container {
@@ -755,6 +758,20 @@ footer .bottom p {
     transition: all 0.3s ease-in-out;
 }
 
+/* 播放按钮图标样式 */
+#playButton .iconfont {
+    font-size: 20px;
+    color: var(--button-text);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#playButton .icon-stop {
+    display: none;
+}
+
 #backTop {
     bottom: 20px;
     transform: translateY(70px);
@@ -871,7 +888,7 @@ footer .bottom p {
 }
 
 /* 当页面窗口屏幕尺寸适配小于576px-767px 情况下执行样式 */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .modal-content {
         width: 80vw;
         /* 手机端宽度接近视口边缘 */
@@ -895,7 +912,7 @@ footer .bottom p {
 }
 
 /* 当页面窗口屏幕尺寸适配小于576px情况下执行样式 */
-@media (max-width: 575px) {
+@media (max-width: 576px) {
     .banner {
         display: flex;
         background-size: auto;

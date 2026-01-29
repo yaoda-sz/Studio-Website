@@ -46,12 +46,30 @@ const footerHTML = `
     <div class="bottom">
         <p>版权所有：苏州工业园区雨文白告游戏动漫工作室</p>
         <br>
-        <p>版权所有© 2025 yaoda.art 网站测试，保留所有权利。</p>
+        <p>版权所有 2025 yaoda.art 网站测试，保留所有权利。</p>
     </div>
 </div>
 `;
 
-// 3. 自动插入到页面并高亮当前导航
+// 3. 定义侧边功能 HTML
+const sideControlHTML = `
+<!-- 主题切换 -->
+<button id="toggleButton">
+    <span class="iconfont icon-sunny"></span>
+    <!-- <span class="iconfont icon-dark"></span> -->
+</button>
+<!-- 音乐播放 -->
+<button id="playButton">
+    <span class="iconfont icon-play"></span>
+    <span class="iconfont icon-stop"></span>
+</button>
+<!-- 回到顶部按钮 -->
+<button id="backTop">
+    <span class="iconfont icon-back"></span>
+</button>
+`;
+
+// 4. 自动插入到页面并高亮当前导航
 document.addEventListener("DOMContentLoaded", () => {
     // 插入 Header
     const headerElem = document.querySelector('header');
@@ -60,6 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // 插入 Footer
     const footerElem = document.querySelector('footer');
     if (footerElem) footerElem.innerHTML = footerHTML;
+
+    // 插入侧边功能
+    const sideControlElem = document.querySelector('#side-control');
+    if (sideControlElem) sideControlElem.innerHTML = sideControlHTML;
 
     // 自动高亮当前页面的导航链接
     const currentPath = window.location.pathname.toLowerCase();
@@ -83,5 +105,4 @@ document.addEventListener("DOMContentLoaded", () => {
     // 建议直接把 com.js 里的 setupNavigation 和 setupMobileMenu 逻辑整合或者确保在 layout 插入后再执行。
     // 临时的简单办法：触发一个自定义事件告诉 com.js 内容加载完了
     window.dispatchEvent(new Event('layoutLoaded'));
-
 });

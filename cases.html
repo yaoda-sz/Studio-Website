@@ -9,7 +9,7 @@
     <meta name="author" content="雨文白告工作室">
     <meta name="robots" content="index, follow"> <!-- 添加robots meta标签 -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://i0.hdslb.com https://www.mihuashi.com https://image-assets.mihuashi.com https://attach.cgjoy.com; font-src 'self'; connect-src 'self' https://api.bilibili.com; media-src 'self' https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com; object-src 'none';">
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i0.hdslb.com https://www.mihuashi.com https://image-assets.mihuashi.com https://attach.cgjoy.com; font-src 'self'; connect-src 'self' https://api.bilibili.com https://unpkg.com; media-src 'self' blob: https://*.bilivideo.com; frame-src 'self' https://player.bilibili.com https://www.bilibili.com; object-src 'none';">
 
     <title>雨文白告游戏动漫工作室 - 客户案例！</title>
 
@@ -44,8 +44,8 @@
         <div class="container img-b">
             <div class="tip-r">
                 <section class="right-sm">
-                    <h2 id="banner-title">我们用 Sp<span>i</span>ne 制作动画</h2>
-                    <p>我们深谙 Spine 核心技术，致力于为每一项需求提供高性能、高表现力的 2D 动画方案。从动态构建到性能调优，我们确保动画在提升视觉品质的同时，完美适配各类引擎要求。</p>
+                    <h2 id="banner-title">专注Sp<span>i</span>ne 动画制作</h2>
+                    <p>深耕 Spine 核心技术，提供高性能、高表现力的 2D 动画解决方案。兼顾视觉品质与性能优化，精准满足各类引擎与项目需求。</p>
                 </section>
             </div>
         </div>
@@ -54,7 +54,7 @@
             <img src="./img/icon_rj.webp" alt="Spine动画制作工具图标">
         </div>
     </div>
-    <section>
+    <main>
         <!-- 以下为居中白色块区域内容 -->
 
         <div id="object">
@@ -66,7 +66,7 @@
                     平台及教培互动等多个领域，以下是我们的部分实战沉淀。
                 </p>
             </div>
-            <div id="player-container" style="width: 640px; height: 480px;"></div>
+            <!-- <div id="player-container" style="width: 640px; height: 480px;"></div> -->
             <!-- 波粒狂潮案例区块 -->
             <div class="box-big black">
                 <h2>《波粒狂潮Infinity Boli》</h2>
@@ -142,7 +142,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </main>
     <!-- 页尾 -->
     <footer id="contact">
         <script type="application/ld+json">
@@ -176,36 +176,9 @@
     </div>
     <!-- 侧边功能 -->
     <div id="side-control" role="complementary" aria-label="网站辅助功能">
-        <!-- 主题切换 -->
-        <button id="toggleButton">
-            <span class="iconfont icon-sunny"></span>
-            <!-- <span class="iconfont icon-dark"></span> -->
-        </button>
-        <!-- 音乐播放 -->
-        <audio id="backgroundMusic" loop>
-            <source src="./music/eyes on fire.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-            <br>您的浏览器不支持音频元素。
-        </audio>
-        <button id="playButton">
-            <span class="iconfont icon-play"></span>
-            <span class="iconfont icon-stop"></span>
-        </button>
-        <!-- 回到顶部按钮 -->
-        <button id="backTop">
-            <span class="iconfont icon-back"></span>
-        </button>
     </div>
 
     <!-- javascript首页基本脚本  -->
-    <script>
-        new spine.SpinePlayer("player-container", {
-            skeleton: "/assets/animation/spineboy.json",
-            atlas: "/assets/animation/spineboy.atlas",
-        });
-    </script>
-
-    <script src="https://unpkg.com/@esotericsoftware/spine-player@4.1.*/dist/iife/spine-player.js"></script>
     <script src="./js/layout.js" defer></script>
     <script src="./js/com.js" defer></script>
     <script src="./js/video.js" defer></script>

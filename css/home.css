@@ -75,7 +75,8 @@
     position: relative;
     overflow: hidden;
     width: 80%;
-    /* aspect-ratio: 3/4; */
+    margin: 0 auto;
+    cursor: pointer;
     padding-top: 110%;
     border-radius: 20px;
     object-fit: cover;
@@ -266,7 +267,7 @@ li .box-icon .icon-4 {
     margin: 20px 0 10px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .img-dalao h3 {
         font-size: 1.6rem;
 
@@ -293,7 +294,7 @@ li .box-icon .icon-4 {
     }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 576px) {
     .img-dalao h3 {
         font-size: 1.6rem;
     }

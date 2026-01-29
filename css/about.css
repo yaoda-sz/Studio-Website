@@ -144,7 +144,7 @@
     line-height: 2rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     #object .yaoda .box-me {
         display: flex;
         flex-wrap: wrap;
@@ -169,7 +169,7 @@
     }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 576px) {
     .about-title {
         display: flex;
         flex-direction: column;

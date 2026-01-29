@@ -82,8 +82,6 @@
             mobileMenu.classList.remove('active');
             navLinks.classList.remove('open');
         }
-        // navLinks.style.transition = 'transform 0.3s ease'; // 加关闭动画
-        // navLinks.style.transform = 'translateX(100%)'; // 滑出效果
     }
 
     // 初始化平滑滚动
@@ -168,39 +166,214 @@
 
 // 背景音乐播放控制
 (function () {
-    const audio = document.getElementById('backgroundMusic');
-    const playButton = document.getElementById('playButton');
+    let audio, playButton, playIcon, stopIcon;
 
-    if (!audio || !playButton) return;
+    function initMusicPlayer() {
+        playButton = document.getElementById('playButton');
 
-    const playIcon = playButton.querySelector('.icon-play');
-    const stopIcon = playButton.querySelector('.icon-stop');
+        if (!playButton) {
+            return;
+        }
 
-    if (stopIcon) stopIcon.style.display = 'none';
-    if (playIcon) playIcon.style.display = 'block';
+        playIcon = playButton.querySelector('.icon-play');
+        stopIcon = playButton.querySelector('.icon-stop');
 
-    playButton.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play().catch(e => console.log('音频播放失败:', e));
-            if (playIcon) playIcon.style.display = 'none';
-            if (stopIcon) stopIcon.style.display = 'block';
-        } else {
-            audio.pause();
+        // 恢复播放状态
+        const savedState = localStorage.getItem('musicState');
+        const savedTime = localStorage.getItem('musicTime');
+
+        // 设置初始状态 - 智能恢复
+        if (savedState === 'playing') {
             if (playIcon) playIcon.style.display = 'block';
             if (stopIcon) stopIcon.style.display = 'none';
+
+            // 延迟检查用户是否主动交互
+            setTimeout(() => {
+                const currentState = localStorage.getItem('musicState');
+                if (currentState === 'playing' && !audio) {
+                    // 模拟用户点击来触发播放
+                    playButton.click();
+                }
+            }, 2000);
+        } else {
+            if (stopIcon) stopIcon.style.display = 'none';
+            if (playIcon) playIcon.style.display = 'block';
         }
-    });
+
+        // 简单的点击事件
+        playButton.addEventListener('click', async () => {
+            // 首次点击时创建音频元素
+            if (!audio) {
+                audio = document.createElement('audio');
+                audio.id = 'backgroundMusic';
+                audio.loop = true;
+
+                try {
+                    // 使用fetch获取音频文件并创建Blob URL
+                    const response = await fetch('./music/eyes on fire.mp3');
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const blob = await response.blob();
+                    const audioUrl = URL.createObjectURL(blob);
+
+                    audio.src = audioUrl;
+
+                    // 添加到DOM（但不显示）
+                    document.body.appendChild(audio);
+
+                    // 等待音频加载完成
+                    audio.addEventListener('loadeddata', () => {
+                        // 设置保存的播放时间
+                        const savedTime = localStorage.getItem('musicTime');
+                        if (savedTime) {
+                            audio.currentTime = parseFloat(savedTime);
+                        }
+
+                        // 添加其他事件监听器
+                        audio.addEventListener('timeupdate', () => {
+                            if (!audio.paused) {
+                                localStorage.setItem('musicTime', audio.currentTime.toString());
+                            }
+                        });
+
+                        audio.addEventListener('ended', () => {
+                            localStorage.setItem('musicState', 'paused');
+                            localStorage.setItem('musicTime', '0');
+                            if (playIcon) playIcon.style.display = 'block';
+                            if (stopIcon) stopIcon.style.display = 'none';
+                        });
+
+                        // 尝试播放
+                        audio.play().then(() => {
+                            localStorage.setItem('musicState', 'playing');
+                            if (playIcon) playIcon.style.display = 'none';
+                            if (stopIcon) stopIcon.style.display = 'block';
+                        }).catch(e => {
+                            localStorage.setItem('musicState', 'paused');
+                        });
+                    });
+
+                    audio.addEventListener('error', (e) => {
+                        localStorage.setItem('musicState', 'paused');
+                    });
+
+                } catch (error) {
+                    // 降级到直接设置src
+                    audio.src = './music/eyes on fire.mp3';
+                    document.body.appendChild(audio);
+
+                    audio.addEventListener('loadeddata', () => {
+                        audio.play().then(() => {
+                            localStorage.setItem('musicState', 'playing');
+                            if (playIcon) playIcon.style.display = 'none';
+                            if (stopIcon) stopIcon.style.display = 'block';
+                        }).catch(e => {
+                            localStorage.setItem('musicState', 'paused');
+                        });
+                    });
+                }
+            } else {
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        localStorage.setItem('musicState', 'playing');
+                        if (playIcon) playIcon.style.display = 'none';
+                        if (stopIcon) stopIcon.style.display = 'block';
+                    }).catch(e => {
+                        localStorage.setItem('musicState', 'paused');
+                    });
+                } else {
+                    audio.pause();
+                    localStorage.setItem('musicState', 'paused');
+                    if (playIcon) playIcon.style.display = 'block';
+                    if (stopIcon) stopIcon.style.display = 'none';
+                }
+            }
+        });
+    }
+
+    // 监听layout.js发出的加载完成事件
+    document.addEventListener('layoutLoaded', initMusicPlayer);
+
+    // 也监听DOMContentLoaded，以防万一
+    document.addEventListener('DOMContentLoaded', initMusicPlayer);
 })();
 
 // 监听所有 class 为 video-lazy-load 元素的点击事件
+// 全局变量跟踪当前播放的B站视频
+let currentBilibiliIframes = new Set(); // 使用Set存储所有播放中的B站视频
+
+// 停止所有B站视频并恢复封面的函数
+function stopAllBilibiliVideos() {
+    console.log('🎬 开始停止所有B站视频，当前跟踪数量:', currentBilibiliIframes.size);
+
+    const allBilibiliIframes = document.querySelectorAll('iframe[src*="player.bilibili.com"]');
+    console.log('🔍 页面中找到', allBilibiliIframes.length, '个B站iframe');
+
+    allBilibiliIframes.forEach((iframe, index) => {
+        const videoLazyLoad = iframe.parentElement;
+        if (videoLazyLoad) {
+            const bvid = videoLazyLoad.dataset.bvid;
+            const cid = videoLazyLoad.dataset.cid;
+            console.log(`📹 恢复视频封面 ${index + 1}: ${bvid}`);
+
+            if (bvid && cid) {
+                // 根据不同的bvid恢复对应的封面
+                let coverSrc = './img/bolikuanhu_cover.webp'; // 默认封面
+                let altText = '视频封面';
+
+                if (bvid === 'BV1Mfbzz7E8P') {
+                    coverSrc = './img/bolikuanhu_cover.webp';
+                    altText = '波粒狂潮视频封面';
+                } else if (bvid === 'BV1foXxY5END') {
+                    coverSrc = './img/shenmojue.jpg';
+                    altText = '神魔诀视频封面';
+                } else if (bvid === 'BV11L9BYREaB') {
+                    coverSrc = './img/bigbird.jpg';
+                    altText = '魔法玩具树屋视频封面';
+                } else if (bvid === 'BV1bEatzdEUh') {
+                    coverSrc = './img/yingyufei.jpg';
+                    altText = '银与绯视频封面';
+                }
+
+                videoLazyLoad.innerHTML = `
+                    <img src="${coverSrc}" alt="${altText}" class="video-poster">
+                    <div class="play-icon">
+                        <span class="iconfont icon-play"></span>
+                    </div>
+                `;
+                videoLazyLoad.classList.add('video-lazy-load');
+                console.log(`✅ 已恢复封面: ${altText}`);
+            }
+        }
+    });
+    currentBilibiliIframes.clear();
+    console.log('🧹 已清空跟踪列表');
+}
+
 document.addEventListener('click', function (e) {
     // 检查点击的是不是我们的视频占位符（或者它的子元素）
     const container = e.target.closest('.video-lazy-load');
 
     if (container) {
+        console.log('🎯 点击了视频容器:', container.dataset.bvid);
+
+        // 1. 停止所有其他播放中的视频
+        stopAllBilibiliVideos();
+
+        // 2. 暂停模态框视频（如果正在播放）
+        const modalVideo = document.getElementById('modal-video');
+        if (modalVideo && !modalVideo.paused) {
+            modalVideo.pause();
+            console.log('⏸️ 已暂停模态框视频');
+        }
+
         // 获取 HTML 标签里存的 I  
         const bvid = container.dataset.bvid;
         const cid = container.dataset.cid;
+        console.log('🚀 开始播放:', bvid);
 
         const iframe = document.createElement('iframe');
         // 注意：autoplay=1 让视频加载出来后自动播放
@@ -220,8 +393,70 @@ document.addEventListener('click', function (e) {
         container.innerHTML = '';
         container.appendChild(iframe);
 
+        // 将新播放的视频添加到跟踪列表
+        currentBilibiliIframes.add(iframe);
+        console.log('📝 已添加到跟踪列表，当前数量:', currentBilibiliIframes.size);
+
         // 移除点击事件类名，变成普通容器（可选）
         container.classList.remove('video-lazy-load');
-
     }
 });
+
+// 监听滚动事件，检查视频是否滑出视口
+function checkVideoVisibility() {
+    currentBilibiliIframes.forEach(iframe => {
+        const rect = iframe.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+        console.log(`🔍 检查视频可见性: top=${rect.top}, bottom=${rect.bottom}, 可见=${isVisible}`);
+
+        // 如果视频滑出视口超过一半，停止它
+        if (!isVisible || rect.top > window.innerHeight / 2 || rect.bottom < window.innerHeight / 2) {
+            console.log('📺 视频滑出视口，准备停止');
+            const videoLazyLoad = iframe.parentElement;
+            if (videoLazyLoad) {
+                const bvid = videoLazyLoad.dataset.bvid;
+                const cid = videoLazyLoad.dataset.cid;
+                console.log(`🛑 滚动停止视频: ${bvid}`);
+
+                if (bvid && cid) {
+                    // 根据不同的bvid恢复对应的封面
+                    let coverSrc = './img/bolikuanhu_cover.webp'; // 默认封面
+                    let altText = '视频封面';
+
+                    if (bvid === 'BV1Mfbzz7E8P') {
+                        coverSrc = './img/bolikuanhu_cover.webp';
+                        altText = '波粒狂潮视频封面';
+                    } else if (bvid === 'BV1foXxY5END') {
+                        coverSrc = './img/shenmojue.jpg';
+                        altText = '神魔诀视频封面';
+                    } else if (bvid === 'BV11L9BYREaB') {
+                        coverSrc = './img/bigbird.jpg';
+                        altText = '魔法玩具树屋视频封面';
+                    } else if (bvid === 'BV1bEatzdEUh') {
+                        coverSrc = './img/yingyufei.jpg';
+                        altText = '银与绯视频封面';
+                    }
+
+                    videoLazyLoad.innerHTML = `
+                        <img src="${coverSrc}" alt="${altText}" class="video-poster">
+                        <div class="play-icon">
+                            <span class="iconfont icon-play"></span>
+                        </div>
+                    `;
+                    videoLazyLoad.classList.add('video-lazy-load');
+                    console.log(`✅ 已恢复封面: ${altText}`);
+                }
+            }
+            currentBilibiliIframes.delete(iframe);
+            console.log('🗑️ 已从跟踪列表移除，剩余数量:', currentBilibiliIframes.size);
+        }
+    });
+}
+
+// 添加滚动事件监听器，使用节流优化性能
+let scrollTimeout;
+window.addEventListener('scroll', function () {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(checkVideoVisibility, 150);
+}, { passive: true });

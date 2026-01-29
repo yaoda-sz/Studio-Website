@@ -15,50 +15,142 @@ function openVideo(index) {
     currentIndex = index;
     const data = currentItems[index].dataset;
 
+    // 停止所有B站视频并恢复封面
+    const bilibiliIframes = document.querySelectorAll('iframe[src*="player.bilibili.com"]');
+    bilibiliIframes.forEach(iframe => {
+        const videoLazyLoad = iframe.parentElement;
+        if (videoLazyLoad) {
+            const bvid = videoLazyLoad.dataset.bvid;
+            const cid = videoLazyLoad.dataset.cid;
+            if (bvid && cid) {
+                // 根据不同的bvid恢复对应的封面
+                let coverSrc = './img/bolikuanhu_cover.webp'; // 默认封面
+                let altText = '视频封面';
+
+                if (bvid === 'BV1Mfbzz7E8P') {
+                    coverSrc = './img/bolikuanhu_cover.webp';
+                    altText = '波粒狂潮视频封面';
+                } else if (bvid === 'BV1foXxY5END') {
+                    coverSrc = './img/shenmojue.jpg';
+                    altText = '神魔诀视频封面';
+                } else if (bvid === 'BV11L9BYREaB') {
+                    coverSrc = './img/bigbird.jpg';
+                    altText = '魔法玩具树屋视频封面';
+                } else if (bvid === 'BV1bEatzdEUh') {
+                    coverSrc = './img/yingyufei.jpg';
+                    altText = '银与绯视频封面';
+                }
+
+                videoLazyLoad.innerHTML = `
+                    <img src="${coverSrc}" alt="${altText}" class="video-poster">
+                    <div class="play-icon">
+                        <span class="iconfont icon-play"></span>
+                    </div>
+                `;
+                videoLazyLoad.classList.add('video-lazy-load');
+            }
+        }
+    });
+
     // 新增：淡出当前视频，掩盖加载空白
     modalVideo.style.opacity = 0;
 
-    // 不清空 innerHTML，而是更新现有 source（假设总是两个 source）
-    let src1 = modalVideo.querySelector('source[type="video/webm"]');
-    let src2 = modalVideo.querySelector('source[type="video/mp4"]');
+    // 检查是否使用在线视频链接
+    if (data.videoUrl) {
+        // 直接使用 img 标签显示 WebP 动图
+        console.log('🖼️ 显示动图:', data.label);
 
-    // 如果没有 source，先创建（只执行一次）
-    if (!src1 || !src2) {
-        src1 = document.createElement('source');
-        src1.type = 'video/webm';
-        src2 = document.createElement('source');
-        src2.type = 'video/mp4';
-        modalVideo.appendChild(src1);
-        modalVideo.appendChild(src2);
+        // 隐藏 video 元素
+        modalVideo.style.display = 'none';
+
+        // 清理之前可能存在的 img 元素
+        const modalContent = modalVideo.parentNode;
+        const existingImg = modalContent.querySelector('img');
+        if (existingImg) {
+            existingImg.remove();
+        }
+
+        // 创建新的 img 元素
+        const img = document.createElement('img');
+        img.src = data.videoUrl;
+        img.style.maxWidth = '95vw';
+        img.style.maxHeight = '95vh';
+        img.style.width = 'auto';
+        img.style.height = 'auto';
+        img.style.objectFit = 'contain';
+        img.alt = data.label;
+        modalVideo.parentNode.appendChild(img);
+
+        // 直接显示，不需要加载等待
+        modalVideo.style.opacity = 1;
+    } else {
+        // 使用传统的 MP4/WebM 格式（向后兼容）
+        // 清除之前的src属性
+        modalVideo.src = '';
+
+        // 显示 video 元素
+        modalVideo.style.display = 'block';
+
+        let src1 = modalVideo.querySelector('source[type="video/webm"]');
+        let src2 = modalVideo.querySelector('source[type="video/mp4"]');
+
+        // 如果没有 source，先创建（只执行一次）
+        if (!src1 || !src2) {
+            src1 = document.createElement('source');
+            src1.type = 'video/webm';
+            src2 = document.createElement('source');
+            src2.type = 'video/mp4';
+            modalVideo.appendChild(src1);
+            modalVideo.appendChild(src2);
+        }
+
+        src1.src = data.srcWebm;
+        src2.src = data.srcMp4;
+        console.log('🎬 播放视频:', data.label);
+
+        // 加载新视频
+        modalVideo.load();
+
+        // 添加错误处理
+        modalVideo.addEventListener('error', (e) => {
+            console.error('❌ 视频加载失败:', data.label);
+        }, { once: true });
+
+        // 在视频数据加载完成后，淡入 + 播放
+        modalVideo.addEventListener('loadeddata', () => {
+            modalVideo.style.opacity = 1; // 淡入
+            modalVideo.play().catch(e => console.error('❌ 视频播放失败:', e));
+        }, { once: true });
     }
-
-    // 更新 src
-    src1.src = data.webm;
-    src2.src = data.mp4;
-
-    // 加载新视频
-    modalVideo.load();
-
-    // 在视频数据加载完成后，淡入 + 播放
-    modalVideo.addEventListener('loadeddata', () => {
-        modalVideo.style.opacity = 1; // 淡入
-        modalVideo.play();
-    }, { once: true }); // 只监听一次
-
-    // 重置位置（从你的原代码）
-    modalVideo.style.transform = 'translate(0px, 0px)';
-    modalVideo.style.transition = 'none';
-
     // 显示模态框（如果已显示，就保持）
     modal.style.display = "block";
     document.body.classList.add("no-scroll");
+
+    // 重置 modal-content 位置
+    const modalContent = document.querySelector('.modal-content');
+    if (modalContent) {
+        // 重置为居中位置
+        modalContent.style.transform = 'translate(-50%, -50%)';
+        modalContent.style.transition = 'none';
+    }
 }
 
 function closeVideo() {
     modal.style.display = "none";
     document.body.classList.remove("no-scroll");
     modalVideo.pause();
-    modalVideo.innerHTML = ''; // 清空资源释放内存
+
+    // 清理动态创建的img元素
+    const modalContent = modalVideo.parentNode;
+    const existingImg = modalContent.querySelector('img');
+    if (existingImg) {
+        existingImg.remove();
+    }
+
+    // 重置video元素
+    modalVideo.innerHTML = '';
+    modalVideo.src = '';
+    modalVideo.style.display = 'block';
 }
 
 function switchVideo(direction) {
@@ -73,7 +165,10 @@ function switchVideo(direction) {
 
 function initializeVideoPlayer(videoData, listContainerId) {
     const videoList = document.getElementById(listContainerId);
-    if (!videoList) return;
+    if (!videoList) {
+        console.error('❌ 找不到视频列表容器:', listContainerId);
+        return;
+    }
 
     // ... (DocumentFragment 的代码保持不变，用于渲染列表) ...
     // 注意：把视频列表 li 元素的生成代码放进来
@@ -82,8 +177,9 @@ function initializeVideoPlayer(videoData, listContainerId) {
     videoData.forEach((data, index) => {
         const li = document.createElement("li");
         li.className = "mov-v";
-        li.dataset.webm = data.srcWebm;
-        li.dataset.mp4 = data.srcMp4;
+        li.dataset.webm = data.srcWebm || '';
+        li.dataset.mp4 = data.srcMp4 || '';
+        li.dataset.videoUrl = data.videoUrl || ''; // 添加新的 videoUrl 字段
         li.dataset.index = index;
 
         let contentHTML = '';
@@ -153,7 +249,7 @@ function initializeVideoPlayer(videoData, listContainerId) {
     // 1. 触摸开始
     modal.addEventListener('touchstart', (e) => {
         // 【核心修改】允许点击：视频本身、模态框背景、或者透明覆盖层(.drag-overlay)
-        // 只要不是点击了关闭按钮，都允许尝试拖动
+        // 只要不是点击了关闭按钮，都允许尝试拖拽
         if (e.target.closest('.video-close')) return;
 
         // 如果你想保留严格判断，也可以写成：
@@ -164,7 +260,11 @@ function initializeVideoPlayer(videoData, listContainerId) {
         startY = e.touches[0].clientY;
 
         // 拖动开始时，取消过渡动画，让视频紧跟手指
-        modalVideo.style.transition = 'none';
+        // 使用 modal-content 而不是 modalVideo，因为 video 可能被隐藏
+        const modalContent = document.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.style.transition = 'none';
+        }
     }, { passive: true });
 
     // 2. 触摸移动 (视频跟随)
@@ -179,11 +279,17 @@ function initializeVideoPlayer(videoData, listContainerId) {
 
         // 判断主要移动方向，只在一个轴上移动 (体验更好)
         if (Math.abs(moveX) > Math.abs(moveY)) {
-            // 水平移动
-            modalVideo.style.transform = `translate(${moveX}px, 0)`;
+            // 水平移动 - 保持原有的居中偏移
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.transform = `translate(calc(-50% + ${moveX}px), -50%)`;
+            }
         } else {
-            // 垂直移动
-            modalVideo.style.transform = `translate(0, ${moveY}px)`;
+            // 垂直移动 - 保持原有的居中偏移
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.transform = `translate(-50%, calc(-50% + ${moveY}px))`;
+            }
         }
     }, { passive: true });
 
@@ -193,7 +299,10 @@ function initializeVideoPlayer(videoData, listContainerId) {
         isDragging = false;
 
         // 恢复 0.3秒 的动画过渡效果
-        modalVideo.style.transition = 'transform 0.3s ease';
+        const modalContent = document.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.style.transition = 'transform 0.3s ease';
+        }
 
         // 判断水平滑动距离是否足够
         if (Math.abs(moveX) > threshold) {
@@ -209,13 +318,17 @@ function initializeVideoPlayer(videoData, listContainerId) {
         }
         else {
             // --- 距离不够，回弹归位 ---
-            modalVideo.style.transform = 'translate(0px, 0px)';
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.transform = 'translate(-50%, -50%)';
+            }
         }
 
         // 重置移动距离
         moveX = 0;
         moveY = 0;
     });
+
     // ----------------------------------------------------
     // 新增：鼠标事件（PC 端拖拽切换）
     let isDraggingMouse = false;
@@ -232,7 +345,10 @@ function initializeVideoPlayer(videoData, listContainerId) {
         startYMouse = e.clientY;
 
         // 拖动开始时，取消过渡动画，让视频紧跟鼠标
-        modalVideo.style.transition = 'none';
+        const modalContent = document.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.style.transition = 'none';
+        }
 
         // 新增：加个“抓手”指针反馈（可选，通过 CSS 已实现）
     }, { passive: true });
@@ -248,11 +364,17 @@ function initializeVideoPlayer(videoData, listContainerId) {
 
         // 判断主要移动方向，只在一个轴上移动（左右优先于上下）
         if (Math.abs(moveXMouse) > Math.abs(moveYMouse)) {
-            // 水平移动（左右拖拽切换）
-            modalVideo.style.transform = `translate(${moveXMouse}px, 0)`;
+            // 水平移动（左右拖拽切换）- 保持原有的居中偏移
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.transform = `translate(calc(-50% + ${moveXMouse}px), -50%)`;
+            }
         } else {
-            // 垂直移动（上下拖拽切换）
-            modalVideo.style.transform = `translate(0, ${moveYMouse}px)`;
+            // 垂直移动（上下拖拽切换）- 保持原有的居中偏移
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.transform = `translate(-50%, calc(-50% + ${moveYMouse}px))`;
+            }
         }
     }, { passive: true });
 
@@ -261,7 +383,10 @@ function initializeVideoPlayer(videoData, listContainerId) {
         isDraggingMouse = false;
 
         // 恢复动画过渡
-        modalVideo.style.transition = 'transform 0.3s ease-out'; // 加 ease-out，更顺滑
+        const modalContent = document.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.style.transition = 'transform 0.3s ease-out'; // 加 ease-out，更顺滑
+        }
 
         // 判断水平滑动距离（左右拖拽）
         if (Math.abs(moveXMouse) > threshold) {
@@ -275,7 +400,10 @@ function initializeVideoPlayer(videoData, listContainerId) {
         }
         else {
             // 距离不够，回弹到原位
-            modalVideo.style.transform = 'translate(0px, 0px)';
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.transform = 'translate(-50%, -50%)';
+            }
         }
 
         // 重置移动距离
@@ -288,20 +416,16 @@ function initializeVideoPlayer(videoData, listContainerId) {
         const endX = axis === 'x' ? (direction === 1 ? -window.innerWidth : window.innerWidth) : 0;
         const endY = axis === 'y' ? (direction === 1 ? -window.innerHeight : window.innerHeight) : 0;
 
-        modalVideo.style.transform = `translate(${endX}px, ${endY}px)`;
+        const modalContent = document.querySelector('.modal-content');
+        if (modalContent) {
+            // 保持居中偏移，避免位置偏移
+            modalContent.style.transform = `translate(calc(-50% + ${endX}px), calc(-50% + ${endY}px))`;
+        }
 
         setTimeout(() => {
             switchVideo(direction);
         }, 200); // 缩短到200ms，让滑动更快连上新视频
     }
-
-    // // 辅助函数：完成滑动动画并切换
-    // function finishSwipe(direction, axis) {
-    //     // 1. 先让视频彻底滑出屏幕 (视觉反馈)
-    //     const endX = axis === 'x' ? (direction === 1 ? -window.innerWidth : window.innerWidth) : 0;
-    //     const endY = axis === 'y' ? (direction === 1 ? -window.innerHeight : window.innerHeight) : 0;
-
-    //     modalVideo.style.transform = `translate(${endX}px, ${endY}px)`;
 
     //     // 2. 等待 0.3秒 动画结束后，真正的切换视频
     //     setTimeout(() => {
