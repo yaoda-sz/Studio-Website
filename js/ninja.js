@@ -7,6 +7,50 @@
         return;
     }
 
+    // 添加加载指示器
+    function showLoadingIndicator() {
+        const loadingDiv = document.createElement('div');
+        loadingDiv.id = 'ninja-loading';
+        loadingDiv.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+        `;
+        loadingDiv.innerHTML = `
+            <div style="width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.3); border-top: 4px solid white; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 10px;"></div>
+            <div>加载角色中...</div>
+        `;
+        container.appendChild(loadingDiv);
+
+        // 添加旋转动画样式
+        if (!document.querySelector('#ninja-loading-style')) {
+            const style = document.createElement('style');
+            style.id = 'ninja-loading-style';
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    function hideLoadingIndicator() {
+        const loadingDiv = document.getElementById('ninja-loading');
+        if (loadingDiv) {
+            loadingDiv.remove();
+        }
+    }
+
+    // 显示加载指示器
+    showLoadingIndicator();
+
     // ===== 全局配置参数 =====
     const CONFIG = {
         RETURN_DURATION: 0.8,         // 角色回弹到中心所需的总时间（秒）
@@ -27,10 +71,45 @@
     });
     container.appendChild(app.canvas); // 将生成的 Canvas 添加到容器中
 
-    // 2. 加载 Spine 骨骼资源
-    PIXI.Assets.add({ alias: "girlData", src: "./assets/spine/ninja.skel" });
-    PIXI.Assets.add({ alias: "girlAtlas", src: "./assets/spine/ninja.atlas" });
-    await PIXI.Assets.load(["girlData", "girlAtlas"]);
+    // 2. 加载 Spine 骨骼资源（添加错误处理和超时）
+    try {
+        // 添加资源到加载队列
+        PIXI.Assets.add({ alias: "girlData", src: "./assets/spine/ninja.skel" });
+        PIXI.Assets.add({ alias: "girlAtlas", src: "./assets/spine/ninja.atlas" });
+
+        // 设置加载超时
+        const loadPromise = PIXI.Assets.load(["girlData", "girlAtlas"]);
+        const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Spine资源加载超时')), 10000)
+        );
+
+        await Promise.race([loadPromise, timeoutPromise]);
+    } catch (error) {
+        console.error('❌ Spine资源加载失败:', error);
+        hideLoadingIndicator();
+
+        // 显示错误信息
+        const errorDiv = document.createElement('div');
+        errorDiv.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            background: rgba(0,0,0,0.7);
+            padding: 20px;
+            border-radius: 8px;
+        `;
+        errorDiv.innerHTML = `
+            <div>角色加载失败</div>
+            <div style="font-size: 12px; margin-top: 10px;">请刷新页面重试</div>
+        `;
+        container.appendChild(errorDiv);
+        return;
+    }
 
     // 3. 创建 Spine 角色实例
     const girl = spine.Spine.from({
@@ -147,6 +226,9 @@
     updateSizeCache();
     girl.x = originX;
     girl.y = originY;
+
+    // 隐藏加载指示器
+    hideLoadingIndicator();
 
     // 4. 设置交互响应
     app.stage.eventMode = 'dynamic'; // 开启交互模式

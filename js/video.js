@@ -6,6 +6,50 @@ const closeBtn = document.querySelector(".video-close");
 let currentItems = []; // 存储当前列表项
 let currentIndex = -1; // 存储当前播放的索引
 
+// 懒加载观察器
+let lazyLoadObserver;
+
+function initializeLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.dataset.src;
+
+                    if (src) {
+                        // 添加加载状态
+                        img.style.opacity = '0.5';
+                        img.style.transition = 'opacity 0.3s';
+
+                        // 创建新的图片对象进行预加载
+                        const newImg = new Image();
+                        newImg.onload = () => {
+                            img.src = src;
+                            img.style.opacity = '1';
+                            observer.unobserve(img);
+                        };
+                        newImg.onerror = () => {
+                            // 加载失败时显示占位图
+                            img.src = './img/video-placeholder.webp';
+                            img.style.opacity = '1';
+                            console.warn('图片加载失败:', src);
+                            observer.unobserve(img);
+                        };
+                        newImg.src = src;
+                    }
+                }
+            });
+        }, {
+            rootMargin: '50px', // 提前50px开始加载
+            threshold: 0.1
+        });
+    }
+}
+
+// 初始化懒加载
+document.addEventListener('DOMContentLoaded', initializeLazyLoading);
+
 // ----------------------------------------------------
 // 核心函数：打开和关闭
 // ----------------------------------------------------
@@ -58,7 +102,6 @@ function openVideo(index) {
     // 检查是否使用在线视频链接
     if (data.videoUrl) {
         // 直接使用 img 标签显示 WebP 动图
-        console.log('🖼️ 显示动图:', data.label);
 
         // 隐藏 video 元素
         modalVideo.style.display = 'none';
@@ -72,17 +115,31 @@ function openVideo(index) {
 
         // 创建新的 img 元素
         const img = document.createElement('img');
-        img.src = data.videoUrl;
         img.style.maxWidth = '95vw';
         img.style.maxHeight = '95vh';
         img.style.width = 'auto';
         img.style.height = 'auto';
         img.style.objectFit = 'contain';
         img.alt = data.label;
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.3s';
+
+        // 添加加载处理
+        img.onload = () => {
+            img.style.opacity = '1';
+        };
+
+        img.onerror = () => {
+            img.src = './img/video-placeholder.webp';
+            img.style.opacity = '1';
+        };
+
+        img.src = data.videoUrl;
         modalVideo.parentNode.appendChild(img);
 
-        // 直接显示，不需要加载等待
-        modalVideo.style.opacity = 1;
+        // 显示模态框
+        modal.style.display = "block";
+        document.body.classList.add("no-scroll");
     } else {
         // 使用传统的 MP4/WebM 格式（向后兼容）
         // 清除之前的src属性
@@ -106,20 +163,19 @@ function openVideo(index) {
 
         src1.src = data.srcWebm;
         src2.src = data.srcMp4;
-        console.log('🎬 播放视频:', data.label);
 
         // 加载新视频
         modalVideo.load();
 
         // 添加错误处理
         modalVideo.addEventListener('error', (e) => {
-            console.error('❌ 视频加载失败:', data.label);
+            console.error('视频加载失败:', data.label);
         }, { once: true });
 
         // 在视频数据加载完成后，淡入 + 播放
         modalVideo.addEventListener('loadeddata', () => {
             modalVideo.style.opacity = 1; // 淡入
-            modalVideo.play().catch(e => console.error('❌ 视频播放失败:', e));
+            modalVideo.play().catch(e => console.error('视频播放失败:', e));
         }, { once: true });
     }
     // 显示模态框（如果已显示，就保持）
@@ -166,7 +222,7 @@ function switchVideo(direction) {
 function initializeVideoPlayer(videoData, listContainerId) {
     const videoList = document.getElementById(listContainerId);
     if (!videoList) {
-        console.error('❌ 找不到视频列表容器:', listContainerId);
+        console.error('找不到视频列表容器:', listContainerId);
         return;
     }
 
@@ -186,8 +242,9 @@ function initializeVideoPlayer(videoData, listContainerId) {
         // 判断是否有外部预览链接
         if (data.previewSrc) {
             // 如果有 previewSrc，我们使用一张图片作为列表预览（推荐WebP/JPG）
+            // 使用懒加载：初始显示占位图，真实URL放在data-src中
             contentHTML = `
-            <img src="${data.previewSrc}" alt="${data.label} 预览图" class="video-preview-img">
+            <img data-src="${data.previewSrc}" src="./img/video-placeholder.webp" alt="${data.label} 预览图" class="video-preview-img" loading="lazy">
         `;
         } else {
             // 否则，我们使用本地的循环视频作为列表预览（你现在的 service.html 修复后的状态）
@@ -209,6 +266,12 @@ function initializeVideoPlayer(videoData, listContainerId) {
         fragment.appendChild(li);
     });
     videoList.appendChild(fragment);
+
+    // 设置懒加载观察器
+    if (lazyLoadObserver) {
+        const lazyImages = videoList.querySelectorAll('img[data-src]');
+        lazyImages.forEach(img => lazyLoadObserver.observe(img));
+    }
 
     // 绑定事件委托
     videoList.addEventListener('click', (e) => {
