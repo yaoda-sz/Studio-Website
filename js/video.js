@@ -41,14 +41,50 @@ function initializeLazyLoading() {
                 }
             });
         }, {
-            rootMargin: '50px', // 提前50px开始加载
-            threshold: 0.1
+            rootMargin: '200px', // 提前200px开始加载，给用户更好的体验
+            threshold: 0.01      // 只要1%可见就开始加载
         });
     }
 }
 
 // 初始化懒加载
 document.addEventListener('DOMContentLoaded', initializeLazyLoading);
+
+// 预加载首屏动图
+function preloadAboveFoldImages() {
+    setTimeout(() => {
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        const viewportHeight = window.innerHeight;
+
+        // 预加载首屏可见的图片
+        lazyImages.forEach((img, index) => {
+            if (index < 6) { // 预加载前6张图片
+                const rect = img.getBoundingClientRect();
+                if (rect.top < viewportHeight + 200) {
+                    const src = img.dataset.src;
+                    if (src) {
+                        const newImg = new Image();
+                        newImg.onload = () => {
+                            img.src = src;
+                            img.style.opacity = '1';
+                            if (lazyLoadObserver) {
+                                lazyLoadObserver.unobserve(img);
+                            }
+                        };
+                        newImg.onerror = () => {
+                            img.src = './img/video-placeholder.webp';
+                            img.style.opacity = '1';
+                        };
+                        newImg.src = src;
+                    }
+                }
+            }
+        });
+    }, 500); // 延迟500ms执行，避免阻塞页面渲染
+}
+
+// 页面加载完成后预加载首屏图片
+window.addEventListener('load', preloadAboveFoldImages);
 
 // ----------------------------------------------------
 // 核心函数：打开和关闭
@@ -249,7 +285,7 @@ function initializeVideoPlayer(videoData, listContainerId) {
         } else {
             // 否则，我们使用本地的循环视频作为列表预览（你现在的 service.html 修复后的状态）
             contentHTML = `
-                <video class="video-preview-vid" loop muted playsinline autoplay preload="metadata">
+                <video class="video-preview-vid" loop muted playsinline preload="none">
                     <source src="${data.srcWebm}" type="video/webm">
                     <source src="${data.srcMp4}" type="video/mp4">
                 </video>
