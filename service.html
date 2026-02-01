@@ -34,6 +34,7 @@
     <!-- 预加载关键资源 -->
     <link rel="preload" href="./assets/spine/ninja.skel" as="fetch" crossorigin>
     <link rel="preload" href="./assets/spine/ninja.atlas" as="fetch" crossorigin>
+    <link rel="preload" href="./assets/spine/ninja.png" as="image">
     <link rel="preload" href="./img/video-placeholder.webp" as="image">
     <script type="application/ld+json">
         {
@@ -119,18 +120,19 @@
     </div>
 
     <!-- javascript首页基本脚本  -->
-    <script src="./js/layout.js" defer></script>
-    <script src="./js/com.js" defer></script>
-    <script src="./js/video.js" defer></script>
-    <script src="./js/data_service.js" defer></script>
-    <script src="./js/light.js" defer></script>
-    <!-- Pixi.js 和 Spine 相关脚本 -->
+    <script src="./js/layout.js"></script>
+    <script src="./js/com.js"></script>
+    <!-- Pixi.js 和 Spine 相关脚本 - 关键库同步加载 -->
     <!-- <script src="pixi.mini.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/pixi.js@latest/dist/pixi.min.js"></script>
     <!-- <script src="spine-pixi-v8.js"></script> -->
-    <script src="https://unpkg.com/@esotericsoftware/spine-pixi-v8@4.2.*/dist/iife/spine-pixi-v8.js"></script>
-    <!-- 上面两个先后顺序很重要 -->
-    <script src="js/ninja.js" defer></script>
+    <script src="https://unpkg.com/@esotericsoftware/spine-pixi-v8@4.2.100/dist/iife/spine-pixi-v8.js"></script>
+    <!-- Spine角色脚本 - 等待库加载完成后执行 -->
+    <script src="js/ninja.js"></script>
+    <!-- 其他脚本继续使用defer -->
+    <script src="./js/video.js" defer></script>
+    <script src="./js/data_service.js" defer></script>
+    <script src="./js/light.js" defer></script>
 
 </body>
 
