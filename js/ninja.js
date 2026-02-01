@@ -1,4 +1,33 @@
 (async function () {
+    // 等待必要的库加载完成
+    function waitForLibraries() {
+        return new Promise((resolve, reject) => {
+            let checkCount = 0;
+            const maxChecks = 50; // 最多等待5秒
+
+            const checkLibraries = () => {
+                checkCount++;
+
+                if (typeof PIXI !== 'undefined' && typeof spine !== 'undefined') {
+                    resolve();
+                } else if (checkCount >= maxChecks) {
+                    reject(new Error('库加载超时'));
+                } else {
+                    setTimeout(checkLibraries, 100);
+                }
+            };
+
+            checkLibraries();
+        });
+    }
+
+    try {
+        await waitForLibraries();
+    } catch (error) {
+        console.error('库加载失败:', error);
+        return;
+    }
+
     // 获取容器 DOM 节点
     const container = document.getElementById('display-container');
 
@@ -71,19 +100,32 @@
     });
     container.appendChild(app.canvas); // 将生成的 Canvas 添加到容器中
 
-    // 2. 加载 Spine 骨骼资源（添加错误处理和超时）
+    // 2. 加载 Spine 骨骼资源（优化版本）
     try {
+
+        // 预加载纹理图片
+        const texturePromise = new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => {
+                resolve();
+            };
+            img.onerror = reject;
+            img.src = './assets/spine/ninja.png';
+        });
+
         // 添加资源到加载队列
         PIXI.Assets.add({ alias: "girlData", src: "./assets/spine/ninja.skel" });
         PIXI.Assets.add({ alias: "girlAtlas", src: "./assets/spine/ninja.atlas" });
 
+        // 并行加载纹理和Spine资源
+        const spinePromise = PIXI.Assets.load(["girlData", "girlAtlas"]);
+
         // 设置加载超时
-        const loadPromise = PIXI.Assets.load(["girlData", "girlAtlas"]);
         const timeoutPromise = new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Spine资源加载超时')), 10000)
+            setTimeout(() => reject(new Error('Spine资源加载超时')), 15000)
         );
 
-        await Promise.race([loadPromise, timeoutPromise]);
+        await Promise.race([Promise.all([texturePromise, spinePromise]), timeoutPromise]);
     } catch (error) {
         console.error('❌ Spine资源加载失败:', error);
         hideLoadingIndicator();
