@@ -2,6 +2,11 @@
     // 监听 layout.js 发出的加载完成事件
     document.addEventListener('DOMContentLoaded', init);
 
+    // 简单的错误处理
+    window.addEventListener('error', function(e) {
+        console.error('页面错误:', e.error || e.message);
+    });
+
     // 添加页面加载动画
     function addPageLoadAnimation() {
         // 添加淡入动画

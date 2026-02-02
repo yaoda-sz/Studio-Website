@@ -3,22 +3,32 @@ const videoData = [
     {
         // 预览图链接（用于列表页和弹框播放）
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032628lctffocbzkckcmo8.webp",
+        srcMp4: "./video/mmd/mmd_mache.mp4",
+        srcWebm: "./video/mmd/mmd_mache.webm",
         label: "交互动效展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032551gnvk7cuug3fjkknv.webp",
+        srcMp4: "./video/mmd/mmd_clickhouse.mp4",
+        srcWebm: "./video/mmd/mmd_clickhouse.webm",
         label: "交互动效展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032556kpk7rcr55k5ef519.webp",
+        srcMp4: "./video/mmd/mmd_fx_lvup02.mp4",
+        srcWebm: "./video/mmd/mmd_fx_lvup02.webm",
         label: "交互动效展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032553hcnw2ffz841c331n.webp",
+        srcMp4: "./video/mmd/mmd_clicktree.mp4",
+        srcWebm: "./video/mmd/mmd_clicktree.webm",
         label: "交互动效展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032553p1mz0ly4tc0prrxt.webp",
+        srcMp4: "./video/mmd/mmd_fish_girl.mp4",
+        srcWebm: "./video/mmd/mmd_fish_girl.webm",
         label: "钓鱼女孩动画展示"
     },
     {
@@ -27,58 +37,86 @@ const videoData = [
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032601antcotaxt7jo9wzo.webp",
+        srcMp4: "./video/mmd/mmd_fx01.mp4",
+        srcWebm: "./video/mmd/mmd_fx01.webm",
         label: "抽卡金鱼动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032602zy5yy25gm2y532yo.webp",
+        srcMp4: "./video/mmd/mmd_fx02.mp4",
+        srcWebm: "./video/mmd/mmd_fx02.webm",
         label: "飘花动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032602v2anyhgkngm36rin.webp",
+        srcMp4: "./video/mmd/mmd_fx03.mp4",
+        srcWebm: "./video/mmd/mmd_fx03.webm",
         label: "飘花动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032609nx5f2qg4142f41qs.webp",
+        srcMp4: "./video/mmd/mmd_fx04.mp4",
+        srcWebm: "./video/mmd/mmd_fx04.webm",
         label: "飘花动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032611hgp9bgggr19rnmr4.webp",
+        srcMp4: "./video/mmd/mmd_fx05.mp4",
+        srcWebm: "./video/mmd/mmd_fx05.webm",
         label: "飘花动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032615wxf9ajta2ph9hp9e.webp",
+        srcMp4: "./video/mmd/mmd_login.mp4",
+        srcWebm: "./video/mmd/mmd_login.webm",
         label: "飘花动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032619x3effckfc1e3b5k2.webp",
+        srcMp4: "./video/mmd/mmd_login.mp4",
+        srcWebm: "./video/mmd/mmd_login.webm",
         label: "游戏登陆动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032630yhimdiei8x8auifc.webp",
+        srcMp4: "./video/mmd/mmd_role02.mp4",
+        srcWebm: "./video/mmd/mmd_role02.webm",
         label: "立绘角色待机呼吸动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032632osay9x9awfwnmdjw.webp",
+        srcMp4: "./video/mmd/mmd_role03.mp4",
+        srcWebm: "./video/mmd/mmd_role03.webm",
         label: "立绘角色待机呼吸动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032635dr7rztisiij9rr9i.webp",
+        srcMp4: "./video/mmd/mmd_role04.mp4",
+        srcWebm: "./video/mmd/mmd_role04.webm",
         label: "立绘角色待机呼吸动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032635k5jhhhfthhh2i8hi.webp",
+        srcMp4: "./video/mmd/mmd_role05.mp4",
+        srcWebm: "./video/mmd/mmd_role05.webm",
         label: "立绘角色待机呼吸动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032637kz6mtikt74i3w36i.webp",
+        srcMp4: "./video/mmd/mmd_role06.mp4",
+        srcWebm: "./video/mmd/mmd_role06.webm",
         label: "立绘角色待机呼吸动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032637oitk9xu6x9i9dtpz.webp",
+        srcMp4: "./video/mmd/mmd_role07.mp4",
+        srcWebm: "./video/mmd/mmd_role07.webm",
         label: "立绘角色待机呼吸动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032638xz2vx66m6bpbr0zz.webp",
+        srcMp4: "./video/mmd/mmd_role08.mp4",
+        srcWebm: "./video/mmd/mmd_role08.webm",
         label: "立绘角色待机呼吸动画展示"
     },
     // 水狗
@@ -376,6 +414,8 @@ const videoData = [
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/29/234616yvjvnjzwwncqnnzs.webp",
+        srcMp4: "./video/football.mp4",
+        srcWebm: "./video/football.webm",
         label: "足球小子"
     }
 ];
@@ -383,4 +423,3 @@ const videoData = [
 document.addEventListener("DOMContentLoaded", () => {
     initializeVideoPlayer(videoData, "video-list");
 });
-

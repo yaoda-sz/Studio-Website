@@ -6,6 +6,12 @@ const closeBtn = document.querySelector(".video-close");
 let currentItems = []; // 存储当前列表项
 let currentIndex = -1; // 存储当前播放的索引
 
+// 简单的性能监控
+window.addEventListener('load', function () {
+    const loadTime = performance.now();
+    console.log(`页面加载时间: ${Math.round(loadTime)}ms`);
+});
+
 // 图片缓存机制 - 避免重复加载
 const imageCache = new Map(); // 存储已加载的图片对象
 
@@ -45,7 +51,7 @@ function initializeLazyLoading() {
                         };
                         newImg.onerror = () => {
                             // 加载失败时显示占位图
-                            img.src = './img/video-placeholder.webp';
+                            img.src = './img/banner_01.webp';
                             img.style.opacity = '1';
                             console.warn('图片加载失败:', src);
                             observer.unobserve(img);
@@ -98,7 +104,7 @@ function preloadAboveFoldImages() {
                             }
                         };
                         newImg.onerror = () => {
-                            img.src = './img/video-placeholder.webp';
+                            img.src = './img/banner_01.webp';
                             img.style.opacity = '1';
                         };
                         newImg.src = src;
@@ -126,7 +132,6 @@ function openVideo(index) {
         console.warn('缺少label数据，dataset:', data);
     }
 
-    console.log('打开视频，数据:', data);
 
     // 停止所有B站视频并恢复封面
     const bilibiliIframes = document.querySelectorAll('iframe[src*="player.bilibili.com"]');
@@ -170,7 +175,6 @@ function openVideo(index) {
 
     // 检查是否使用在线视频链接
     if (data.videoUrl) {
-        console.log('显示图片:', data.videoUrl);
         // 直接使用 img 标签显示 WebP 动图
 
         // 隐藏 video 元素
@@ -202,18 +206,16 @@ function openVideo(index) {
             // 使用缓存的图片，立即显示
             img.src = data.videoUrl;
             img.style.opacity = '1';
-            console.log('使用缓存图片:', data.videoUrl);
         } else {
             // 添加加载处理
             img.onload = () => {
                 // 缓存已加载的图片
                 imageCache.set(data.videoUrl, img);
                 img.style.opacity = '1';
-                console.log('图片已缓存:', data.videoUrl);
             };
 
             img.onerror = () => {
-                img.src = './img/video-placeholder.webp';
+                img.src = './img/banner_01.webp';
                 img.style.opacity = '1';
                 console.warn('弹框图片加载失败:', data.videoUrl);
             };
@@ -221,7 +223,6 @@ function openVideo(index) {
             img.src = data.videoUrl;
         }
         modalVideo.parentNode.appendChild(img);
-        console.log('图片已添加到DOM，src:', img.src);
 
         // 预加载相邻的图片（提升切换体验）
         preloadAdjacentImages(currentIndex);
@@ -229,7 +230,6 @@ function openVideo(index) {
         // 显示模态框
         modal.style.display = "block";
         document.body.classList.add("no-scroll");
-        console.log('模态框已显示');
     } else {
         // 使用传统的 MP4/WebM 格式（向后兼容）
         // 清除之前的src属性
@@ -335,7 +335,7 @@ function initializeVideoPlayer(videoData, listContainerId) {
             if (data.previewSrc) {
                 const staticFlag = useStaticPreview ? 'data-static="1"' : '';
                 contentHTML = `
-            <img ${staticFlag} data-src="${data.previewSrc}" src="./img/video-placeholder.webp" alt="${data.label} 预览图" class="video-preview-img" loading="lazy">
+            <img ${staticFlag} data-src="${data.previewSrc}" src="./img/banner_01.webp" alt="${data.label} 预览图" class="video-preview-img" loading="lazy">
         `;
             } else {
                 contentHTML = `
@@ -629,10 +629,8 @@ function preloadAdjacentImages(currentIndex) {
             const img = new Image();
             img.onload = () => {
                 imageCache.set(videoUrl, img);
-                console.log('预加载完成:', videoUrl);
             };
             img.onerror = () => {
-                console.warn('预加载失败:', videoUrl);
             };
             img.src = videoUrl;
         }

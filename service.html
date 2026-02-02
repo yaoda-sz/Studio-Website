@@ -35,7 +35,7 @@
     <link rel="preload" href="./assets/spine/ninja.skel" as="fetch" crossorigin>
     <link rel="preload" href="./assets/spine/ninja.atlas" as="fetch" crossorigin>
     <link rel="preload" href="./assets/spine/ninja.png" as="image">
-    <link rel="preload" href="./img/video-placeholder.webp" as="image">
+    <link rel="preload" href="./img/banner_01.webp" as="image">
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -122,6 +122,24 @@
     <!-- javascript首页基本脚本  -->
     <script src="./js/layout.js"></script>
     <script src="./js/com.js"></script>
+    <!-- 添加简单的性能优化 -->
+    <script>
+        // 简单的性能优化：图片懒加载
+        document.addEventListener('DOMContentLoaded', function () {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            images.forEach(img => imageObserver.observe(img));
+        });
+    </script>
     <!-- Pixi.js 和 Spine 相关脚本 - 关键库同步加载 -->
     <script src="./js/pixi.mini.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/pixi.js@latest/dist/pixi.min.js"></script> -->
