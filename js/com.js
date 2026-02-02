@@ -2,9 +2,41 @@
     // 监听 layout.js 发出的加载完成事件
     document.addEventListener('DOMContentLoaded', init);
 
-    // 简单的错误处理
-    window.addEventListener('error', function(e) {
-        console.error('页面错误:', e.error || e.message);
+    // 简洁的错误处理 - 过滤掉已知的跨域错误
+    window.addEventListener('error', function (e) {
+        const errorMessage = e.message || '';
+        const errorUrl = e.filename || '';
+        const errorStack = e.error?.stack || '';
+
+        // 过滤掉B站相关的跨域错误和用户脚本错误
+        if (errorMessage.includes('Blocked a frame with origin') ||
+            errorMessage.includes('cross-origin frame') ||
+            errorMessage.includes('Failed to set a named property') ||
+            errorMessage.includes('target-densitydpi') ||
+            errorUrl.includes('userscript.html') ||
+            errorUrl.includes('mbplayer.html') ||
+            errorStack.includes('mbplayer.html') ||
+            errorStack.includes('wplayer.js')) {
+            e.preventDefault();
+            e.stopPropagation();
+            return true;
+        }
+    }, true);
+
+    // 全局未处理的Promise错误处理
+    window.addEventListener('unhandledrejection', function (e) {
+        const errorMessage = e.reason?.message || e.reason || '';
+        const errorStack = e.reason?.stack || '';
+
+        // 过滤掉B站相关的跨域错误
+        if (errorMessage.includes('Blocked a frame with origin') ||
+            errorMessage.includes('cross-origin frame') ||
+            errorMessage.includes('Failed to set a named property') ||
+            errorStack.includes('mbplayer.html') ||
+            errorStack.includes('wplayer.js')) {
+            e.preventDefault();
+            return;
+        }
     });
 
     // 添加页面加载动画
@@ -312,17 +344,13 @@ let currentBilibiliIframes = new Set(); // 使用Set存储所有播放中的B站
 
 // 停止所有B站视频并恢复封面的函数
 function stopAllBilibiliVideos() {
-    console.log('🎬 开始停止所有B站视频，当前跟踪数量:', currentBilibiliIframes.size);
-
     const allBilibiliIframes = document.querySelectorAll('iframe[src*="player.bilibili.com"]');
-    console.log('🔍 页面中找到', allBilibiliIframes.length, '个B站iframe');
 
     allBilibiliIframes.forEach((iframe, index) => {
         const videoLazyLoad = iframe.parentElement;
         if (videoLazyLoad) {
             const bvid = videoLazyLoad.dataset.bvid;
             const cid = videoLazyLoad.dataset.cid;
-            console.log(`📹 恢复视频封面 ${index + 1}: ${bvid}`);
 
             if (bvid && cid) {
                 // 根据不同的bvid恢复对应的封面
@@ -350,12 +378,10 @@ function stopAllBilibiliVideos() {
                     </div>
                 `;
                 videoLazyLoad.classList.add('video-lazy-load');
-                console.log(`✅ 已恢复封面: ${altText}`);
             }
         }
     });
     currentBilibiliIframes.clear();
-    console.log('🧹 已清空跟踪列表');
 }
 
 document.addEventListener('click', function (e) {
@@ -363,8 +389,6 @@ document.addEventListener('click', function (e) {
     const container = e.target.closest('.video-lazy-load');
 
     if (container) {
-        console.log('🎯 点击了视频容器:', container.dataset.bvid);
-
         // 1. 停止所有其他播放中的视频
         stopAllBilibiliVideos();
 
@@ -372,13 +396,28 @@ document.addEventListener('click', function (e) {
         const modalVideo = document.getElementById('modal-video');
         if (modalVideo && !modalVideo.paused) {
             modalVideo.pause();
-            console.log('⏸️ 已暂停模态框视频');
         }
 
         // 获取 HTML 标签里存的 I  
         const bvid = container.dataset.bvid;
         const cid = container.dataset.cid;
-        console.log('🚀 开始播放:', bvid);
+
+        // 获取封面信息用于错误恢复
+        let coverSrc = './img/bolikuanhu_cover.webp';
+        let altText = '视频封面';
+        if (bvid === 'BV1Mfbzz7E8P') {
+            coverSrc = './img/bolikuanhu_cover.webp';
+            altText = '波粒狂潮视频封面';
+        } else if (bvid === 'BV1foXxY5END') {
+            coverSrc = './img/shenmojue.jpg';
+            altText = '神魔诀视频封面';
+        } else if (bvid === 'BV11L9BYREaB') {
+            coverSrc = './img/bigbird.jpg';
+            altText = '魔法玩具树屋视频封面';
+        } else if (bvid === 'BV1bEatzdEUh') {
+            coverSrc = './img/yingyufei.jpg';
+            altText = '银与绯视频封面';
+        }
 
         const iframe = document.createElement('iframe');
         // 注意：autoplay=1 让视频加载出来后自动播放
@@ -394,13 +433,34 @@ document.addEventListener('click', function (e) {
         iframe.setAttribute('framespacing', '0');
         iframe.setAttribute('allowfullscreen', 'true');
 
+        // 添加更严格的安全相关属性以防止跨域问题
+        iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-forms allow-pointer-lock');
+        iframe.setAttribute('loading', 'lazy');
+
+        // 添加referrerpolicy来增强安全性
+        iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+
+        // 添加CSP兼容性
+        iframe.setAttribute('data-crossorigin', 'anonymous');
+
+        // 添加错误处理
+        iframe.onerror = function () {
+            // 恢复封面
+            container.innerHTML = `
+                <img src="${coverSrc}" alt="${altText}" class="video-poster">
+                <div class="play-icon">
+                    <span class="iconfont icon-play"></span>
+                </div>
+            `;
+            container.classList.add('video-lazy-load');
+        };
+
         // 清空容器里的图片和按钮，放入 iframe
         container.innerHTML = '';
         container.appendChild(iframe);
 
         // 将新播放的视频添加到跟踪列表
         currentBilibiliIframes.add(iframe);
-        console.log('📝 已添加到跟踪列表，当前数量:', currentBilibiliIframes.size);
 
         // 移除点击事件类名，变成普通容器（可选）
         container.classList.remove('video-lazy-load');
@@ -411,18 +471,22 @@ document.addEventListener('click', function (e) {
 function checkVideoVisibility() {
     currentBilibiliIframes.forEach(iframe => {
         const rect = iframe.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        const viewportHeight = window.innerHeight;
 
-        console.log(`🔍 检查视频可见性: top=${rect.top}, bottom=${rect.bottom}, 可见=${isVisible}`);
+        // 计算视频在视口中的可见比例
+        const visibleTop = Math.max(0, rect.top);
+        const visibleBottom = Math.min(viewportHeight, rect.bottom);
+        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+        const videoHeight = rect.height;
+        const visibleRatio = videoHeight > 0 ? visibleHeight / videoHeight : 0;
 
-        // 如果视频滑出视口超过一半，停止它
-        if (!isVisible || rect.top > window.innerHeight / 2 || rect.bottom < window.innerHeight / 2) {
-            console.log('📺 视频滑出视口，准备停止');
+        // 优化停止条件：只有当视频可见比例小于20%时才停止
+        // 这样可以避免在移动端过早停止视频
+        if (visibleRatio < 0.2 || rect.bottom < 0 || rect.top > viewportHeight) {
             const videoLazyLoad = iframe.parentElement;
             if (videoLazyLoad) {
                 const bvid = videoLazyLoad.dataset.bvid;
                 const cid = videoLazyLoad.dataset.cid;
-                console.log(`🛑 滚动停止视频: ${bvid}`);
 
                 if (bvid && cid) {
                     // 根据不同的bvid恢复对应的封面
@@ -450,18 +514,43 @@ function checkVideoVisibility() {
                         </div>
                     `;
                     videoLazyLoad.classList.add('video-lazy-load');
-                    console.log(`✅ 已恢复封面: ${altText}`);
                 }
             }
             currentBilibiliIframes.delete(iframe);
-            console.log('🗑️ 已从跟踪列表移除，剩余数量:', currentBilibiliIframes.size);
         }
     });
 }
 
 // 添加滚动事件监听器，使用节流优化性能
 let scrollTimeout;
+let isScrolling = false;
+
+// 检测是否为移动设备
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 window.addEventListener('scroll', function () {
     clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(checkVideoVisibility, 150);
+
+    // 移动端使用更长的延迟，避免过于频繁的检查
+    const delay = isMobileDevice() ? 300 : 150;
+
+    scrollTimeout = setTimeout(() => {
+        if (!isScrolling) {
+            isScrolling = true;
+            checkVideoVisibility();
+            // 滚动结束后再等待一段时间才重置状态
+            setTimeout(() => {
+                isScrolling = false;
+            }, delay);
+        }
+    }, delay);
 }, { passive: true });
+
+// 添加触摸结束事件，确保在触摸滑动结束后正确检查视频状态
+if (isMobileDevice()) {
+    window.addEventListener('touchend', function () {
+        setTimeout(checkVideoVisibility, 100);
+    }, { passive: true });
+}

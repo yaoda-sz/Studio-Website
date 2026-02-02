@@ -9,7 +9,7 @@ let currentIndex = -1; // 存储当前播放的索引
 // 简单的性能监控
 window.addEventListener('load', function () {
     const loadTime = performance.now();
-    console.log(`页面加载时间: ${Math.round(loadTime)}ms`);
+    // 页面加载完成
 });
 
 // 图片缓存机制 - 避免重复加载
@@ -53,7 +53,6 @@ function initializeLazyLoading() {
                             // 加载失败时显示占位图
                             img.src = './img/banner_01.webp';
                             img.style.opacity = '1';
-                            console.warn('图片加载失败:', src);
                             observer.unobserve(img);
                         };
                         newImg.src = src;
@@ -129,7 +128,7 @@ function openVideo(index) {
 
     // 确保数据完整性
     if (!data.label) {
-        console.warn('缺少label数据，dataset:', data);
+        // 缺少label数据
     }
 
 
@@ -217,7 +216,6 @@ function openVideo(index) {
             img.onerror = () => {
                 img.src = './img/banner_01.webp';
                 img.style.opacity = '1';
-                console.warn('弹框图片加载失败:', data.videoUrl);
             };
 
             img.src = data.videoUrl;
@@ -265,7 +263,7 @@ function openVideo(index) {
         // 在视频数据加载完成后，淡入 + 播放
         modalVideo.addEventListener('loadeddata', () => {
             modalVideo.style.opacity = 1; // 淡入
-            modalVideo.play().catch(e => console.error('视频播放失败:', e));
+            modalVideo.play().catch(() => { });
         }, { once: true });
     }
     // 显示模态框（如果已显示，就保持）

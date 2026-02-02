@@ -3,7 +3,6 @@
     const container = document.getElementById('display-container');
 
     if (!container) {
-        console.error('Display container not found!');
         return;
     }
 
@@ -98,7 +97,6 @@
 
         await Promise.race([Promise.all([texturePromise, spinePromise]), timeoutPromise]);
     } catch (error) {
-        console.error('❌ Spine资源加载失败:', error);
         hideLoadingIndicator();
 
         // 显示错误信息
@@ -198,7 +196,7 @@
             originY = ch / 2 + (newBounds.height / 4);
             originY = Math.max(minY, Math.min(maxY, originY));
         } catch (e) {
-            console.error("计算边界出错", e);
+            // 计算边界出错
         }
     }
 

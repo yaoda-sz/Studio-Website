@@ -417,7 +417,7 @@ const videoData = [
         srcMp4: "./video/football.mp4",
         srcWebm: "./video/football.webm",
         label: "足球小子"
-    }
+    },
 ];
 // DOM加载完成后初始化
 document.addEventListener("DOMContentLoaded", () => {
