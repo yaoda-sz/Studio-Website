@@ -6,6 +6,9 @@ const closeBtn = document.querySelector(".video-close");
 let currentItems = []; // 存储当前列表项
 let currentIndex = -1; // 存储当前播放的索引
 
+// 图片缓存机制 - 避免重复加载
+const imageCache = new Map(); // 存储已加载的图片对象
+
 // 懒加载观察器
 let lazyLoadObserver;
 
@@ -18,13 +21,24 @@ function initializeLazyLoading() {
                     const src = img.dataset.src;
 
                     if (src) {
+                        // 检查缓存中是否已有该图片
+                        if (imageCache.has(src)) {
+                            // 使用缓存的图片
+                            img.src = src;
+                            img.style.opacity = '1';
+                            observer.unobserve(img);
+                            return;
+                        }
+
                         // 添加加载状态
                         img.style.opacity = '0.5';
                         img.style.transition = 'opacity 0.3s';
 
-                        // 创建新的图片对象进行预加载
+                        // 创建新的图片对象进行预加载并缓存
                         const newImg = new Image();
                         newImg.onload = () => {
+                            // 缓存已加载的图片
+                            imageCache.set(src, newImg);
                             img.src = src;
                             img.style.opacity = '1';
                             observer.unobserve(img);
@@ -63,8 +77,20 @@ function preloadAboveFoldImages() {
                 if (rect.top < viewportHeight + 200) {
                     const src = img.dataset.src;
                     if (src) {
+                        // 检查缓存中是否已有该图片
+                        if (imageCache.has(src)) {
+                            img.src = src;
+                            img.style.opacity = '1';
+                            if (lazyLoadObserver) {
+                                lazyLoadObserver.unobserve(img);
+                            }
+                            return;
+                        }
+
                         const newImg = new Image();
                         newImg.onload = () => {
+                            // 缓存已加载的图片
+                            imageCache.set(src, newImg);
                             img.src = src;
                             img.style.opacity = '1';
                             if (lazyLoadObserver) {
@@ -94,6 +120,13 @@ function openVideo(index) {
     if (index < 0 || index >= currentItems.length) return;
     currentIndex = index;
     const data = currentItems[index].dataset;
+
+    // 确保数据完整性
+    if (!data.label) {
+        console.warn('缺少label数据，dataset:', data);
+    }
+
+    console.log('打开视频，数据:', data);
 
     // 停止所有B站视频并恢复封面
     const bilibiliIframes = document.querySelectorAll('iframe[src*="player.bilibili.com"]');
@@ -137,6 +170,7 @@ function openVideo(index) {
 
     // 检查是否使用在线视频链接
     if (data.videoUrl) {
+        console.log('显示图片:', data.videoUrl);
         // 直接使用 img 标签显示 WebP 动图
 
         // 隐藏 video 元素
@@ -156,26 +190,46 @@ function openVideo(index) {
         img.style.width = 'auto';
         img.style.height = 'auto';
         img.style.objectFit = 'contain';
+        img.style.display = 'block'; // 确保显示
+        img.style.position = 'relative'; // 确保定位正确
+        img.style.zIndex = '10'; // 确保在最上层
         img.alt = data.label;
         img.style.opacity = '0';
         img.style.transition = 'opacity 0.3s';
 
-        // 添加加载处理
-        img.onload = () => {
+        // 检查缓存中是否已有该图片
+        if (imageCache.has(data.videoUrl)) {
+            // 使用缓存的图片，立即显示
+            img.src = data.videoUrl;
             img.style.opacity = '1';
-        };
+            console.log('使用缓存图片:', data.videoUrl);
+        } else {
+            // 添加加载处理
+            img.onload = () => {
+                // 缓存已加载的图片
+                imageCache.set(data.videoUrl, img);
+                img.style.opacity = '1';
+                console.log('图片已缓存:', data.videoUrl);
+            };
 
-        img.onerror = () => {
-            img.src = './img/video-placeholder.webp';
-            img.style.opacity = '1';
-        };
+            img.onerror = () => {
+                img.src = './img/video-placeholder.webp';
+                img.style.opacity = '1';
+                console.warn('弹框图片加载失败:', data.videoUrl);
+            };
 
-        img.src = data.videoUrl;
+            img.src = data.videoUrl;
+        }
         modalVideo.parentNode.appendChild(img);
+        console.log('图片已添加到DOM，src:', img.src);
+
+        // 预加载相邻的图片（提升切换体验）
+        preloadAdjacentImages(currentIndex);
 
         // 显示模态框
         modal.style.display = "block";
         document.body.classList.add("no-scroll");
+        console.log('模态框已显示');
     } else {
         // 使用传统的 MP4/WebM 格式（向后兼容）
         // 清除之前的src属性
@@ -262,51 +316,82 @@ function initializeVideoPlayer(videoData, listContainerId) {
         return;
     }
 
-    // ... (DocumentFragment 的代码保持不变，用于渲染列表) ...
-    // 注意：把视频列表 li 元素的生成代码放进来
     const fragment = document.createDocumentFragment();
+    const batchSize = 12;
+    let renderedCount = 0;
+    let isLoadingMore = false;
 
-    videoData.forEach((data, index) => {
-        const li = document.createElement("li");
-        li.className = "mov-v";
-        li.dataset.webm = data.srcWebm || '';
-        li.dataset.mp4 = data.srcMp4 || '';
-        li.dataset.videoUrl = data.videoUrl || ''; // 添加新的 videoUrl 字段
-        li.dataset.index = index;
+    function renderItems(items, startIndex, targetFragment, useStaticPreview) {
+        items.forEach((data, index) => {
+            const li = document.createElement("li");
+            li.className = "mov-v";
+            li.dataset.webm = data.srcWebm || '';
+            li.dataset.mp4 = data.srcMp4 || '';
+            li.dataset.videoUrl = data.previewSrc || '';
+            li.dataset.label = data.label || '';
+            li.dataset.index = startIndex + index;
 
-        let contentHTML = '';
-        // 判断是否有外部预览链接
-        if (data.previewSrc) {
-            // 如果有 previewSrc，我们使用一张图片作为列表预览（推荐WebP/JPG）
-            // 使用懒加载：初始显示占位图，真实URL放在data-src中
-            contentHTML = `
-            <img data-src="${data.previewSrc}" src="./img/video-placeholder.webp" alt="${data.label} 预览图" class="video-preview-img" loading="lazy">
+            let contentHTML = '';
+            if (data.previewSrc) {
+                const staticFlag = useStaticPreview ? 'data-static="1"' : '';
+                contentHTML = `
+            <img ${staticFlag} data-src="${data.previewSrc}" src="./img/video-placeholder.webp" alt="${data.label} 预览图" class="video-preview-img" loading="lazy">
         `;
-        } else {
-            // 否则，我们使用本地的循环视频作为列表预览（你现在的 service.html 修复后的状态）
-            contentHTML = `
+            } else {
+                contentHTML = `
                 <video class="video-preview-vid" loop muted playsinline preload="none">
                     <source src="${data.srcWebm}" type="video/webm">
                     <source src="${data.srcMp4}" type="video/mp4">
                 </video>
             `;
-        }
-        // 无论上面是图片还是视频，我们都需要浮层来点击
-        li.innerHTML = `
+            }
+
+            li.innerHTML = `
            ${contentHTML}
             <div class="video-overlay">
                 <span class="iconfont icon-play"></span>
                 <span class="video-label">${data.label}</span>
             </div>
         `;
-        fragment.appendChild(li);
-    });
-    videoList.appendChild(fragment);
+            targetFragment.appendChild(li);
+        });
+    }
 
-    // 设置懒加载观察器
-    if (lazyLoadObserver) {
+    function attachLazyObserver() {
+        if (!lazyLoadObserver) return;
         const lazyImages = videoList.querySelectorAll('img[data-src]');
         lazyImages.forEach(img => lazyLoadObserver.observe(img));
+    }
+
+    function renderNextBatch() {
+        if (isLoadingMore || renderedCount >= videoData.length) return;
+        isLoadingMore = true;
+
+        const nextItems = videoData.slice(renderedCount, renderedCount + batchSize);
+        const batchFragment = document.createDocumentFragment();
+        renderItems(nextItems, renderedCount, batchFragment, renderedCount === 0);
+        videoList.appendChild(batchFragment);
+        renderedCount += nextItems.length;
+        attachLazyObserver();
+        isLoadingMore = false;
+    }
+
+    renderNextBatch();
+
+    // 滚动分页触发器
+    const sentinel = document.createElement('div');
+    sentinel.className = 'video-sentinel';
+    videoList.parentNode.appendChild(sentinel);
+
+    if ('IntersectionObserver' in window) {
+        const pagerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    renderNextBatch();
+                }
+            });
+        }, { rootMargin: '300px', threshold: 0.01 });
+        pagerObserver.observe(sentinel);
     }
 
     // 绑定事件委托
@@ -347,7 +432,7 @@ function initializeVideoPlayer(videoData, listContainerId) {
 
     // 1. 触摸开始
     modal.addEventListener('touchstart', (e) => {
-        // 【核心修改】允许点击：视频本身、模态框背景、或者透明覆盖层(.drag-overlay)
+        // 【核心修改】允许点击：视频本身、模态框背景，或者透明覆盖层(.drag-overlay)
         // 只要不是点击了关闭按钮，都允许尝试拖拽
         if (e.target.closest('.video-close')) return;
 
@@ -449,7 +534,7 @@ function initializeVideoPlayer(videoData, listContainerId) {
             modalContent.style.transition = 'none';
         }
 
-        // 新增：加个“抓手”指针反馈（可选，通过 CSS 已实现）
+        // 新增：加个"抓手"指针反馈（可选，通过 CSS 已实现）
     }, { passive: true });
 
     document.addEventListener('mousemove', (e) => {
@@ -526,17 +611,30 @@ function initializeVideoPlayer(videoData, listContainerId) {
         }, 200); // 缩短到200ms，让滑动更快连上新视频
     }
 
-    //     // 2. 等待 0.3秒 动画结束后，真正的切换视频
-    //     setTimeout(() => {
-    //         switchVideo(direction);
-    //         // switchVideo 内部调用 openVideo，openVideo 里会重置位置为 (0,0)
-    //     }, 400);
-    // }
-
-    // // 左右切换按钮
-    // const nextBtn = document.querySelector('#modal-next-btn');
-    // const prevBtn = document.querySelector('#modal-prev-btn');
-    // if (nextBtn) nextBtn.addEventListener('click', () => switchVideo(1));
-    // if (prevBtn) prevBtn.addEventListener('click', () => switchVideo(-1));
-
 })();
+
+// 预加载相邻图片的函数
+function preloadAdjacentImages(currentIndex) {
+    if (!currentItems || currentItems.length === 0) return;
+
+    // 预加载前一张和后一张图片
+    const prevIndex = (currentIndex - 1 + currentItems.length) % currentItems.length;
+    const nextIndex = (currentIndex + 1) % currentItems.length;
+
+    [prevIndex, nextIndex].forEach(index => {
+        const item = currentItems[index];
+        const videoUrl = item.dataset.videoUrl;
+
+        if (videoUrl && !imageCache.has(videoUrl)) {
+            const img = new Image();
+            img.onload = () => {
+                imageCache.set(videoUrl, img);
+                console.log('预加载完成:', videoUrl);
+            };
+            img.onerror = () => {
+                console.warn('预加载失败:', videoUrl);
+            };
+            img.src = videoUrl;
+        }
+    });
+}

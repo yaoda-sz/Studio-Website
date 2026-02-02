@@ -1,33 +1,4 @@
 (async function () {
-    // 等待必要的库加载完成
-    function waitForLibraries() {
-        return new Promise((resolve, reject) => {
-            let checkCount = 0;
-            const maxChecks = 50; // 最多等待5秒
-
-            const checkLibraries = () => {
-                checkCount++;
-
-                if (typeof PIXI !== 'undefined' && typeof spine !== 'undefined') {
-                    resolve();
-                } else if (checkCount >= maxChecks) {
-                    reject(new Error('库加载超时'));
-                } else {
-                    setTimeout(checkLibraries, 100);
-                }
-            };
-
-            checkLibraries();
-        });
-    }
-
-    try {
-        await waitForLibraries();
-    } catch (error) {
-        console.error('库加载失败:', error);
-        return;
-    }
-
     // 获取容器 DOM 节点
     const container = document.getElementById('display-container');
 
