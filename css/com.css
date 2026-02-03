@@ -928,32 +928,6 @@ footer .bottom p {
         margin: 0 auto 10px;
     }
 
-    .icon-mf {
-        background-position: 560px;
-    }
-
-    .icon-sz {
-        background-position: -420px;
-    }
-
-    .icon-an {
-        background-position: -560px;
-    }
-
-    .icon-pm {
-        background-position: 0px;
-    }
-
-    .icon-yc {
-        background-position: -141px;
-    }
-
-    .icon-pz {
-        background-position: 140px;
-    }
-
-
-
     footer .container {
         padding: 0;
     }
@@ -962,7 +936,6 @@ footer .bottom p {
         flex-wrap: wrap;
 
     }
-
 
     footer ul {
         padding-left: 0;
@@ -980,7 +953,6 @@ footer .bottom p {
     .bottom p {
         font-size: 1rem;
     }
-
 
 }
 

@@ -346,4 +346,28 @@ li .box-icon .icon-4 {
         background-image: url(../img/icon_gan.webp);
         background-size: 600%;
     }
+
+    .icon-mf {
+        background-position: 560px;
+    }
+
+    .icon-sz {
+        background-position: -420px;
+    }
+
+    .icon-an {
+        background-position: -560px;
+    }
+
+    .icon-pm {
+        background-position: 0px;
+    }
+
+    .icon-yc {
+        background-position: -141px;
+    }
+
+    .icon-pz {
+        background-position: 140px;
+    }
 }
