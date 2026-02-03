@@ -5,7 +5,7 @@ const headerHTML = `
 <div class="container">
     <div class="logo">
         <a href="./index.html">
-            <img src="./img/logo.webp" alt="公司Logo">
+            <img src="./logo.webp" alt="公司Logo">
             <h1>雨文白告工作室</h1>
         </a>
     </div>
@@ -26,7 +26,21 @@ const headerHTML = `
 </div>
 `;
 
-// 2. 定义页脚 HTML
+// 2. 定义JSON-LD结构化数据
+function generateStructuredData() {
+    return {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "苏州工业园区雨文白告游戏动漫工作室",
+        "url": "https://www.yaoda.art",
+        "contactPoint": [
+            { "@type": "ContactPoint", "telephone": "+86-13814865715", "contactType": "customer service" },
+            { "@type": "ContactPoint", "email": "170469162@qq.com", "contactType": "customer service" }
+        ]
+    };
+}
+
+// 3. 定义页脚 HTML
 const footerHTML = `
 <div class="container">
     <div class="contact-info">
@@ -77,7 +91,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 插入 Footer
     const footerElem = document.querySelector('footer');
-    if (footerElem) footerElem.innerHTML = footerHTML;
+    if (footerElem) {
+        footerElem.innerHTML = footerHTML;
+        // 添加JSON-LD结构化数据
+        const structuredData = generateStructuredData();
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(structuredData, null, 2);
+        footerElem.appendChild(script);
+    }
 
     // 插入侧边功能
     const sideControlElem = document.querySelector('#side-control');

@@ -339,4 +339,11 @@ li .box-icon .icon-4 {
         align-items: center;
         padding: 0;
     }
+
+    .icon-img {
+        width: 140px;
+        height: 140px;
+        background-image: url(../img/icon_gan.webp);
+        background-size: 600%;
+    }
 }
