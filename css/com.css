@@ -364,7 +364,7 @@ section {
 #object {
     max-width: 1200px;
     margin: 0 auto;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--card-bg);
     /* box-shadow: 8px 0 8px #0003, -8px 0 8px #0003; */
     padding: 0;
 }
