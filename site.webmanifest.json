@@ -1,0 +1,15 @@
+﻿{
+    "name": "雨文白告游戏动漫工作室",
+    "short_name": "Yaoda Art",
+    "icons": [
+        {
+            "src": "./logo.webp",
+            "sizes": "128x128",
+            "type": "image/webp"
+        }
+    ],
+    "start_url": "./",
+    "display": "standalone",
+    "theme_color": "#0066cc",
+    "background_color": "#ffffff"
+}
