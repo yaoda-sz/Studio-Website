@@ -1,0 +1,910 @@
+#banner {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--background-color);
+    position: relative;
+    padding-top: 78px;
+    margin-bottom: 80px;
+}
+
+/* 加载指示器样式 */
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 106, 44, 0.3);
+    border-top: 3px solid var(--link-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 当角色加载完成后隐藏加载指示器 */
+.loading-indicator.hidden {
+    display: none;
+}
+
+#banner-light {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0px;
+    right: -50px;
+    background-color: rgba(61, 27, 16, 0.5);
+    /* z-index: 0; */
+    pointer-events: none;
+    filter: blur(100px);
+}
+
+#banner-top {
+    width: 100%;
+    position: relative;
+}
+
+/* 外层容器：1400x600 */
+#banner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#banner-container,
+#display-container {
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#display-container {
+    position: relative;
+}
+
+.banner-box,
+.ninja-box {
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 36px;
+}
+
+.banner-box {
+    justify-content: flex-start;
+}
+
+.ninja-box {
+    justify-content: flex-end;
+}
+
+#title-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 250px;
+    height: 40px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--line-color);
+}
+
+#title-box #title-point {
+    width: 8px;
+    height: 8px;
+    background: #FF6A2C;
+    border-radius: 5px;
+}
+
+#title-box p {
+    font-weight: 400;
+    font-size: 14px;
+    color: #9E9E9E;
+    line-height: 24px;
+    text-align: left;
+    font-style: normal;
+    text-transform: none;
+}
+
+#ninja-left,
+#ninja-right {
+    height: 100%;
+}
+
+
+#ninja-left {
+    width: 50%;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    z-index: 10;
+}
+
+#ninja-right {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#ninja-right .ninja-tip {
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+}
+
+/* 内部淡紫色装饰块：700x300 */
+#sky-bg {
+    width: 100%;
+    max-width: 440px;
+    height: 68%;
+    background-image: url(/assets/images/ninja_bg.webp);
+    background-size: cover;
+    background-position: 64% center;
+    position: absolute;
+    border-radius: 40px;
+    z-index: 0;
+    /* 位于底层 */
+    pointer-events: none;
+    /* 鼠标事件穿透，不影响角色抓取 */
+    filter: brightness(0.75);
+    /* 降低亮度使背景变暗，添加橙色调 */
+}
+
+#display-container canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    /* 角色位于装饰块上方 */
+}
+
+
+
+#banner h2 {
+    color: var(--title-color);
+    font-size: 4rem;
+    font-family: 'PingFang SC', Arial, system-ui, sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 3px;
+}
+
+#banner h2:nth-child(2) {
+    color: var(--link-color);
+}
+
+
+#banner-btn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    /* z-index: 10; */
+}
+
+#banner-btn a {
+    padding: 12px 35px;
+    border-radius: 30px;
+    border: 0px;
+    cursor: pointer !important;
+    transition: all 0.2s ease-in-out;
+    pointer-events: auto;
+}
+
+#banner-btn a p {
+    font-size: 1.2rem;
+    color: var(--title-color);
+    font-weight: 500;
+    pointer-events: none;
+}
+
+#banner-btn a:nth-child(1) {
+    background-color: var(--link-color);
+    color: var(--title-color);
+}
+
+#banner-btn a:nth-child(2) {
+    background-color: transparent;
+    color: var(--title-color);
+    border: 1px solid var(--line-color);
+}
+
+#banner-btn a:hover {
+    background-color: var(--link-hover-color);
+    color: var(--background-color);
+}
+
+#banner hr {
+    width: 100%;
+    border: none;
+    height: 1px;
+    background-color: var(--line-color);
+    margin: 20px 0;
+}
+
+#banner #banner-bottom {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+}
+
+#banner .icon-down {
+    font-size: 30px;
+    color: var(--link-color);
+    animation: float 1s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+#banner-year {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 100px;
+}
+
+#banner-year h3 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--title-color);
+}
+
+#banner-year p {
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.yearNum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.yeQian {
+    width: fit-content;
+    height: fit-content;
+    font-size: 0.8rem;
+    padding: 3px 12px;
+    background-color: var(--yeQian-bg);
+    border: 1px solid var(--yeQian-line);
+    border-radius: 20px;
+    align-items: center;
+    color: var(--link-color);
+}
+
+#ninja-right .yeQian {
+    position: absolute;
+}
+
+#ninja-right .yeQian-1 {
+    top: 12%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+
+#ninja-right .yeQian-2 {
+    top: 80%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+}
+
+#ninja-right .yeQian-3 {
+    bottom: 8%;
+    right: 2%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* 最新更新纵列弹性容器 */
+
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 100%;
+    margin-bottom: 80px;
+}
+
+.services-grid .box-s {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--card-bg);
+    border-radius: 30px;
+    border: 1px solid var(--line-color);
+    padding: 24px;
+    max-width: 100%;
+    min-width: 150px;
+}
+
+.services-grid .box-s .box-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+}
+
+.services-grid .box-s .card-v {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    cursor: pointer;
+    aspect-ratio: calc(4/3);
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.box-s .card-v img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+    transition: all 0.2s;
+}
+
+.box-s .card-v img:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    cursor: pointer;
+}
+
+.card-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+}
+
+.yeQian-box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 精选案例 */
+
+.gallery {
+    width: 100%;
+    max-width: 1440px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    /* 自动响应式 */
+    gap: 30px;
+
+}
+
+.gallery .item {
+    background: #222;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.item h5 {
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* 能做啥大弹性盒子 */
+#what {
+    margin-bottom: 80px;
+}
+
+#what ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    padding: 0;
+    gap: 30px;
+    margin-top: 60px;
+}
+
+/* 做啥子弹性盒子宽度等比缩放 */
+#what ul li {
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.circle-icon {
+    width: 138px;
+    height: 138px;
+    border: var(--line-color) 2px solid;
+    border-radius: 50%;
+    /* background-color: var(--card-bg); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.moreBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+}
+
+.moreBtn a {
+    color: var(--link-color);
+    border: 1px solid var(--line-color);
+    padding: 10px 30px;
+    border-radius: 30px;
+}
+
+.icon-img {
+    width: 100px;
+    height: 90px;
+    background-image: url(../img/iconDo-white.png);
+}
+
+.icon-mf {
+    background-position: -225px;
+}
+
+.icon-sz {
+    background-position: -338px;
+}
+
+.icon-an {
+    background-position: -442px;
+}
+
+.icon-pm {
+    background-position: -4px;
+}
+
+.icon-yc {
+    background-position: -116px;
+}
+
+.icon-pz {
+    background-position: -562px;
+}
+
+#process {
+    background-color: var(--footer-bg);
+    padding: 80px 0;
+}
+
+.process-content {
+    /* max-width: 1200px; */
+    padding: 80px 30px;
+    margin: 0 auto;
+}
+
+.process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative;
+}
+
+.step-item {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 0;
+}
+
+.step-number {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 2px solid var(--line-color);
+    color: var(--title-color);
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 auto 25px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.step-number::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--link-color), transparent);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.step-item:hover .step-number {
+    background: var(--link-color);
+    border-color: var(--link-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 106, 44, 0.3);
+}
+
+.step-item:hover .step-number::before {
+    opacity: 0.3;
+}
+
+.step-title {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--title-color);
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.step-item:hover .step-title {
+    color: var(--link-color);
+}
+
+.step-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    opacity: 0.8;
+    font-weight: 400;
+    max-width: 280px;
+    margin: 0 auto;
+    transition: opacity 0.3s ease;
+}
+
+.step-item:hover .step-desc {
+    opacity: 1;
+}
+
+#comeOn {
+    width: 100%;
+    height: 60vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#comeOn h2 {
+    font-size: 3rem !important;
+    font-weight: 500;
+    color: var(--title-color);
+}
+
+
+
+#comeOn h6 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--title-color);
+    margin-top: 40px;
+}
+
+@media (max-width: 1200px) {
+    #banner {
+        margin-bottom: 0;
+    }
+
+    #banner-top,
+    .banner-box,
+    #ninjia-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .banner-box {
+        width: 100%;
+    }
+
+    #ninja-left {
+        width: 100%;
+        max-width: 90%;
+        height: 100%;
+        padding-top: 30px;
+        gap: 20px;
+        z-index: 10;
+    }
+
+    #title-box {
+        margin: 0 auto;
+    }
+
+    #ninja-left p {
+        text-align: center;
+    }
+
+    #banner-text {
+        width: 100%;
+        max-width: 800px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        padding: 40px 0;
+    }
+
+    #banner-text h2 {
+        font-size: 4rem;
+    }
+
+    #banner-container {
+        position: unset;
+        width: 100%;
+        height: 100%;
+    }
+
+    #banner-btn {
+        justify-content: center;
+    }
+
+    hr {
+        line-height: 2px;
+        margin: 0px !important;
+    }
+
+    #banner-year {
+        justify-content: center;
+    }
+
+    .ninja-box {
+        width: 100%;
+    }
+
+    #ninja-right {
+        width: 100%;
+        height: 100%;
+    }
+
+    #ninja-right .yeQian {
+        display: none;
+    }
+
+    #sky-bg {
+        width: 100%;
+        max-width: 80%;
+        height: 400px;
+        background-position: center;
+        filter: none;
+    }
+
+    #banner-bottom {
+        display: none !important;
+    }
+
+    #display-container canvas,
+    #display-container .ninja-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+@media (max-width: 900px) {
+    #banner {
+        min-height: fit-content;
+    }
+
+    #banner-container {
+        padding: 0;
+    }
+
+    .banner-box,
+    .ninja-box {
+        padding: 0 24px;
+    }
+
+    #ninja-left {
+        max-width: 100%;
+    }
+
+    #banner-text {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        padding: 40px 0;
+    }
+
+    #banner-text h2,
+    .item h3 {
+        font-size: 3rem;
+    }
+
+    #display-container {
+        height: 400px;
+    }
+
+    #sky-bg {
+        width: 80%;
+        height: 68%;
+        border-radius: 28px;
+    }
+
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    /* 修复移动端视频元素阻止滑屏的问题 */
+    .gallery .item {
+        touch-action: pan-y;
+        width: 100%;
+    }
+
+    .item canvas,
+    .item .spine-player-container,
+    .item .spine-player-canvas {
+        touch-action: pan-y;
+        pointer-events: none;
+    }
+
+    /* 确保控制栏仍然可以点击 */
+    .item .spine-player-controls {
+        pointer-events: auto;
+        touch-action: manipulation;
+    }
+}
+
+@media (max-width:768px) {
+    #ninja-right .ninja-tip {
+        bottom: 0px;
+    }
+
+    .process-steps::before {
+        display: none;
+    }
+
+    .step-number {
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        font-size: 1.6rem;
+    }
+
+    .step-title {
+        font-size: 1.4rem;
+    }
+
+    .step-desc {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+}
+
+@media (max-width:576px) {
+    #banner-text {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    #banner-text h2 {
+        font-size: 2.5rem;
+    }
+
+    #banner-year {
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
+    }
+
+    #banner-year h3 {
+        font-size: 1.6rem;
+    }
+
+    #banner-btn a {
+        padding: 8px 20px;
+        border-radius: 30px;
+    }
+
+    #banner-btn a p {
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+
+    #banner-btn a:nth-child(2) {
+        display: none;
+    }
+
+    .process-steps {
+        gap: 50px;
+    }
+
+    #comeOn h2 {
+        font-size: 2.6rem;
+
+    }
+}

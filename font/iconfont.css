@@ -1,0 +1,116 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4847922 */
+  src: url('iconfont.woff2?t=1772041548733') format('woff2'),
+       url('iconfont.woff?t=1772041548733') format('woff'),
+       url('iconfont.ttf?t=1772041548733') format('truetype'),
+       url('iconfont.svg?t=1772041548733#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-yuyan:before {
+  content: "\e860";
+}
+
+.icon-language:before {
+  content: "\e734";
+}
+
+.icon-down:before {
+  content: "\e773";
+}
+
+.icon-xiangxia:before {
+  content: "\e601";
+}
+
+.icon-player:before {
+  content: "\e87c";
+}
+
+.icon-youxiang:before {
+  content: "\e908";
+}
+
+.icon-moon:before {
+  content: "\e72f";
+}
+
+.icon-sun:before {
+  content: "\e746";
+}
+
+.icon-dark:before {
+  content: "\e670";
+}
+
+.icon-sunny:before {
+  content: "\e672";
+}
+
+.icon-play:before {
+  content: "\e666";
+}
+
+.icon-stop:before {
+  content: "\e667";
+}
+
+.icon-back:before {
+  content: "\e635";
+}
+
+.icon-mail:before {
+  content: "\e62e";
+}
+
+.icon-top:before {
+  content: "\e602";
+}
+
+.icon-daoshi:before {
+  content: "\e737";
+}
+
+.icon-shouji:before {
+  content: "\e60e";
+}
+
+.icon-code:before {
+  content: "\e60b";
+}
+
+.icon-qq:before {
+  content: "\e611";
+}
+
+.icon-rongyu:before {
+  content: "\e600";
+}
+
+.icon-weixin:before {
+  content: "\e665";
+}
+
+.icon-phone:before {
+  content: "\e612";
+}
+
+.icon-good:before {
+  content: "\e6a8";
+}
+
+.icon-save:before {
+  content: "\e738";
+}
+
+.icon-art:before {
+  content: "\e619";
+}
+

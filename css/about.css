@@ -1,0 +1,221 @@
+/* 关于我 */
+#about .yaoDa .box-me {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 30px;
+    gap: 20px;
+}
+
+#about .yaoDa .box-me .left-me {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#about .yaoDa .box-me .left-me .photo {
+    border-radius: 50%;
+    width: 200px;
+    aspect-ratio: 1 / 1;
+}
+
+#about .yaoDa .box-me .right-me {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.about-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.yaoDa h3,
+.yaoDa h2,
+.anli h2 {
+    color: white;
+}
+
+.yaoDa h4 {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    font-weight: 400;
+    color: #ccc;
+}
+
+.yaoDa hr {
+    width: 100%;
+    border: none;
+    height: 1px;
+    background-color: hsla(0, 0%, 43%, 0.4);
+    margin-bottom: 38px;
+}
+
+.yaoDa .title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.big-text {
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 2.6rem;
+    margin: 0;
+}
+
+.yaoDa .title h3 {
+    margin: 0;
+    color: rgb(153, 153, 153);
+    font-size: 1.2rem;
+    font-weight: normal;
+    line-height: 1.2rem;
+    padding: 0 18px;
+}
+
+.yaoDa .right-me .card-me {
+    padding: 20px 0;
+}
+
+.yaoDa .card-me ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.yaoDa .card-me ul li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    min-width: 260px;
+}
+
+.yaoDa .card-me ul li p,
+#about .iconfont {
+    color: var(--link-color);
+    line-height: 30px;
+}
+
+#about .iconfont {
+    font-size: 1.2rem;
+    padding-right: 10px;
+}
+
+
+.yaoDa p {
+    font-size: 1.2rem;
+    line-height: 2rem;
+}
+
+@media (max-width:900px) {
+    #about .yaoDa .box-me {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 30px;
+        gap: 40px;
+    }
+
+    .about-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin: 0 auto;
+    }
+
+    .big-text {
+        font-size: 2.2rem;
+        line-height: 2.2rem;
+    }
+
+    .yaoDa .right-me {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .yaoDa .right-me .card-me {
+        width: auto;
+        padding: 0;
+    }
+
+    .yaoDa .card-me ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+
+    .yaoDa .card-me ul li {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        min-width: auto;
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    #about .yaoDa .box-me {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    #about .yaoDa .box-me .left-me .photo {
+        width: 160px;
+    }
+}
+
+@media (max-width: 576px) {
+    #about .yaoDa .box-me {
+        padding: 10px;
+        gap: 30px;
+    }
+
+    .yaoDa .box-me .card {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .yaoDa h3 {
+        font-size: 2rem;
+        margin-bottom: 0px;
+    }
+
+    .yaoDa .h4 {
+        font-size: 1.2rem;
+        color: #cccccc;
+    }
+
+    .yaoDa p {
+        font-size: 1rem;
+        line-height: 1.6rem;
+    }
+
+    .yaoDa .card-me ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .yaoDa .card-me ul li {
+        padding: 0;
+    }
+}
