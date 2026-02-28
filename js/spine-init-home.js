@@ -12,8 +12,8 @@ window.addEventListener('load', () => {
         {
             id: 'zero-player',
             options: {
-                skeleton: "./assets/spine/Zero.skel",
-                atlas: "./assets/spine/Zero.atlas",
+                skeleton: "/assets/spine/Zero.skel",
+                atlas: "/assets/spine/Zero.atlas",
                 animation: "idle",
                 skin: "default",
                 showControls: true,
@@ -28,8 +28,8 @@ window.addEventListener('load', () => {
         {
             id: 'role_body-player',
             options: {
-                skeleton: "./assets/spine/role_boy.json",
-                atlas: "./assets/spine/role_boy.atlas",
+                skeleton: "/assets/spine/role_boy.json",
+                atlas: "/assets/spine/role_boy.atlas",
                 animation: "run_c",
                 skin: "default",
                 backgroundColor: "#333333",
@@ -41,8 +41,8 @@ window.addEventListener('load', () => {
         {
             id: 'king-player',
             options: {
-                skeleton: "./assets/spine/king.json",
-                atlas: "./assets/spine/king4.2.atlas",
+                skeleton: "/assets/spine/king.json",
+                atlas: "/assets/spine/king4.2.atlas",
                 animation: "ar",
                 showControls: true,
                 backgroundColor: "#333333",
