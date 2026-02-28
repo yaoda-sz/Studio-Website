@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="作品展示、动作、特效、2D动画。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="游戏动画, 独立游戏,影视特效,动漫制作 spine, steam, 个人小游戏">
+    <meta name="author" content="雨文白告工作室">
+    <meta name="robots" content="index, follow"> <!-- 添加robots meta标签 -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; img-src 'self' data: https://i0.hdslb.com https://www.mihuashi.com https://image-assets.mihuashi.com https://attach.cgjoy.com; font-src 'self' https://unpkg.com https://cdn.jsdelivr.net; connect-src 'self' data: https://api.bilibili.com https://cdn.jsdelivr.net https://unpkg.com; media-src 'self' blob: https://*.bilivideo.com https://attach.cgjoy.com https://image-assets.mihuashi.com data:; frame-src 'self' https://player.bilibili.com https://www.bilibili.com; worker-src 'self' blob:; object-src 'none';">
+
+    <title>雨文白告游戏动漫工作室 - 专业、实惠的游戏与动漫制作！</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="雨文白告游戏动漫工作室">
+    <meta property="og:description" content="专业、实惠的游戏、spine、动画制作！">
+    <meta property="og:url" content="https://www.yaoda.work">
+    <meta property="og:image" content="https://www.yaoda.work/logo.webp">
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" href="logo.webp" sizes="128x128">
+    <link rel="apple-touch-icon" href="logo.webp">
+
+    <link rel="manifest" href="site.webmanifest.json">
+
+    <link rel="canonical" href="https://www.yaoda.work">
+
+    <!-- Preload critical resources -->
+    <link rel="stylesheet" href="./css/com.css">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/cases.css">
+    <link rel="stylesheet" href="./css/spine-player.css">
+    <link rel="stylesheet" href="./font/iconfont.css">
+
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="./assets/spine/ninja.skel" as="fetch" crossorigin>
+    <link rel="preload" href="./assets/spine/ninja.atlas" as="fetch" crossorigin>
+</head>
+
+<body>
+    <header>
+        <div id="headerTop" class="container">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="logo.webp" alt="公司Logo">
+                    <div class="logo-text">
+                        <h1>咬哒叔</h1>
+                        <p>SPINE 2D STUDIO</p>
+                    </div>
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="./index.html">首页</a></li>
+                    <li><a href="./cases.html">案例作品</a></li>
+                    <li><a href="./service.html">作品展示</a></li>
+                    <li><a href="./about.html">关于我们</a></li>
+                    <li><a href="./contact.html">联系我们</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <div class="top-line"></div>
+                    <div class="middle-line"></div>
+                    <div class="bottom-line"></div>
+                </div>
+            </nav>
+            <div class="language-selector">
+                <div class="language-toggle">
+                    <span class="iconfont icon-language"></span>
+                    <p class="current-lang">中</p>
+                </div>
+                <div class="language-menu">
+                    <div class="language-option" data-lang="zh">中文</div>
+                    <div class="language-option" data-lang="en">English</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- banner -->
+        <section id="banner">
+            <!-- girl展示区（鼠标跟随交互） -->
+            <div id="banner-top">
+                <div id="banner-container">
+                    <div class="banner-box">
+                        <div id="ninja-left">
+                            <div id="title-box">
+                                <div id="title-point"></div>
+                                <p data-i18n="banner.available">AVAILABLE FOR PROJECTS</p>
+                            </div>
+                            <div id="banner-text">
+                                <h2 data-i18n="banner.title1">专业游戏</h2>
+                                <h2 data-i18n="banner.title2">Spine动画</h2>
+                                <h2 data-i18n="banner.title3">制作服务</h2>
+                            </div>
+                            <p data-i18n="banner.description">
+                                七年专注2D骨骼动画，为独立游戏与商业项目提供高品质角色动画、特效设计与技术集成方案。从概念设计到引擎落地，全流程专业服务。</p>
+                            <div id="banner-btn">
+                                <a href="./cases.html">
+                                    <p data-i18n="banner.btn1">查看作品案例</p>
+                                </a>
+                                <a>
+                                    <p data-i18n="banner.btn2">联系我们</p>
+                                </a>
+                            </div>
+                            <hr>
+                            <div id="banner-year">
+                                <div class="yearNum">
+                                    <h3>40+</h3>
+                                    <p data-i18n="banner.projects">完成项目</p>
+                                </div>
+                                <div class="yearNum">
+                                    <h3>7年</h3>
+                                    <p data-i18n="banner.experience">行业经验</p>
+                                </div>
+                                <div class="yearNum">
+                                    <h3>100%</h3>
+                                    <p data-i18n="banner.delivery">如期交付</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="display-container">
+                    <!-- 加载状态指示器 -->
+                    <div id="spine-loading" class="loading-indicator">
+                        <div class="loading-spinner"></div>
+                        <p>角色加载中...</p>
+                    </div>
+                    <div class="ninja-box">
+                        <div id="ninja-right">
+                            <div id="sky-bg"></div>
+
+                            <p class="yeQian yeQian-1" data-i18n="banner.jsonExport">JSON导出</p>
+                            <p class="yeQian yeQian-2" data-i18n="banner.optimize">极限优化</p>
+                            <p class="yeQian yeQian-3" data-i18n="banner.physics">物理模拟</p>
+                            <p class="ninja-tip" data-i18n="banner.dragTip">点住四处拖拽她！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="banner-bottom">
+                <p data-i18n="banner.scroll">向下继续浏览</p>
+                <span class="iconfont icon-down"></span>
+            </div>
+        </section>
+        <!-- 最新服务 -->
+        <section id="services" class="container">
+            <div class="title-com">
+                <h5 class="title-en">SERVICES</h5>
+                <h3 class="title-zh">服务项目</h3>
+                <p class="title-p">从角色切图到引擎集成，提供完整的技术支持。熟悉Unity、Cocos Creator、Unreal Engine、Godot等主流引擎的Spine运行时集成。</p>
+            </div>
+            <div class="services-grid">
+                <!-- 纵列3个弹性盒子 -->
+                <div class="box-s">
+                    <div class="box-text">
+                        <div class="card-v" data-src="./video/king.mp4" data-poster="./video/king.jpg" role="button"
+                            tabindex="0" aria-label="播放游戏动作演示视频">
+                            <img src="./video/king.webp" alt="游戏角色战斗动作演示 - 展示流畅的攻击和技能动画" loading="lazy" width="320"
+                                height="180">
+                        </div>
+                        <div class="card-text">
+                            <h3 class="title-card">游戏动作</h3>
+                            <p>专业的骨骼绑定、权重绘制与动作设计。包含待机动画、战斗、手机反馈、表情动画等全套角色动画。</p>
+                        </div>
+                    </div>
+                    <div class="yeQian-box">
+                        <p class="yeQian">骨骼绑定</p>
+                        <p class="yeQian">网络蒙皮</p>
+                        <p class="yeQian">皮肤切换</p>
+                    </div>
+                </div>
+                <div class="box-s">
+                    <div class="box-text">
+                        <div class="card-v" data-src="./mmd/fx_hualingchi.mp4" data-poster="./video/fx_hualingchi.jpg"
+                            role="button" tabindex="0" aria-label="播放交互动效演示视频">
+                            <img src="./video/fx_hualingchi.webp" alt="华丽场景特效展示 - 包含火焰、光影等视觉特效" loading="lazy"
+                                width="320" height="180">
+                        </div>
+                        <div class="card-text">
+                            <h3 class="title-card">交互动效</h3>
+                            <p>赋予视觉灵魂，用细腻的动态反馈连接用户与产品。</p>
+                        </div>
+                    </div>
+                    <div class="yeQian-box">
+                        <p class="yeQian">UI交互</p>
+                        <p class="yeQian">界面光效</p>
+                        <p class="yeQian">技能特效</p>
+                    </div>
+                </div>
+                <div class="box-s">
+                    <div class="box-text">
+                        <div class="card-v" data-src="./video/king.mp4" data-poster="./video/king.jpg" role="button"
+                            tabindex="0" aria-label="播放影视动画演示视频">
+                            <img src="./video/npc_02.webp" alt="游戏NPC角色动画展示 - 展示生动的角色表情和动作" loading="lazy" width="320"
+                                height="180">
+                        </div>
+                        <div class="card-text">
+                            <h3 class="title-card">影视动画</h3>
+                            <p>精于角色表演细节，为不同性格的角色注入独特生命力。</p>
+                        </div>
+                    </div>
+                    <div class="yeQian-box">
+                        <p class="yeQian">角色动画</p>
+                        <p class="yeQian">场景动画</p>
+                        <p class="yeQian">特效动画</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 案例精选 -->
+        <section id="cases" class="container">
+            <div class="title-com">
+                <h5 class="title-en">SECELCTED CASES</h5>
+                <h3 class="title-zh">精选案例</h3>
+                <p class="title-p">涵盖横板动作、卡牌对战、战旗回合等多种游戏类型的角色动画与场景UI动效设计。</p>
+            </div>
+            <!-- 波粒狂潮案例区块 -->
+            <div class="box-video">
+                <!-- 大视频video -->
+                <div class="video-container">
+                    <div class="video-lazy-load" data-bvid="BV1Mfbzz7E8P" data-cid="31696421478">
+                        <img src="./img/bolikuanhu_cover.webp" alt="波粒狂潮视频封面" class="video-poster">
+                        <div class="play-icon">
+                            <span class="iconfont icon-play"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-tag">
+                    <h3 class="title-card">《波粒狂潮Infinity Boli》</h3>
+                    <p>"一款紧张刺激的45度俯视角ROGUE割草游戏。已在STEAM游戏平台上线。游戏玩法：面对波粒鸟大军的疯狂侵袭的游戏中，玩家将挑选出被神明认可的4名动物英灵来组合成理想的战斗阵容，通过上百种丰富遗物和强力装备，种类各异的不同鸟蛋来强化自身，发掘能够产生雪球效应的最强构筑来打败波粒鸟的入侵。
+                    </p>
+                    <a href="https://store.steampowered.com/app/3446270/_Infinity_Boli/" target="_blank"
+                        style="color:var(--link-color);"> 在STEAM了解更多&gt;&gt;</a>
+                </div>
+            </div>
+            <div class="moreBtn">
+                <a href="./cases.html" target="_blank">查看更多&gt;&gt;</a>
+            </div>
+        </section>
+        <section id="workShow" class="container">
+            <div class="title-com">
+                <h5 class="title-en">WORKS</h5>
+                <h3 class="title-zh">作品展示</h3>
+                <p class="title-p">每个角色包含多套常规动作，从待机、行走、奔跑、跳跃到攻击、受击等，确保角色在不同情境下都能表现出自然流畅的动作。</p>
+            </div>
+            <div class="gallery">
+                <!-- 角色 1：Zero -->
+                <div class="item">
+                    <h5>Zero</h5>
+                    <div id="zero-player" style="height:300px;"></div>
+                </div>
+
+                <!-- 角色 2：Role_boy -->
+                <div class="item">
+                    <h5>Role_boy</h5>
+                    <div id="role_body-player" style="height:300px;"></div>
+                </div>
+                <!-- 角色 3：King -->
+                <div class="item">
+                    <h5>King</h5>
+                    <div id="king-player" style="height:300px;"></div>
+                </div>
+                <!-- 你想加多少个就复制多少个上面这块 -->
+            </div>
+            <div class="moreBtn">
+                <a href="./service.html" target="_blank">查看更多&gt;&gt;</a>
+            </div>
+        </section>
+        <!-- 我们还能做什么？ -->
+        <section id="what" class="container">
+            <div class="title-com">
+                <h5 class="title-en">OTHER SERVICES</h5>
+                <h3 class="title-zh"> 还能做什么</h3>
+                <p class="title-p">我们能做的远不止这些，从游戏美术到影视动画，从UI设计到技术集成，我们提供全方位的创意支持。</p>
+            </div>
+            <ul>
+                <!-- 子弹性盒子 -->
+                <li>
+                    <div class="circle-icon">
+                        <div class="icon-img icon-mf" aria-label="咨询图标"></div>
+                    </div>
+                    <h3 class="title-card">专业咨询</h3>
+                    <p class="service-item__description">免费提供项目前期技术评估，让您的创意有据可依。</p>
+                </li>
+                <li>
+                    <div class="circle-icon">
+                        <div class="icon-img icon-sz" aria-label="数字媒体"></div>
+                    </div>
+                    <h3 class="title-card">全案定制</h3>
+                    <p class="service-item__description">涵盖数字媒体、影视动画及 UI 设计的全方位美术支持。</p>
+                </li>
+                <li>
+                    <div class="circle-icon">
+                        <div class="icon-img icon-an" aria-label="影视动漫"></div>
+                    </div>
+                    <h3 class="title-card">影视动画</h3>
+                    <p class="service-item__description">涵盖角色动效、场景动画及各类动态视觉元素（GIF/Banner）。用流畅的动态语言叙述品牌故事。</p>
+                </li>
+                <li>
+                    <div class="circle-icon">
+                        <div class="icon-img icon-pm" aria-label="平面设计"></div>
+                    </div>
+                    <h3 class="title-card">平面设计</h3>
+                    <p class="service-item__description">专业的视觉传达设计。覆盖网页视觉、宣传物料、品牌手册等全方位平面美术支持。</p>
+                </li>
+                <li>
+                    <div class="circle-icon">
+                        <div class="icon-img icon-yc" aria-label="远程协作"></div>
+                    </div>
+                    <h3 class="title-card">高效协作</h3>
+                    <p class="service-item__description">成熟的远程办公体系，确保进度实时同步，沟通无缝衔接。</p>
+                </li>
+                <li>
+                    <div class="circle-icon">
+                        <div class="icon-img icon-pz" aria-label="品质保证"></div>
+                    </div>
+                    <h3 class="title-card">品质保证</h3>
+                    <p class="service-item__description">全流程质量管控。从创意初稿到最终过审，我们精益求精，确保每一个环节都超越您的预期。</p>
+                </li>
+            </ul>
+        </section>
+        <!-- 合作流程 -->
+        <section id="process" class="container">
+            <div class="title-com">
+                <h5 class="title-en">PROCESS</h5>
+                <h3 class="title-zh">合作流程</h3>
+            </div>
+            <div class="process-content">
+                <div class="process-steps">
+                    <div class="step-item">
+                        <div class="step-number">01</div>
+                        <h5 class="step-title">需求确认</h5>
+                        <p class="step-desc">详细沟通美术风格、技术规范、交付格式与时间节点。提供专业的动画实现方案建议。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">02</div>
+                        <h5 class="step-title">原型制作</h5>
+                        <p class="step-desc">提供静态骨骼结构预览或简单动态测试（Rig Test），确认关节设置与权重分配。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">03</div>
+                        <h5 class="step-title">项目制作</h5>
+                        <p class="step-desc">按计划推进动画制作，定期提供进度预览（WIP），支持在线审阅与即时反馈调整。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">04</div>
+                        <h5 class="step-title">交付支持</h5>
+                        <p class="step-desc">交付最终动画效果和导出文件，提供引擎集成技术支持，确保动画文件在游戏中的完美运行。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="comeOn" class="container">
+            <h2>让我们</h2>
+            <h2 style="color: var(--link-color);">一起创造精彩</h2>
+            </div>
+
+            <h6 class="title-p">无论是个人独立游戏还是大型商业项目，期待与你合作！</h6>
+            <br>
+
+        </section>
+    </main>
+    <!-- 页尾 -->
+    <footer id="contact" role="contentinfo">
+        <div class="container">
+            <div class="contact-info">
+                <div class="contact-item-left">
+                    <ul>
+                        <li><span class="iconfont icon-qq"></span>
+                            <p>QQ:170469162</p>
+                        </li>
+                        <li><span class="iconfont icon-weixin"></span>
+                            <p>微信:yaodasz</p>
+                        </li>
+                        <li><span class="iconfont icon-phone"></span>
+                            <p>电话:13814865715</p>
+                        </li>
+                        <li><span class="iconfont icon-mail"></span>
+                            <p>邮箱:170469162@qq.com</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-item-right">
+                    <img src="./img/weixin.webp" alt="微信二维码" class="wx-qrcode">
+                </div>
+            </div>
+            <hr>
+            <div class="endText">
+                <p>版权所有：苏州工业园区雨文白告游戏动漫工作室</p>
+                <br>
+                <p> 2026 yaoda.work | 作品展示测试网站，保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+    <!-- 侧边功能 -->
+    <div id="side-control" role="complementary" aria-label="网站辅助功能">
+    </div>
+
+    <script src="./js/layout.js" defer></script>
+    <script src="./js/com.js" defer></script>
+    <script src="./js/pixi.mini.js" defer></script>
+    <script src="./js/spine-pixi-v8.js" defer></script>
+    <script src="./js/spine-pixi-capture.js" defer></script>
+    <script src="./js/spine-player.js" defer></script>
+    <script src="./js/spine-player-bridge.js" defer></script>
+    <script src="./js/spine-init-home.js" defer></script>
+    <script src="./js/ninja.js" defer></script>
+    <script src="./js/video.js" defer></script>
+    <script src="./js/video-config.js" defer></script>
+    <script src="./js/light.js" defer></script>
+    <script src="./js/language.js" defer></script>
+    <script src="./js/music-player.js" defer></script>
+</body>
+
+</html>

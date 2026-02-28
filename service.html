@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="作品展示、动作、特效、2D动画。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="游戏动画, 独立游戏,影视特效,动漫制作 spine, steam, 个人小游戏">
+    <meta name="author" content="雨文白告工作室">
+    <meta name="robots" content="index, follow"> <!-- 添加robots meta标签 -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; img-src 'self' data: https://i0.hdslb.com https://www.mihuashi.com https://image-assets.mihuashi.com https://attach.cgjoy.com; font-src 'self' https://unpkg.com https://cdn.jsdelivr.net; connect-src 'self' data: https://api.bilibili.com https://cdn.jsdelivr.net https://unpkg.com; media-src 'self' blob: https://*.bilivideo.com https://attach.cgjoy.com https://image-assets.mihuashi.com data:; frame-src 'self' https://player.bilibili.com https://www.bilibili.com; worker-src 'self' blob:; object-src 'none';">
+
+    <!-- 防止视频下载插件 -->
+    <meta name="referrer" content="no-referrer">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>雨文白告游戏动漫工作室 - 作品展示！</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="雨文白告游戏动漫工作室 - 作品展示">
+    <meta property="og:description" content="过往制作的作品效果，帮助您了解我们的制作风格和业务范围">
+    <meta property="og:url" content="https://yaoda.work/service.html">
+    <meta property="og:image" content="https://www.yaoda.work/logo.webp">
+
+    <!-- Favicon -->
+    <link rel="icon" href="logo.webp" sizes="128x128">
+    <link rel="apple-touch-icon" href="logo.webp">
+
+    <link rel="canonical" href="https://www.yaoda.work/service.html">
+
+    <link rel="stylesheet" href="./css/com.css">
+    <link rel="stylesheet" href="./css/service.css">
+    <link rel="stylesheet" href="./font/iconfont.css">
+
+</head>
+
+<body>
+    <!-- 头部导航栏 -->
+    <header>
+    </header>
+    <!-- 主体内容 -->
+    <main>
+        <div class="headTop"></div>
+
+        <!-- 以下为居中块区域内容 -->
+        <section class="container titleTop">
+            <!-- 作品展示 -->
+            <div class="title-com">
+                <h5 class="title-en">WORKS SHOW</h5>
+                <h3 class="title-zh">作品展示</h3>
+                <hr>
+                <p class="title-p">通过对不同艺术风格的把控与动态实现，帮助您直观了解我们的制作风格、技术边界及多元化的视觉表现力。</p>
+            </div>
+        </section>
+        <section class="container">
+            <!-- 动图展示区域 -->
+            <div class="box-big mov-items">
+                <div class="loading-indicator" id="loading-indicator">
+                    正在检测预览图可用性...
+                </div>
+                <ul class="mov-list" id="video-list" style="display: none;">
+                    <!-- 视频项将由JavaScript动态生成 -->
+                </ul>
+            </div>
+        </section>
+    </main>
+    <!-- 页尾 -->
+    <footer id="contact" role="contentinfo">
+
+    </footer>
+    <!-- 模态框 -->
+    <div id="myModal" class="modal">
+        <div class="modal-backdrop"></div> <!-- 可选：防止穿透 -->
+        <span class="video-close" role="button" tabindex="0" aria-label="关闭视频">×</span>
+        <div class="modal-content" id="draggable-container">
+            <div class="drag-overlay"></div> <!-- 添加拖拽覆盖层 -->
+            <!-- <img id="modal-video" src="" alt="视频播放中..."> -->
+            <video id="modal-video" controls loop playsinline webkit-playsinline x5-playsinline
+                x5-video-player-type="h5" x5-video-player-fullscreen="false" preload="metadata"></video>
+        </div>
+    </div>
+    <!-- 侧边功能 -->
+    <div id="side-control" role="complementary" aria-label="网站辅助功能">
+    </div>
+
+    <!-- javascript首页基本脚本  -->
+    <script src="./js/layout.js" defer></script>
+    <script src="./js/com.js" defer></script>
+    <script src="./js/video.js" defer></script>
+    <script src="./js/data_service.js" defer></script>
+    <script src="./js/light.js" defer></script>
+    <script src="./js/language.js" defer></script>
+    <script src="./js/music-player.js" defer></script>
+
+</body>
+
+</html>
