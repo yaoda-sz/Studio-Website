@@ -23,6 +23,7 @@
 .video-container {
     position: relative;
     width: 100%;
+    min-height: 200px;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
@@ -115,5 +116,11 @@
         text-align: start;
         font-weight: 500;
         color: var(--title-color);
+    }
+}
+
+@media (max-width: 576px) {
+    .title-card {
+        text-align: center;
     }
 }

@@ -39,24 +39,18 @@
     gap: 20px;
 }
 
-.yaoDa h3,
-.yaoDa h2,
-.anli h2 {
-    color: white;
-}
-
 .yaoDa h4 {
     font-size: 1.3rem;
     line-height: 1.3rem;
     font-weight: 400;
-    color: #ccc;
+    color: var(--text-color);
 }
 
 .yaoDa hr {
     width: 100%;
     border: none;
     height: 1px;
-    background-color: hsla(0, 0%, 43%, 0.4);
+    background-color: var(--line-color);
     margin-bottom: 38px;
 }
 
@@ -71,15 +65,7 @@
     font-weight: 400;
     line-height: 2.6rem;
     margin: 0;
-}
-
-.yaoDa .title h3 {
-    margin: 0;
-    color: rgb(153, 153, 153);
-    font-size: 1.2rem;
-    font-weight: normal;
-    line-height: 1.2rem;
-    padding: 0 18px;
+    color: var(--title-color);
 }
 
 .yaoDa .right-me .card-me {
@@ -201,7 +187,6 @@
 
     .yaoDa .h4 {
         font-size: 1.2rem;
-        color: #cccccc;
     }
 
     .yaoDa p {

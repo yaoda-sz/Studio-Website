@@ -66,6 +66,7 @@
 
 #banner-top {
     width: 100%;
+    height: auto;
     position: relative;
 }
 
@@ -148,7 +149,7 @@
     padding-top: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start;
     gap: 20px;
     z-index: 10;
@@ -172,7 +173,7 @@
 #sky-bg {
     width: 100%;
     max-width: 440px;
-    height: 68%;
+    height: 57%;
     background-image: url(/assets/images/ninja_bg.webp);
     background-size: cover;
     background-position: 64% center;
@@ -182,7 +183,7 @@
     /* 位于底层 */
     pointer-events: none;
     /* 鼠标事件穿透，不影响角色抓取 */
-    filter: brightness(0.75);
+    filter: brightness(0.9);
     /* 降低亮度使背景变暗，添加橙色调 */
 }
 
@@ -380,6 +381,7 @@
 
 .services-grid .box-s .box-text {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -391,6 +393,7 @@
     position: relative;
     overflow: hidden;
     width: 100%;
+    min-height: 200px;
     cursor: pointer;
     aspect-ratio: calc(4/3);
     border-radius: 20px;
@@ -750,7 +753,7 @@
     }
 
     #banner-bottom {
-        display: none !important;
+        display: none;
     }
 
     #display-container canvas,
