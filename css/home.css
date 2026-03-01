@@ -1,25 +1,3 @@
-html body main section#banner div#banner-top,
-#banner-top:not([hidden]) {
-    display: flex !important;
-    /* 或 block，根据实际布局 */
-    display: -webkit-flex !important;
-    /* 老 Chromium 兼容 */
-    min-height: 500px !important;
-    /* 防止高度0被UA隐藏，调成你banner实际高度 */
-    height: auto !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    overflow: visible !important;
-}
-
-/* 如果里面有 canvas 或 .spine-player 类 */
-#banner-top canvas,
-#banner-top .spine-player {
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-}
-
 #banner {
     width: 100%;
     height: auto;
