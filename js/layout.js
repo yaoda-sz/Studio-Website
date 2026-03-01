@@ -58,7 +58,7 @@ const footerHTML = `
     <div class="endText">
         <p>版权所有：苏州工业园区雨文白告游戏动漫工作室</p>
         <br>
-        <p> 2026 yaoda.work | 作品展示测试网站，保留所有权利。</p>
+        <p> 2026 yaoda.work | 作品展示测试，保留所有权利。</p>
     </div>
 </div>
 `;
