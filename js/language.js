@@ -52,13 +52,13 @@ const translations = {
     en: {
         nav: {
             home: 'Home',
-            cases: 'Portfolio',
+            cases: 'Case',
             service: 'Works',
             about: 'About',
             contact: 'Contact'
         },
         logo: {
-            title: 'Yaoda Shu',
+            title: 'Uncle Yaoda',
             subtitle: 'SPINE 2D STUDIO'
         },
         banner: {
