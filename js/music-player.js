@@ -12,7 +12,10 @@
     const config = {
         sources: [
             './music/因为是女子.mp3',
-            './music/我想要Z爱.mp3',
+            './music/Rasputin.mp3',
+            './music/Making of Cyborg.mp3',
+            './music/Scarborough Fair.mp3',
+            './music/See You Again.mp3',
             './music/左小祖咒-当我离开你的时候.mp3'
         ],
         currentIndex: 0,
@@ -86,7 +89,7 @@
         audio.src = config.sources[config.currentIndex];
         audio.volume = config.volume;
 
-        const wasPlaying = !audio.paused;
+        const wasPlaying = true; // 强制播放下一首
 
         // 等待音频加载完成后再播放
         audio.addEventListener('canplay', function playNext() {
@@ -94,14 +97,12 @@
                 audio.play().then(() => {
                     updateButton(true);
                     saveState();
-                    console.log('成功播放下一首:', config.sources[config.currentIndex]);
                 }).catch(e => console.error('播放下一首失败:', e));
             }
             audio.removeEventListener('canplay', playNext);
         }, { once: true });
 
         audio.load();
-        console.log('切换到下一首:', config.sources[config.currentIndex]);
         saveState();
     }
 
@@ -164,16 +165,11 @@
         audio.addEventListener('play', () => updateButton(true));
         audio.addEventListener('pause', () => updateButton(false));
         audio.addEventListener('ended', () => {
-            console.log('歌曲播放结束，当前索引:', config.currentIndex);
-            console.log('准备播放下一首...');
-
-            // 添加延迟确保音频完全结束
             setTimeout(() => {
                 try {
                     next();
                 } catch (error) {
                     console.error('切换下一首时出错:', error);
-                    // 尝试重新播放当前歌曲
                     audio.currentTime = 0;
                     audio.play().catch(e => console.error('重新播放失败:', e));
                 }
