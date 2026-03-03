@@ -27,7 +27,7 @@ const translations = {
             experience: '行业经验',
             delivery: '如期交付',
             scroll: '向下继续浏览',
-            dragTip: '点住拖拽她！',
+            dragTip: '四处拖拽她！',
             jsonExport: 'JSON导出',
             optimize: '极限优化',
             physics: '物理模拟'
