@@ -1,6 +1,13 @@
 // 定义该页面的视频数据
 const videoData = [
     {
+        previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/29/234616yvjvnjzwwncqnnzs.webp",
+        srcMp4: "./video/football.mp4",
+        srcWebm: "./video/football.webm",
+        label: "足球小子"
+    },
+    // 萌萌哒UI交互
+    {
         // 预览图链接（用于列表页和弹框播放）
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032628lctffocbzkckcmo8.webp",
         srcMp4: "./video/mmd/mmd_mache.mp4",
@@ -37,12 +44,7 @@ const videoData = [
         srcWebm: "./video/king.webm",
         label: "战斗角色动作展示"
     },
-    {
-        previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032601antcotaxt7jo9wzo.webp",
-        srcMp4: "./video/mmd/mmd_fx01.mp4",
-        srcWebm: "./video/mmd/mmd_fx_card01.webm",
-        label: "抽卡金鱼动画展示"
-    },
+
     // 萌萌哒Q角色
     {
         previewSrc: "https://image-assets.mihuashi.com/permanent/2839538%7C-2024/04/12/17/lmkYTWXtu8ugawrDHSB7I1YqVv-r.gif!artwork.square",
@@ -141,6 +143,12 @@ const videoData = [
         srcMp4: "./video/mmd/mmd_q_16.mp4",
         srcWebm: "./video/mmd/mmd_q_16.webm",
         label: "Q角色休闲动作展示"
+    },
+    {
+        previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032601antcotaxt7jo9wzo.webp",
+        srcMp4: "./video/mmd/mmd_fx01.mp4",
+        srcWebm: "./video/mmd/mmd_fx_card01.webm",
+        label: "抽卡金鱼动画展示"
     },
     {
         previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/16/032602zy5yy25gm2y532yo.webp",
@@ -413,12 +421,7 @@ const videoData = [
         srcWebm: "./video/zsl/zsl_hh07.webm",
         label: "小狮子和好友玩搭积木"
     },
-    {
-        previewSrc: "https://attach.cgjoy.com/attachment/forum/202601/29/234616yvjvnjzwwncqnnzs.webp",
-        srcMp4: "./video/football.mp4",
-        srcWebm: "./video/football.webm",
-        label: "足球小子"
-    },
+
 ];
 // DOM加载完成后初始化
 document.addEventListener("DOMContentLoaded", () => {
