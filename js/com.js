@@ -93,57 +93,41 @@
         backTop.addEventListener('click', (e) => {
             e.preventDefault(); // 防止默认行为
 
-            // 检查并清除可能影响滚动的body样式
+            // 快速检查并清除可能影响滚动的body样式（仅在移动菜单打开时）
             const body = document.body;
-            const originalStyles = {
-                overflow: body.style.overflow,
-                position: body.style.position,
-                width: body.style.width
-            };
-
-            // 临时清除可能影响滚动的样式
             if (body.style.position === 'fixed') {
                 body.style.overflow = '';
                 body.style.position = '';
                 body.style.width = '';
             }
 
-            // 强制使用自定义平滑滚动实现
             const startPosition = window.pageYOffset || document.documentElement.scrollTop || window.scrollY;
 
             if (startPosition <= 0) {
                 return;
             }
 
-            const startTime = Date.now();
-            const duration = 800; // 滚动持续时间（毫秒）
+            const startTime = performance.now();
+            const duration = 300; // 减少滚动持续时间到300毫秒
 
-            function easeInOutCubic(t) {
-                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            function easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
             }
 
             function animateScroll() {
-                const currentTime = Date.now();
+                const currentTime = performance.now();
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                const easeProgress = easeInOutCubic(progress);
+                const easeProgress = easeOutCubic(progress);
 
                 const currentPosition = startPosition * (1 - easeProgress);
                 window.scrollTo(0, currentPosition);
 
                 if (progress < 1) {
                     requestAnimationFrame(animateScroll);
-                } else {
-                    // 恢复原始样式（如果有）
-                    if (originalStyles.position === 'fixed') {
-                        body.style.overflow = originalStyles.overflow;
-                        body.style.position = originalStyles.position;
-                        body.style.width = originalStyles.width;
-                    }
                 }
             }
 
-            // 开始动画
             requestAnimationFrame(animateScroll);
         });
     }
