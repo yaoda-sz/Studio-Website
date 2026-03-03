@@ -471,14 +471,6 @@
     margin-top: 60px;
 }
 
-.title-card {
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-    text-align: center;
-    font-weight: 500;
-    color: var(--title-color);
-}
-
 /* 做啥子弹性盒子宽度等比缩放 */
 #what ul li {
     min-width: 260px;
@@ -920,4 +912,5 @@
         font-size: 2.6rem;
 
     }
+
 }
