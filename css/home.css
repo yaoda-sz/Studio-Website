@@ -866,6 +866,9 @@
 }
 
 @media (max-width:576px) {
+    #banner {
+        padding-top: 64px;
+    }
     #banner-text {
         flex-direction: column;
         padding: 0;
@@ -914,3 +917,4 @@
     }
 
 }
+
