@@ -50,6 +50,7 @@
     flex-direction: column;
     margin: 0;
 }
+
 .title-card {
     font-size: 1.4rem;
     letter-spacing: 2px;
@@ -130,5 +131,4 @@
     .title-card {
         text-align: center;
     }
-
 }

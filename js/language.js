@@ -5,7 +5,7 @@ const translations = {
     zh: {
         nav: {
             home: '首页',
-            cases: '案例作品',
+            cases: '客户案例',
             service: '作品展示',
             about: '关于我们',
             contact: '联系我们'

@@ -14,7 +14,7 @@ const headerHTML = `
         <nav>
             <ul class="nav-links">
                 <li><a href="./index.html">首页</a></li>
-                <li><a href="./cases.html">案例作品</a></li>
+                <li><a href="./cases.html">客户案例</a></li>
                 <li><a href="./works.html">作品展示</a></li>
                 <li><a href="./about.html">关于我们</a></li>
                 <li><a href="./contact.html">联系我们</a></li>

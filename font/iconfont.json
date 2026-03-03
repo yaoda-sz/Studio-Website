@@ -6,6 +6,83 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6263352",
+      "name": "播放",
+      "font_class": "player",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "41061826",
+      "name": "产品",
+      "font_class": "chanpin",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "41061832",
+      "name": "岗位",
+      "font_class": "gangwei",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "42906802",
+      "name": "定位",
+      "font_class": "dingwei",
+      "unicode": "e9f1",
+      "unicode_decimal": 59889
+    },
+    {
+      "icon_id": "43414599",
+      "name": "安全",
+      "font_class": "anquan",
+      "unicode": "e7de",
+      "unicode_decimal": 59358
+    },
+    {
+      "icon_id": "43414639",
+      "name": "客户",
+      "font_class": "kehu",
+      "unicode": "e7e1",
+      "unicode_decimal": 59361
+    },
+    {
+      "icon_id": "43414640",
+      "name": "奖项",
+      "font_class": "jiangxiang",
+      "unicode": "e7e0",
+      "unicode_decimal": 59360
+    },
+    {
+      "icon_id": "43414641",
+      "name": "调试",
+      "font_class": "tiaoshi",
+      "unicode": "e7e2",
+      "unicode_decimal": 59362
+    },
+    {
+      "icon_id": "43414645",
+      "name": "考试",
+      "font_class": "kaoshi",
+      "unicode": "e7e3",
+      "unicode_decimal": 59363
+    },
+    {
+      "icon_id": "43414649",
+      "name": "奖金",
+      "font_class": "jiangjin",
+      "unicode": "e7e4",
+      "unicode_decimal": 59364
+    },
+    {
+      "icon_id": "43414656",
+      "name": "岗位 2",
+      "font_class": "gangwei2",
+      "unicode": "e7e5",
+      "unicode_decimal": 59365
+    },
+    {
       "icon_id": "10617025",
       "name": "语言",
       "font_class": "yuyan",
@@ -32,13 +109,6 @@
       "font_class": "xiangxia",
       "unicode": "e601",
       "unicode_decimal": 58881
-    },
-    {
-      "icon_id": "2076218",
-      "name": "播放",
-      "font_class": "player",
-      "unicode": "e87c",
-      "unicode_decimal": 59516
     },
     {
       "icon_id": "4552970",
@@ -118,13 +188,6 @@
       "unicode_decimal": 59191
     },
     {
-      "icon_id": "2270122",
-      "name": "手机",
-      "font_class": "shouji",
-      "unicode": "e60e",
-      "unicode_decimal": 58894
-    },
-    {
       "icon_id": "4421643",
       "name": "代码",
       "font_class": "code",
@@ -139,13 +202,6 @@
       "unicode_decimal": 58897
     },
     {
-      "icon_id": "7050328",
-      "name": "荣誉表彰",
-      "font_class": "rongyu",
-      "unicode": "e600",
-      "unicode_decimal": 58880
-    },
-    {
       "icon_id": "9186709",
       "name": "微信",
       "font_class": "weixin",
@@ -158,13 +214,6 @@
       "font_class": "phone",
       "unicode": "e612",
       "unicode_decimal": 58898
-    },
-    {
-      "icon_id": "15577162",
-      "name": "皇冠",
-      "font_class": "good",
-      "unicode": "e6a8",
-      "unicode_decimal": 59048
     },
     {
       "icon_id": "18625681",

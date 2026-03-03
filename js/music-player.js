@@ -11,12 +11,29 @@
     // 音乐播放器配置
     const config = {
         sources: [
-            './music/因为是女子.mp3',
-            './music/Rasputin.mp3',
-            './music/Making of Cyborg.mp3',
-            './music/Scarborough Fair.mp3',
+            './music/Believer.mp3',
+            './music/Five Hundred Miles.mp3',
+            './music/Sugar.mp3',
+            './music/Rhythm of the Rain.mp3',
             './music/See You Again.mp3',
-            './music/左小祖咒-当我离开你的时候.mp3'
+            './music/Someone You Loved.mp3',
+            './music/Brother Louie.mp3',
+            './music/Dragostea din tei.mp3',
+            './music/Free Loop.mp3',
+            './music/Hotel California.mp3',
+            './music/It\'s My Life.mp3',
+            './music/Rasputin.mp3',
+            './music/I Don\'t Want To Say Goodbye.mp3',
+            './music/I Hate Myself for Loving You.mp3',
+            './music/I\'m Gonna Getcha Good.mp3',
+            './music/B What U Wanna B.mp3',
+            './music/Lemon Tree.mp3',
+            './music/More Than I Can Say.mp3',
+            './music/Moonlight Shadow.mp3',
+            './music/Staring at You.mp3',
+            './music/The Diva Dance.mp3',
+            './music/Uptown Girl.mp3',
+            './music/Yesterday Once More.mp3',
         ],
         currentIndex: 0,
         volume: 0.6
@@ -29,6 +46,7 @@
 
     // 从localStorage恢复状态
     function restoreState() {
+
         const saved = localStorage.getItem('globalMusicState');
         if (saved) {
             try {
@@ -54,6 +72,16 @@
         // 默认设置
         audio.src = config.sources[config.currentIndex];
         audio.volume = config.volume;
+
+        // 自动播放第一首歌
+        setTimeout(() => {
+            audio.play().then(() => {
+                updateButton(true);
+                saveState();
+                console.log('自动播放开始');
+            }).catch(e => console.log('自动播放失败:', e));
+        }, 1000);
+
         return null;
     }
 
@@ -72,10 +100,32 @@
     // 切换播放/暂停
     function toggle() {
         if (audio.paused) {
-            audio.play().then(() => {
-                updateButton(true);
-                saveState();
-            }).catch(e => console.error('播放失败:', e));
+            // 如果音频还没加载完成，等待加载
+            if (audio.readyState < 2) { // HAVE_CURRENT_DATA
+                // 监听 canplay 事件
+                audio.addEventListener('canplay', function playWhenReady() {
+                    audio.play().then(() => {
+                        updateButton(true);
+                        saveState();
+                    }).catch(e => console.error('播放失败:', e));
+                    audio.removeEventListener('canplay', playWhenReady);
+                }, { once: true });
+
+                // 监听错误事件
+                audio.addEventListener('error', function handleError() {
+                    console.error('音频加载错误:', audio.error);
+                    // 尝试下一首
+                    next();
+                }, { once: true });
+
+                // 强制重新加载
+                audio.load();
+            } else {
+                audio.play().then(() => {
+                    updateButton(true);
+                    saveState();
+                }).catch(e => console.error('播放失败:', e));
+            }
         } else {
             audio.pause();
             updateButton(false);
@@ -239,9 +289,6 @@
                 toggle();
             });
             button.setAttribute('data-global-music', 'true');
-
-            // 更新按钮状态
-            updateButton(!audio.paused);
         }
     });
 
@@ -251,4 +298,18 @@
         subtree: true
     });
 
+    // 初始检查按钮
+    const initialButton = document.getElementById('playButton');
+    if (initialButton && !initialButton.hasAttribute('data-global-music')) {
+        initialButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggle();
+        });
+        initialButton.setAttribute('data-global-music', 'true');
+        // 更新按钮状态
+        updateButton(!audio.paused);
+    }
+
 })();
+

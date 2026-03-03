@@ -93,32 +93,33 @@
         backTop.addEventListener('click', (e) => {
             e.preventDefault(); // 防止默认行为
 
-            // 快速检查并清除可能影响滚动的body样式（仅在移动菜单打开时）
-            const body = document.body;
-            if (body.style.position === 'fixed') {
-                body.style.overflow = '';
-                body.style.position = '';
-                body.style.width = '';
+            // 检查浏览器是否支持 smooth behavior
+            if ('scrollBehavior' in document.documentElement.style && window.scrollTo) {
+                try {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return; // 如果成功，直接返回
+                } catch (error) {
+                    console.log('Native smooth scroll failed, using fallback');
+                }
             }
 
-            const startPosition = window.pageYOffset || document.documentElement.scrollTop || window.scrollY;
+            // 兼容性回退：手动实现平滑滚动
+            const startPosition = window.pageYOffset || document.documentElement.scrollTop;
+            const startTime = Date.now(); // 使用 Date.now() 替代 performance.now()
+            const duration = 800; // 滚动持续时间（毫秒）
 
-            if (startPosition <= 0) {
-                return;
-            }
-
-            const startTime = performance.now();
-            const duration = 300; // 减少滚动持续时间到300毫秒
-
-            function easeOutCubic(t) {
-                return 1 - Math.pow(1 - t, 3);
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
             }
 
             function animateScroll() {
-                const currentTime = performance.now();
+                const currentTime = Date.now();
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                const easeProgress = easeOutCubic(progress);
+                const easeProgress = easeInOutCubic(progress);
 
                 const currentPosition = startPosition * (1 - easeProgress);
                 window.scrollTo(0, currentPosition);
@@ -128,6 +129,7 @@
                 }
             }
 
+            // 开始动画
             requestAnimationFrame(animateScroll);
         });
     }

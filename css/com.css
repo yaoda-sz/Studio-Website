@@ -26,8 +26,8 @@
 /* 浅色模式 */
 [data-theme="light"] {
     --title-color: #1d1d1d;
-    --background-color: #f0f1ef;
-    --text-color: #1f1f1f;
+    --background-color: #f3f3f3;
+    --text-color: #333;
     --link-color: #FF6A2C;
     --link-hover-color: #ff9a3b;
     --yeQian-bg: #ffffff;
