@@ -58,10 +58,10 @@
 
                 if (state.isPlaying && state.currentTime) {
                     audio.currentTime = state.currentTime;
-                    // 延迟播放，确保音频加载完成
+                    // 减少延迟播放，确保音频加载完成
                     setTimeout(() => {
                         audio.play().catch(e => console.log('自动播放失败:', e));
-                    }, 500);
+                    }, 100);
                 }
                 return state;
             } catch (e) {
@@ -73,14 +73,14 @@
         audio.src = config.sources[config.currentIndex];
         audio.volume = config.volume;
 
-        // 自动播放第一首歌
+        // 自动播放第一首歌（减少延迟）
         setTimeout(() => {
             audio.play().then(() => {
                 updateButton(true);
                 saveState();
                 console.log('自动播放开始');
             }).catch(e => console.log('自动播放失败:', e));
-        }, 1000);
+        }, 200);
 
         return null;
     }

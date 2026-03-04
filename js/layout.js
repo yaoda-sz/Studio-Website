@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
         console.log("Layout script loaded successfully");
 
-        // 检查并插入 Header（仅在内容为空时）
+        // 立即插入内容，不等待
         const headerElem = document.querySelector('header');
         if (headerElem && !headerElem.innerHTML.trim()) {
             headerElem.innerHTML = headerHTML;
@@ -95,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Header already has content, skipping dynamic insertion");
         }
 
-        // 检查并插入 Footer（仅在内容为空时）
         const footerElem = document.querySelector('footer');
         if (footerElem && !footerElem.innerHTML.trim()) {
             footerElem.innerHTML = footerHTML;
@@ -104,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Footer already has content, skipping dynamic insertion");
         }
 
-        // 检查并插入侧边控制按钮（仅在内容为空时）
         const sideControlElem = document.querySelector('#side-control');
         if (sideControlElem && !sideControlElem.innerHTML.trim()) {
             sideControlElem.innerHTML = sideControlHTML;
@@ -113,29 +111,32 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Side control already has content, skipping dynamic insertion");
         }
 
-        // 自动高亮当前页面的导航链接
-        const currentPath = window.location.pathname.toLowerCase();
-        const navLinks = document.querySelectorAll('.nav-links a');
+        // 延迟执行非关键功能
+        requestAnimationFrame(() => {
+            // 自动高亮当前页面的导航链接
+            const currentPath = window.location.pathname.toLowerCase();
+            const navLinks = document.querySelectorAll('.nav-links a');
 
-        navLinks.forEach(link => {
-            let href = link.getAttribute('href').toLowerCase();
-            // 处理相对路径：移除 './' 并标准化首页
-            href = href.replace('./', '');
-            const isHome = (href === 'index.html' || href === '') && (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath === '');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href').toLowerCase();
+                // 处理相对路径：移除 './' 并标准化首页
+                href = href.replace('./', '');
+                const isHome = (href === 'index.html' || href === '') && (currentPath === '/' || currentPath.endsWith('/index.html') || currentPath === '');
 
-            if (currentPath.endsWith('/' + href) || isHome) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
+                if (currentPath.endsWith('/' + href) || isHome) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // 重新初始化移动端菜单事件（因为DOM是新生成的）
+            // 这里我们需要调用 com.js 里的 setupMobileMenu，但为了简单，
+            // 建议直接把 com.js 里的 setupNavigation 和 setupMobileMenu 逻辑整合或者确保在 layout 插入后再执行。
+            // 临时的简单办法：触发一个自定义事件告诉 com.js 内容加载完了
+            window.dispatchEvent(new Event('layoutLoaded'));
+            console.log("LayoutLoaded event dispatched");
         });
-
-        // 重新初始化移动端菜单事件（因为DOM是新生成的）
-        // 这里我们需要调用 com.js 里的 setupMobileMenu，但为了简单，
-        // 建议直接把 com.js 里的 setupNavigation 和 setupMobileMenu 逻辑整合或者确保在 layout 插入后再执行。
-        // 临时的简单办法：触发一个自定义事件告诉 com.js 内容加载完了
-        window.dispatchEvent(new Event('layoutLoaded'));
-        console.log("LayoutLoaded event dispatched");
 
     } catch (error) {
         console.error("Error in layout script:", error);
