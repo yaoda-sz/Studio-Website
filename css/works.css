@@ -1,5 +1,5 @@
-.workShow {
-    padding-top: 80px;
+.mov-items {
+    margin-bottom: 30px; 
 }
 
 /* 加载状态指示器 */
@@ -136,3 +136,4 @@
         /* 手机间距小一点 */
     }
 }
+
