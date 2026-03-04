@@ -50,10 +50,6 @@
     overflow: hidden;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     overflow-x: hidden;
     color: var(--text-color);
@@ -62,20 +58,6 @@ body {
     /* 行间距加大，阅读更舒适 */
     font-size: 1rem;
     /* 统一基础大小 */
-}
-
-html body main section#banner div#banner-top,
-#banner-top:not([hidden]) {
-    display: flex !important;
-    /* 或 block，根据实际布局 */
-    display: -webkit-flex !important;
-    /* 老 Chromium 兼容 */
-    min-height: 500px !important;
-    /* 防止高度0被UA隐藏，调成你banner实际高度 */
-    height: auto !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    overflow: visible !important;
 }
 
 body,
@@ -973,5 +955,6 @@ footer .endText p {
         transform: translateX(0);
         opacity: 1;
     }
+
 
 }
