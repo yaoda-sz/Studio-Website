@@ -56,13 +56,7 @@
                 audio.src = state.src || config.sources[config.currentIndex];
                 audio.volume = config.volume;
 
-                if (state.isPlaying && state.currentTime) {
-                    audio.currentTime = state.currentTime;
-                    // 减少延迟播放，确保音频加载完成
-                    setTimeout(() => {
-                        audio.play().catch(e => console.log('自动播放失败:', e));
-                    }, 100);
-                }
+                // 不在这里恢复播放，等待页面完全加载后再处理
                 return state;
             } catch (e) {
                 console.warn('恢复状态失败:', e);
@@ -73,15 +67,7 @@
         audio.src = config.sources[config.currentIndex];
         audio.volume = config.volume;
 
-        // 自动播放第一首歌（减少延迟）
-        setTimeout(() => {
-            audio.play().then(() => {
-                updateButton(true);
-                saveState();
-                console.log('自动播放开始');
-            }).catch(e => console.log('自动播放失败:', e));
-        }, 200);
-
+        // 不在这里自动播放，等待页面完全加载后再处理
         return null;
     }
 
@@ -230,6 +216,37 @@
             console.error('错误详情:', audio.error);
             // 尝试下一个源
             next();
+        });
+
+        // 等待所有页面元素加载完成后再开始播放音乐
+        window.addEventListener('load', () => {
+            console.log('页面所有元素加载完成，准备初始化音乐播放');
+
+            // 如果有保存的播放状态且正在播放，则恢复播放
+            const saved = localStorage.getItem('globalMusicState');
+            if (saved) {
+                try {
+                    const state = JSON.parse(saved);
+                    if (state.isPlaying && state.currentTime) {
+                        audio.currentTime = state.currentTime;
+                        setTimeout(() => {
+                            audio.play().catch(e => console.log('恢复播放失败:', e));
+                        }, 100);
+                        return;
+                    }
+                } catch (e) {
+                    console.warn('恢复播放状态失败:', e);
+                }
+            }
+
+            // 自动播放第一首歌（在页面完全加载后）
+            setTimeout(() => {
+                audio.play().then(() => {
+                    updateButton(true);
+                    saveState();
+                    console.log('页面加载完成后自动播放开始');
+                }).catch(e => console.log('自动播放失败:', e));
+            }, 500); // 增加延迟确保页面完全稳定
         });
     }
 
