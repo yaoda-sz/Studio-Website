@@ -53,21 +53,14 @@
                 const state = JSON.parse(saved);
                 config.currentIndex = state.currentIndex || 0;
                 config.volume = state.volume || 0.6;
-                audio.src = state.src || config.sources[config.currentIndex];
-                audio.volume = config.volume;
-
-                // 不在这里恢复播放，等待页面完全加载后再处理
+                // 不在这里设置音频源，等待页面完全加载后再设置
                 return state;
             } catch (e) {
                 console.warn('恢复状态失败:', e);
             }
         }
 
-        // 默认设置
-        audio.src = config.sources[config.currentIndex];
-        audio.volume = config.volume;
-
-        // 不在这里自动播放，等待页面完全加载后再处理
+        // 不在这里设置默认音频源，等待页面完全加载后再设置
         return null;
     }
 
@@ -218,20 +211,44 @@
             next();
         });
 
-        // 等待所有页面元素加载完成后再开始播放音乐
+        // 等待所有页面元素加载完成后再开始加载音乐资源
         window.addEventListener('load', () => {
-            console.log('页面所有元素加载完成，准备初始化音乐播放');
+            console.log('页面所有元素加载完成，准备加载音乐资源');
 
-            // 如果有保存的播放状态且正在播放，则恢复播放
+            // 现在才设置音频源，开始加载音乐资源
             const saved = localStorage.getItem('globalMusicState');
             if (saved) {
                 try {
                     const state = JSON.parse(saved);
+                    config.currentIndex = state.currentIndex || 0;
+                    config.volume = state.volume || 0.6;
+                    audio.src = state.src || config.sources[config.currentIndex];
+                    audio.volume = config.volume;
+                    console.log('已恢复保存的音乐状态，开始加载音频源');
+                } catch (e) {
+                    console.warn('恢复音乐状态失败，使用默认设置:', e);
+                    audio.src = config.sources[config.currentIndex];
+                    audio.volume = config.volume;
+                    console.log('使用默认音频源，开始加载');
+                }
+            } else {
+                // 设置默认音频源
+                audio.src = config.sources[config.currentIndex];
+                audio.volume = config.volume;
+                console.log('使用默认音频源，开始加载');
+            }
+
+            // 如果有保存的播放状态且正在播放，则恢复播放
+            if (saved) {
+                try {
+                    const state = JSON.parse(saved);
                     if (state.isPlaying && state.currentTime) {
-                        audio.currentTime = state.currentTime;
-                        setTimeout(() => {
+                        // 等待音频加载完成后再恢复播放位置和播放
+                        audio.addEventListener('canplay', function restorePlay() {
+                            audio.currentTime = state.currentTime;
                             audio.play().catch(e => console.log('恢复播放失败:', e));
-                        }, 100);
+                            audio.removeEventListener('canplay', restorePlay);
+                        }, { once: true });
                         return;
                     }
                 } catch (e) {
@@ -239,13 +256,17 @@
                 }
             }
 
-            // 自动播放第一首歌（在页面完全加载后）
+            // 自动播放第一首歌（在页面完全加载且音频资源开始加载后）
             setTimeout(() => {
-                audio.play().then(() => {
-                    updateButton(true);
-                    saveState();
-                    console.log('页面加载完成后自动播放开始');
-                }).catch(e => console.log('自动播放失败:', e));
+                // 等待音频加载完成后再播放
+                audio.addEventListener('canplay', function autoPlay() {
+                    audio.play().then(() => {
+                        updateButton(true);
+                        saveState();
+                        console.log('页面加载完成后自动播放开始');
+                    }).catch(e => console.log('自动播放失败:', e));
+                    audio.removeEventListener('canplay', autoPlay);
+                }, { once: true });
             }, 500); // 增加延迟确保页面完全稳定
         });
     }

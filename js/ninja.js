@@ -50,7 +50,7 @@
         return;
     }
 
-    container.appendChild(app.canvas); // 将生成的 Canvas 添加到容器中
+    container.appendChild(app.view); // 将生成的 Canvas 添加到容器中
     console.log('Canvas added to container');
 
     // 2. 加载 Spine 骨骼资源
