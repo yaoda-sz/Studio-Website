@@ -10,7 +10,7 @@ let currentIndex = -1; // 存储当前播放的索引
 // 核心函数：打开和关闭
 // ----------------------------------------------------
 
-function openVideo(index) {
+const openVideo = (index) => {
     if (index < 0 || index >= currentItems.length) return;
     currentIndex = index;
     const data = currentItems[index].dataset;
@@ -48,20 +48,20 @@ function openVideo(index) {
     // 显示模态框（如果已显示，就保持）
     modal.style.display = "block";
     document.body.classList.add("no-scroll");
-}
+};
 
-function closeVideo() {
+const closeVideo = () => {
     modal.style.display = "none";
     document.body.classList.remove("no-scroll");
     modalVideo.pause();
     modalVideo.innerHTML = ''; // 清空资源释放内存
-}
+};
 
-function switchVideo(direction) {
+const switchVideo = (direction) => {
     // direction: +1 (next) 或 -1 (prev)
     const nextIndex = (currentIndex + direction + currentItems.length) % currentItems.length;
     openVideo(nextIndex);
-}
+};
 
 // ----------------------------------------------------
 // 视频列表渲染函数 (此函数只负责渲染)
@@ -70,7 +70,7 @@ function switchVideo(direction) {
 // 检测浏览器是否支持 WebM
 const supportsWebM = document.createElement('video').canPlayType('video/webm') !== '';
 
-function initializeVideoPlayer(videoData, listContainerId) {
+const initializeVideoPlayer = (videoData, listContainerId) => {
     const videoList = document.getElementById(listContainerId);
     if (!videoList) return;
 
@@ -216,10 +216,10 @@ function initializeVideoPlayer(videoData, listContainerId) {
     };
 
     renderVideoList();
-}
+};
 
 // 隐藏视频下载插件的函数
-function hideVideoDownloadPlugins() {
+const hideVideoDownloadPlugins = () => {
     const videoContainers = document.querySelectorAll('.mov-v');
 
     videoContainers.forEach(container => {
@@ -253,7 +253,7 @@ function hideVideoDownloadPlugins() {
             }
         });
     });
-}
+};
 
 // 页面加载完成后立即执行一次
 document.addEventListener('DOMContentLoaded', hideVideoDownloadPlugins);
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', hideVideoDownloadPlugins);
 // ----------------------------------------------------
 // 3. 全局事件绑定 (包含拖拽、回弹、切换逻辑)
 // ----------------------------------------------------
-(function () {
+(() => {
     if (!modal) return;
     // 关闭按钮和背景点击
     closeBtn.onclick = closeVideo;
@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', hideVideoDownloadPlugins);
     document.addEventListener('mouseleave', cancelMouseDrag);
 
     // finishSwipe 函数（保持不变，或微调动画时间）
-    function finishSwipe(direction, axis) {
+    const finishSwipe = (direction, axis) => {
         const endX = axis === 'x' ? (direction === 1 ? -window.innerWidth : window.innerWidth) : 0;
         const endY = axis === 'y' ? (direction === 1 ? -window.innerHeight : window.innerHeight) : 0;
 
@@ -444,5 +444,5 @@ document.addEventListener('DOMContentLoaded', hideVideoDownloadPlugins);
         setTimeout(() => {
             switchVideo(direction);
         }, 200); // 缩短到200ms，让滑动更快连上新视频
-    }
+    };
 })();

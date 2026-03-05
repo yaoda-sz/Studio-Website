@@ -10,7 +10,7 @@ const initSpinePlayers = () => {
             options: {
                 skeleton: "./assets/spine/Zero.skel",
                 atlas: "./assets/spine/Zero.atlas",
-                animation: "idle",
+                animation: "attack",
                 skin: "default",
                 showControls: true,           // 关闭控制条（节省 DOM + 事件）
                 backgroundColor: "#333333",
@@ -25,7 +25,7 @@ const initSpinePlayers = () => {
         {
             id: 'role_body-player',
             options: {
-                skeleton: "./assets/spine/role_boy.json",
+                skeleton: "./assets/spine/role_boy.skel",
                 atlas: "./assets/spine/role_boy.atlas",
                 animation: "run_c",
                 skin: "default",
@@ -39,7 +39,7 @@ const initSpinePlayers = () => {
         {
             id: 'king-player',
             options: {
-                skeleton: "./assets/spine/king.json",
+                skeleton: "./assets/spine/king.skel",
                 atlas: "./assets/spine/king.atlas",
                 animation: "ar",
                 showControls: true,

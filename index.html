@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="作品展示、动作、特效、2D动画。">
+    <meta name="description" content="专业游戏动画、Spine动画、2D动画制作服务。">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="游戏动画, 独立游戏,影视特效,动漫制作 spine, steam, 个人小游戏">
     <meta name="author" content="spine动画工作室">
@@ -28,6 +28,7 @@
     <link rel="canonical" href="https://www.yaoda.work">
 
     <!-- Preload critical resources -->
+    <link rel="preload" href="./css/com.css" as="style">
     <link rel="stylesheet" href="./css/com.css">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/cases.css">
@@ -38,6 +39,8 @@
     <!-- 预加载关键资源 -->
     <link rel="preload" href="./assets/spine/ninja.skel" as="fetch" crossorigin>
     <link rel="preload" href="./assets/spine/ninja.atlas" as="fetch" crossorigin>
+    <!-- <link rel="preload" href="./assets/spine/girl.png" as="image"> -->
+
 </head>
 
 <body>
@@ -45,7 +48,7 @@
         <div id="headerTop" class="container">
             <div class="logo">
                 <a href="./index.html">
-                    <img src="logo.webp" alt="公司Logo">
+                    <img src="logo.webp" alt="spine动画工作室 logo">
                     <div class="logo-text">
                         <h1>咬哒叔</h1>
                         <p>SPINE 2D STUDIO</p>
@@ -215,7 +218,7 @@
         <!-- 案例精选 -->
         <section id="cases" class="container">
             <div class="title-com">
-                <h5 class="title-en">SECELCTED CASES</h5>
+                <h5 class="title-en">SELECTED CASES</h5>
                 <h3 class="title-zh">精选案例</h3>
                 <p class="title-p">涵盖横板动作、卡牌对战、战旗回合等多种游戏类型的角色动画与场景UI动效设计。</p>
             </div>
@@ -269,7 +272,7 @@
                 <!-- 你想加多少个就复制多少个上面这块 -->
             </div>
             <div class="moreBtn">
-                <a href="./service.html" target="_blank">查看更多&gt;&gt;</a>
+                <a href="./works.html" target="_blank">查看更多&gt;&gt;</a>
             </div>
         </section>
         <!-- 我们还能做什么？ -->
@@ -359,11 +362,8 @@
         <section id="comeOn" class="container">
             <h2>让我们</h2>
             <h2 style="color: var(--link-color);">一起创造精彩</h2>
-            </div>
-
             <h6 class="title-p">无论是个人独立游戏还是大型商业项目，期待与你合作！</h6>
             <br>
-
         </section>
     </main>
     <!-- 页尾 -->
@@ -373,20 +373,20 @@
     <div id="side-control" role="complementary" aria-label="网站辅助功能">
     </div>
 
-    <script src="./js/main.js" defer></script>
     <script src="./js/pixi.mini.js"></script>
     <!-- <script src="./js/spine-pixi-v8.js" defer></script> -->
+    <script src="./js/ninja.js"></script>
     <script src="https://unpkg.com/@esotericsoftware/spine-pixi-v8@4.2.100/dist/iife/spine-pixi-v8.js" defer></script>
     <script src="./js/spine-pixi-capture.js" defer></script>
     <!-- <script src="./js/spine-player.js" defer></script> -->
     <script src="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/iife/spine-player.js" defer></script>
     <script src="./js/spine-player-bridge.js" defer></script>
+    <script src="./js/main.js" defer></script>
     <script src="./js/spine-init-home.js" defer></script>
-    <script src="./js/ninja.js" defer></script>
-    <script src="./js/mov.js" defer></script>
     <script src="./js/video-config.js" defer></script>
     <script src="./js/language.js" defer></script>
     <script src="./js/music-player.js" defer></script>
+
 </body>
 
 </html>

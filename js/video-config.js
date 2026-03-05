@@ -42,7 +42,7 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 
 // 监听所有 class 为 video-lazy-load 元素的点击事件
-document.addEventListener('click', function (e) {
+document.addEventListener('click', (e) => {
     // 检查点击的是不是我们的视频占位符（或者它的子元素）
     const container = e.target.closest('.video-lazy-load');
 
@@ -58,36 +58,96 @@ document.addEventListener('click', function (e) {
         const bvid = container.dataset.bvid;
         const cid = container.dataset.cid;
 
+        // 创建加载指示器
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 20;
+        `;
+
+        // 添加旋转动画样式
+        if (!document.querySelector('#video-loading-style')) {
+            const style = document.createElement('style');
+            style.id = 'video-loading-style';
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: translate(-50%, -50%) rotate(0deg); }
+                    100% { transform: translate(-50%, -50%) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
         const iframe = document.createElement('iframe');
         // 注意：autoplay=1 让视频加载出来后自动播放
         iframe.src = `https://player.bilibili.com/player.html?isOutside=true&bvid=${bvid}&cid=${cid}&autoplay=1`;
-
-        // 设置 iframe 的样式属性
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.border = "none";
-        iframe.style.position = "absolute";
-        iframe.style.top = "0";
-        iframe.style.left = "0";
-        iframe.style.zIndex = "10";
+        iframe.style.cssText = `
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        `;
         iframe.setAttribute('scrolling', 'no');
         iframe.setAttribute('border', '0');
         iframe.setAttribute('frameborder', '0');
         iframe.setAttribute('framespacing', '0');
         iframe.setAttribute('allowfullscreen', 'true');
 
-        // 清空容器里的图片和按钮，放入 iframe
-        container.innerHTML = '';
-        container.appendChild(iframe);
+        // 先添加加载指示器到容器
+        container.appendChild(loadingIndicator);
 
-        // 移除点击事件类名，变成普通容器（可选）
-        container.classList.remove('video-lazy-load');
+        // 设置加载超时
+        let isLoading = true;
+        const loadingTimeout = setTimeout(() => {
+            if (isLoading) {
+                // 3秒后强制显示iframe，即使没完全加载
+                container.innerHTML = '';
+                container.appendChild(iframe);
+                container.classList.remove('video-lazy-load');
+                isLoading = false;
+            }
+        }, 3000);
+
+        // 监听iframe加载
+        iframe.onload = () => {
+            clearTimeout(loadingTimeout);
+            if (isLoading) {
+                // iframe加载完成，替换内容
+                container.innerHTML = '';
+                container.appendChild(iframe);
+                container.classList.remove('video-lazy-load');
+                isLoading = false;
+            }
+        };
+
+        // 处理加载错误
+        iframe.onerror = () => {
+            clearTimeout(loadingTimeout);
+            container.removeChild(loadingIndicator);
+            console.error('视频加载失败');
+            isLoading = false;
+        };
+
+        // 开始加载iframe
+        container.appendChild(iframe);
 
     }
 });
 
 // 停止除当前容器外的所有其他视频
-function stopAllOtherVideos(currentContainer) {
+const stopAllOtherVideos = (currentContainer) => {
     // 查找所有包含iframe的video-container
     const allVideoContainers = document.querySelectorAll('.video-container');
 
@@ -107,10 +167,10 @@ function stopAllOtherVideos(currentContainer) {
             recreateVideoPlaceholder(container);
         }
     });
-}
+};
 
 // 重新创建视频占位符
-function recreateVideoPlaceholder(container) {
+const recreateVideoPlaceholder = (container) => {
     // 清空容器
     container.innerHTML = '';
 
@@ -153,9 +213,9 @@ function recreateVideoPlaceholder(container) {
     videoLazyLoad.innerHTML = `
         <img src="${posterSrc}" alt="${altText}" class="video-poster">
         <div class="play-icon">
-            <span class="iconfont icon-play"></span>
+            <span class="iconfont icon-player"></span>
         </div>
     `;
 
     container.appendChild(videoLazyLoad);
-}
+};

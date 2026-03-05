@@ -87,7 +87,7 @@
 
     // ========== 2. DOM插入和初始化 ==========
 
-    function initializeLayout() {
+    const initializeLayout = () => {
         try {
             console.log("Main script loaded successfully");
 
@@ -104,9 +104,9 @@
         } catch (error) {
             console.error("Error in main script:", error);
         }
-    }
+    };
 
-    function insertHTMLContent() {
+    const insertHTMLContent = () => {
         // 插入页头
         const headerElem = document.querySelector('header');
         if (headerElem && !headerElem.innerHTML.trim()) {
@@ -133,11 +133,11 @@
         } else if (sideControlElem) {
             console.log("Side control already has content, skipping dynamic insertion");
         }
-    }
+    };
 
     // ========== 3. 导航功能 ==========
 
-    function highlightCurrentNavigation() {
+    const highlightCurrentNavigation = () => {
         // 自动高亮当前页面的导航链接
         const currentPath = window.location.pathname.toLowerCase();
         const navLinks = document.querySelectorAll('.nav-links a');
@@ -154,9 +154,9 @@
                 link.classList.remove('active');
             }
         });
-    }
+    };
 
-    function initializeNavigation() {
+    const initializeNavigation = () => {
         const nav = document.querySelector('nav');
         if (!nav) return;
 
@@ -170,11 +170,11 @@
                 closeMobileMenu();
             }
         });
-    }
+    };
 
     // ========== 4. 移动端菜单功能 ==========
 
-    function initializeMobileMenu() {
+    const initializeMobileMenu = () => {
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
         const navMenuItems = document.querySelectorAll('.nav-links li');
@@ -207,9 +207,9 @@
                     : '';
             });
         });
-    }
+    };
 
-    function closeMobileMenu() {
+    const closeMobileMenu = () => {
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
         if (mobileMenu && navLinks) {
@@ -221,11 +221,11 @@
             document.body.style.position = '';
             document.body.style.width = '';
         }
-    }
+    };
 
     // ========== 5. 主题切换功能 ==========
 
-    function initializeThemeToggle() {
+    const initializeThemeToggle = () => {
         const toggleButton = document.getElementById('toggleButton');
         const html = document.documentElement;
         let savedTheme;
@@ -269,11 +269,11 @@
                 toggleButton.innerHTML = '<span class="iconfont icon-moon"></span>'; // 切换到浅色，显示月亮
             }
         });
-    }
+    };
 
     // ========== 6. 回到顶部功能 ==========
 
-    function initializeBackTop() {
+    const initializeBackTop = () => {
         const backTop = document.getElementById('backTop');
         if (!backTop) return;
 
@@ -309,11 +309,11 @@
             const startTime = Date.now(); // 使用 Date.now() 替代 performance.now()
             const duration = 800; // 滚动持续时间（毫秒）
 
-            function easeInOutCubic(t) {
+            const easeInOutCubic = (t) => {
                 return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-            }
+            };
 
-            function animateScroll() {
+            const animateScroll = () => {
                 const currentTime = Date.now();
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
@@ -325,21 +325,21 @@
                 if (progress < 1) {
                     requestAnimationFrame(animateScroll);
                 }
-            }
+            };
 
             // 开始动画
             requestAnimationFrame(animateScroll);
         });
-    }
+    };
 
     // ========== 7. 统一初始化 ==========
 
-    function initializeEventHandlers() {
+    const initializeEventHandlers = () => {
         initializeNavigation();
         initializeMobileMenu();
         initializeThemeToggle();
         initializeBackTop();
-    }
+    };
 
     // ========== 8. 启动 ==========
 

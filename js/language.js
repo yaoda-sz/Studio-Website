@@ -99,10 +99,10 @@ const translations = {
 };
 
 // 获取当前语言或设置默认语言
-let currentLanguage = localStorage.getItem('language') || 'zh';
+const currentLanguage = localStorage.getItem('language') || 'zh';
 
 // 更新页面文本的函数
-function updatePageLanguage(lang) {
+const updatePageLanguage = (lang) => {
     const trans = translations[lang];
     if (!trans) return;
 
@@ -147,17 +147,17 @@ function updatePageLanguage(lang) {
             element.textContent = getNestedValue(trans, key);
         }
     });
-}
+};
 
 // 辅助函数：获取嵌套对象的值
-function getNestedValue(obj, path) {
+const getNestedValue = (obj, path) => {
     return path.split('.').reduce((current, key) => {
         return current && current[key] !== undefined ? current[key] : null;
     }, obj);
-}
+};
 
 // 初始化语言切换功能
-function initLanguageSwitcher() {
+const initLanguageSwitcher = () => {
     // 语言切换功能
     const languageOptions = document.querySelectorAll('.language-option');
     languageOptions.forEach(option => {
@@ -174,7 +174,7 @@ function initLanguageSwitcher() {
 
     // 初始化页面语言
     updatePageLanguage(currentLanguage);
-}
+};
 
 // 导出函数供其他模块使用
 window.language = {

@@ -194,6 +194,7 @@
     transform: translate(-50%, -50%);
     z-index: 6;
     /* 角色位于装饰块上方 */
+    transition: all;
 }
 
 
@@ -238,18 +239,16 @@
 
 #banner-btn a:nth-child(1) {
     background-color: var(--link-color);
-    color: var(--title-color);
 }
 
 #banner-btn a:nth-child(2) {
-    background-color: transparent;
-    color: var(--title-color);
+    background-color: var(--card-bg);
     border: 1px solid var(--line-color);
 }
 
 #banner-btn a:hover {
     background-color: var(--link-hover-color);
-    color: var(--background-color);
+    color: var(--footer-bg);
 }
 
 #banner hr {

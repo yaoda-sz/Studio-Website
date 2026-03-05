@@ -45,8 +45,7 @@
     audio.preload = 'auto';
 
     // 从localStorage恢复状态
-    function restoreState() {
-
+    const restoreState = () => {
         const saved = localStorage.getItem('globalMusicState');
         if (saved) {
             try {
@@ -62,10 +61,10 @@
 
         // 不在这里设置默认音频源，等待页面完全加载后再设置
         return null;
-    }
+    };
 
     // 保存状态
-    function saveState() {
+    const saveState = () => {
         const state = {
             isPlaying: !audio.paused,
             currentTime: audio.currentTime,
@@ -74,10 +73,10 @@
             src: audio.src
         };
         localStorage.setItem('globalMusicState', JSON.stringify(state));
-    }
+    };
 
     // 切换播放/暂停
-    function toggle() {
+    const toggle = () => {
         if (audio.paused) {
             // 如果音频还没加载完成，等待加载
             if (audio.readyState < 2) { // HAVE_CURRENT_DATA
@@ -110,10 +109,10 @@
             updateButton(false);
             saveState();
         }
-    }
+    };
 
     // 下一首
-    function next() {
+    const next = () => {
         config.currentIndex = (config.currentIndex + 1) % config.sources.length;
         audio.src = config.sources[config.currentIndex];
         audio.volume = config.volume;
@@ -133,10 +132,10 @@
 
         audio.load();
         saveState();
-    }
+    };
 
     // 上一首
-    function prev() {
+    const prev = () => {
         config.currentIndex = (config.currentIndex - 1 + config.sources.length) % config.sources.length;
         audio.src = config.sources[config.currentIndex];
         audio.volume = config.volume;
@@ -158,10 +157,10 @@
         audio.load();
         console.log('切换到上一首:', config.sources[config.currentIndex]);
         saveState();
-    }
+    };
 
     // 更新按钮状态
-    function updateButton(isPlaying) {
+    const updateButton = (isPlaying) => {
         const button = document.getElementById('playButton');
         if (button) {
             const playIcon = button.querySelector('.icon-play');
@@ -177,10 +176,10 @@
                 }
             }
         }
-    }
+    };
 
     // 初始化播放器
-    function init() {
+    const init = () => {
         const savedState = restoreState();
         updateButton(savedState && savedState.isPlaying);
 
@@ -238,38 +237,23 @@
                 console.log('使用默认音频源，开始加载');
             }
 
-            // 如果有保存的播放状态且正在播放，则恢复播放
+            // 恢复播放位置但不自动播放
             if (saved) {
                 try {
                     const state = JSON.parse(saved);
-                    if (state.isPlaying && state.currentTime) {
-                        // 等待音频加载完成后再恢复播放位置和播放
+                    if (state.currentTime) {
+                        // 等待音频加载完成后再恢复播放位置
                         audio.addEventListener('canplay', function restorePlay() {
                             audio.currentTime = state.currentTime;
-                            audio.play().catch(e => console.log('恢复播放失败:', e));
                             audio.removeEventListener('canplay', restorePlay);
                         }, { once: true });
-                        return;
                     }
                 } catch (e) {
                     console.warn('恢复播放状态失败:', e);
                 }
             }
-
-            // 自动播放第一首歌（在页面完全加载且音频资源开始加载后）
-            setTimeout(() => {
-                // 等待音频加载完成后再播放
-                audio.addEventListener('canplay', function autoPlay() {
-                    audio.play().then(() => {
-                        updateButton(true);
-                        saveState();
-                        console.log('页面加载完成后自动播放开始');
-                    }).catch(e => console.log('自动播放失败:', e));
-                    audio.removeEventListener('canplay', autoPlay);
-                }, { once: true });
-            }, 500); // 增加延迟确保页面完全稳定
         });
-    }
+    };
 
     // 创建全局API
     window.GlobalMusicPlayer = {
@@ -317,35 +301,17 @@
         }
     });
 
-    // 监听DOM变化，为新页面绑定按钮事件
-    const observer = new MutationObserver(() => {
-        const button = document.getElementById('playButton');
-        if (button && !button.hasAttribute('data-global-music')) {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                toggle();
-            });
-            button.setAttribute('data-global-music', 'true');
-        }
-    });
-
-    // 开始观察
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-
-    // 初始检查按钮
-    const initialButton = document.getElementById('playButton');
-    if (initialButton && !initialButton.hasAttribute('data-global-music')) {
-        initialButton.addEventListener('click', (e) => {
+    // 使用事件委托监听播放按钮点击
+    document.addEventListener('click', (e) => {
+        const button = e.target.closest('#playButton');
+        if (button) {
             e.preventDefault();
             e.stopPropagation();
             toggle();
-        });
-        initialButton.setAttribute('data-global-music', 'true');
-        // 更新按钮状态
-        updateButton(!audio.paused);
-    }
+            // 标记按钮已处理
+            if (!button.hasAttribute('data-global-music')) {
+                button.setAttribute('data-global-music', 'true');
+            }
+        }
+    });
 })();
