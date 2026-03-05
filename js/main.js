@@ -3,7 +3,7 @@
     'use strict';
 
     // ========== 1. HTML模板定义 ==========
-    
+
     // 导航栏 HTML
     const headerHTML = `
     <div id="headerTop" class="container">
@@ -228,7 +228,15 @@
     function initializeThemeToggle() {
         const toggleButton = document.getElementById('toggleButton');
         const html = document.documentElement;
-        const savedTheme = localStorage.getItem('theme') || 'dark'; // 默认深色
+        let savedTheme;
+
+        // 安全地获取 localStorage，处理跟踪防护阻止的情况
+        try {
+            savedTheme = localStorage.getItem('theme') || 'dark'; // 默认深色
+        } catch (error) {
+            console.log('localStorage access blocked, using default theme');
+            savedTheme = 'dark';
+        }
 
         if (!toggleButton) return;
 
@@ -245,11 +253,19 @@
             const currentTheme = html.getAttribute('data-theme');
             if (currentTheme === 'light') {
                 html.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'dark');
+                try {
+                    localStorage.setItem('theme', 'dark');
+                } catch (error) {
+                    console.log('localStorage access blocked, theme not saved');
+                }
                 toggleButton.innerHTML = '<span class="iconfont icon-sunny"></span>'; // 切换到深色，显示太阳
             } else {
                 html.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
+                try {
+                    localStorage.setItem('theme', 'light');
+                } catch (error) {
+                    console.log('localStorage access blocked, theme not saved');
+                }
                 toggleButton.innerHTML = '<span class="iconfont icon-moon"></span>'; // 切换到浅色，显示月亮
             }
         });
