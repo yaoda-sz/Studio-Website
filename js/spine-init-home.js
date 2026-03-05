@@ -40,7 +40,7 @@ const initSpinePlayers = () => {
             id: 'king-player',
             options: {
                 skeleton: "./assets/spine/king.json",
-                atlas: "./assets/spine/king4.2.atlas",
+                atlas: "./assets/spine/king.atlas",
                 animation: "ar",
                 showControls: true,
                 backgroundColor: "#333333",
