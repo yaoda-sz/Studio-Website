@@ -12,7 +12,7 @@ const initSpinePlayers = () => {
                 atlas: "./assets/spine/Zero.atlas",
                 animation: "attack",
                 skin: "default",
-                showControls: true,           // 关闭控制条（节省 DOM + 事件）
+                showControls: true,           // 开关控制条（节省 DOM + 事件）
                 backgroundColor: "#333333",
                 premultipliedAlpha: true,
                 loop: true,

@@ -9,7 +9,7 @@
     <div id="headerTop" class="container">
         <div class="logo">
             <a href="./index.html">
-                <img src="logo.webp" alt="公司Logo">
+                <img src="/img/logo.webp" alt="公司Logo">
                 <div class="logo-text">
                     <h1>咬哒叔</h1>
                     <p>SPINE 2D STUDIO</p>
