@@ -12,6 +12,16 @@
     margin-bottom: 80px;
 }
 
+/* 优化渲染层级 */
+.spine-player {
+    /* 1. 强制开启 GPU 加速 */
+    transform: translateZ(0);
+    will-change: transform;
+    /* 2. 告诉浏览器此容器独立，不影响外层布局 */
+    contain: strict;
+    background: transparent !important;
+}
+
 /* 加载指示器样式 */
 .loading-indicator {
     position: absolute;
@@ -845,6 +855,11 @@
 }
 
 @media (max-width:768px) {
+    .spine-player-canvas {
+        /* 降低采样精度换取流畅度 */
+        image-rendering: -webkit-optimize-contrast;
+    }
+
     #ninja-right .ninja-tip {
         bottom: 0px;
     }
@@ -923,4 +938,3 @@
 
     }
 }
-
