@@ -127,13 +127,15 @@
                     </div>
                 </div>
                 <div id="display-container">
-                    <!-- 加载状态指示器 -->
-                    <div id="spine-loading" class="loading-indicator">
-                        <div class="loading-spinner"></div>
-                        <p>角色加载中...</p>
-                    </div>
+
                     <div class="ninja-box">
+                        <!-- 加载状态指示器 -->
+
                         <div id="ninja-right">
+                            <div id="spine-loading" class="loading-indicator">
+                                <div class="loading-spinner"></div>
+                                <p style="color: var(--title-color);">加载中...</p>
+                            </div>
                             <div id="sky-bg"></div>
 
                             <p class="yeQian yeQian-1" data-i18n="banner.jsonExport">JSON导出</p>
@@ -378,6 +380,7 @@
     <script src="./js/ninja.js"></script>
     <script src="https://unpkg.com/@esotericsoftware/spine-pixi-v8@4.2.100/dist/iife/spine-pixi-v8.js" defer></script>
     <script src="./js/spine-pixi-capture.js" defer></script>
+    <!-- <script>window.spinePixi = window.spine; window.spine = null;</script> -->
     <!-- <script src="./js/spine-player.js" defer></script> -->
     <script src="https://unpkg.com/@esotericsoftware/spine-player@4.2.*/dist/iife/spine-player.js" defer></script>
     <script src="./js/spine-player-bridge.js" defer></script>
