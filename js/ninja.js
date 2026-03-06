@@ -94,6 +94,10 @@
     let finishTime = 0;               // 收尾阶段累计时间
     let finishStartPosition = { x: 0, y: 0 }; // 收尾阶段的起始坐标
 
+    // ===== 视口检测与性能优化 =====
+    let isViewportVisible = true; // 标记当前是否在视口内
+    let animationState = null; // 保存动画状态引用
+
     /**
      * 尺寸缓存函数：在初始化或容器改变大小时调用
      * 预先计算好中心点和上下边界，避免在 Ticker 循环中重复计算，提升性能
@@ -252,7 +256,7 @@
         lastPosition.x = e.data.global.x; // 记录初始按下的位置
         lastPosition.y = e.data.global.y;
 
-        // 播放“被抓起”的动画
+        // 播放"被抓起"的动画
         const entry = girl.state.setAnimation(0, "feet", true);
         if (entry) entry.mixDuration = 0.25;
         // 确保眨眼动画持续播放
@@ -306,6 +310,92 @@
 
     app.stage.on("pointerup", onRelease);
     app.stage.on("pointerupoutside", onRelease);
+
+    // 创建IntersectionObserver来监听display-container元素的可见性
+    const displayContainer = document.getElementById('display-container');
+    if (displayContainer) {
+        const viewportObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const wasVisible = isViewportVisible;
+                isViewportVisible = entry.isIntersecting;
+
+                if (wasVisible !== isViewportVisible) {
+                    if (isViewportVisible) {
+                        // 重新进入视口 - 恢复动画
+                        resumeAnimations();
+                        console.log('Ninja动画已恢复播放');
+                    } else {
+                        // 离开视口 - 暂停动画
+                        pauseAnimations();
+                        console.log('Ninja动画已暂停播放');
+                    }
+                }
+            });
+        }, {
+            threshold: 0.01, // 当display-container有1%可见时就开始恢复动画
+            rootMargin: '0px'
+        });
+
+        viewportObserver.observe(displayContainer);
+    }
+
+    // 暂停动画函数
+    function pauseAnimations() {
+        if (girl && girl.state) {
+            // 保存当前动画状态
+            const currentTrack0 = girl.state.getCurrent(0);
+            const currentTrack1 = girl.state.getCurrent(1);
+
+            animationState = {
+                track0: currentTrack0 && currentTrack0.animation ? currentTrack0 : null,
+                track1: currentTrack1 && currentTrack1.animation ? currentTrack1 : null
+            };
+
+            console.log('动画已暂停，保存状态:', {
+                track0Name: animationState.track0?.animation?.name,
+                track1Name: animationState.track1?.animation?.name
+            });
+
+            // 清空动画轨道，实现暂停效果
+            girl.state.clearTrack(0);
+            girl.state.clearTrack(1);
+
+            // 暂停PIXI ticker以停止渲染循环
+            if (app.ticker) {
+                app.ticker.stop();
+            }
+        }
+    }
+
+    // 恢复动画函数
+    function resumeAnimations() {
+        if (girl && girl.state) {
+            // 恢复PIXI ticker
+            if (app.ticker) {
+                app.ticker.start();
+            }
+
+            // 恢复动画状态
+            if (animationState && animationState.track0 && animationState.track0.animation) {
+                girl.state.setAnimation(0, animationState.track0.animation.name, true);
+                if (animationState.track1 && animationState.track1.animation) {
+                    girl.state.setAnimation(1, animationState.track1.animation.name, true);
+                } else {
+                    girl.state.setAnimation(1, "eyeblink-long", true);
+                }
+            } else {
+                // 如果没有保存的状态或状态无效，恢复默认动画
+                girl.state.setAnimation(0, "swing", true);
+                girl.state.setAnimation(1, "eyeblink-long", true);
+            }
+
+            console.log('动画已恢复，当前状态:', {
+                hasAnimationState: !!animationState,
+                track0Name: animationState?.track0?.animation?.name,
+                track1Name: animationState?.track1?.animation?.name
+            });
+        }
+    }
 
     window.addEventListener('beforeunload', () => {
         try {
